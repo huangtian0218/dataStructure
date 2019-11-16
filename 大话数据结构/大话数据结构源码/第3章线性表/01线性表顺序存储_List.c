@@ -13,6 +13,23 @@
 
 #define MAXSIZE 20           /* 存储空间初始分配量 */
 
+/*
+def Status
+def ELemType
+def Sqlist
+
+func:
+1. InitList
+2. ListEmpty
+3. ClearList
+4. GetElem
+5. LocateElem
+7. ListInsert
+8. ListDelete
+9. ListTraverse
+10. unionL
+*/
+
 typedef int Status;          /* Status是函数的类型,其值是函数结果状态代码，如OK等 */
 typedef int ElemType;        /* ElemType类型根据实际情况而定，这里假设为int */
 
