@@ -8,58 +8,58 @@
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-#define MAXVEX 100 /* ×î´ó¶¥µãÊı,Ó¦ÓÉÓÃ»§¶¨Òå */
+#define MAXVEX 100 /* æœ€å¤§é¡¶ç‚¹æ•°,åº”ç”±ç”¨æˆ·å®šä¹‰ */
 
-typedef int Status;	/* StatusÊÇº¯ÊıµÄÀàĞÍ,ÆäÖµÊÇº¯Êı½á¹û×´Ì¬´úÂë,ÈçOKµÈ */
-typedef char VertexType; /* ¶¥µãÀàĞÍÓ¦ÓÉÓÃ»§¶¨Òå */
-typedef int EdgeType; /* ±ßÉÏµÄÈ¨ÖµÀàĞÍÓ¦ÓÉÓÃ»§¶¨Òå */
+typedef int Status;	/* Statusæ˜¯å‡½æ•°çš„ç±»å‹,å…¶å€¼æ˜¯å‡½æ•°ç»“æœçŠ¶æ€ä»£ç ,å¦‚OKç­‰ */
+typedef char VertexType; /* é¡¶ç‚¹ç±»å‹åº”ç”±ç”¨æˆ·å®šä¹‰ */
+typedef int EdgeType; /* è¾¹ä¸Šçš„æƒå€¼ç±»å‹åº”ç”±ç”¨æˆ·å®šä¹‰ */
 
-typedef struct EdgeNode /* ±ß±í½áµã  */
+typedef struct EdgeNode /* è¾¹è¡¨ç»“ç‚¹  */
 {
-	int adjvex;    /* ÁÚ½ÓµãÓò,´æ´¢¸Ã¶¥µã¶ÔÓ¦µÄÏÂ±ê */
-	EdgeType info;		/* ÓÃÓÚ´æ´¢È¨Öµ,¶ÔÓÚ·ÇÍøÍ¼¿ÉÒÔ²»ĞèÒª */
-	struct EdgeNode *next; /* Á´Óò,Ö¸ÏòÏÂÒ»¸öÁÚ½Óµã */
+	int adjvex;    /* é‚»æ¥ç‚¹åŸŸ,å­˜å‚¨è¯¥é¡¶ç‚¹å¯¹åº”çš„ä¸‹æ ‡ */
+	EdgeType info;		/* ç”¨äºå­˜å‚¨æƒå€¼,å¯¹äºéç½‘å›¾å¯ä»¥ä¸éœ€è¦ */
+	struct EdgeNode *next; /* é“¾åŸŸ,æŒ‡å‘ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹ */
 }EdgeNode;
 
-typedef struct VertexNode /* ¶¥µã±í½áµã */
+typedef struct VertexNode /* é¡¶ç‚¹è¡¨ç»“ç‚¹ */
 {
-	VertexType data; /* ¶¥µãÓò,´æ´¢¶¥µãĞÅÏ¢ */
-	EdgeNode *firstedge;/* ±ß±íÍ·Ö¸Õë */
+	VertexType data; /* é¡¶ç‚¹åŸŸ,å­˜å‚¨é¡¶ç‚¹ä¿¡æ¯ */
+	EdgeNode *firstedge;/* è¾¹è¡¨å¤´æŒ‡é’ˆ */
 }VertexNode, AdjList[MAXVEX];
 
 typedef struct
 {
 	AdjList adjList; 
-	int numNodes,numEdges; /* Í¼ÖĞµ±Ç°¶¥µãÊıºÍ±ßÊı */
+	int numNodes,numEdges; /* å›¾ä¸­å½“å‰é¡¶ç‚¹æ•°å’Œè¾¹æ•° */
 }GraphAdjList;
 
-/* ½¨Á¢Í¼µÄÁÚ½Ó±í½á¹¹ */
+/* å»ºç«‹å›¾çš„é‚»æ¥è¡¨ç»“æ„ */
 void  CreateALGraph(GraphAdjList *G)
 {
 	int i,j,k;
 	EdgeNode *e;
-	printf("ÊäÈë¶¥µãÊıºÍ±ßÊı:\n");
-	scanf("%d,%d",&G->numNodes,&G->numEdges); /* ÊäÈë¶¥µãÊıºÍ±ßÊı */
-	for(i = 0;i < G->numNodes;i++) /* ¶ÁÈë¶¥µãĞÅÏ¢,½¨Á¢¶¥µã±í */
+	printf("è¾“å…¥é¡¶ç‚¹æ•°å’Œè¾¹æ•°:\n");
+	scanf("%d,%d",&G->numNodes,&G->numEdges); /* è¾“å…¥é¡¶ç‚¹æ•°å’Œè¾¹æ•° */
+	for(i = 0;i < G->numNodes;i++) /* è¯»å…¥é¡¶ç‚¹ä¿¡æ¯,å»ºç«‹é¡¶ç‚¹è¡¨ */
 	{
-		scanf(&G->adjList[i].data); 	/* ÊäÈë¶¥µãĞÅÏ¢ */
-		G->adjList[i].firstedge=NULL; 	/* ½«±ß±íÖÃÎª¿Õ±í */
+		scanf(&G->adjList[i].data); 	/* è¾“å…¥é¡¶ç‚¹ä¿¡æ¯ */
+		G->adjList[i].firstedge=NULL; 	/* å°†è¾¹è¡¨ç½®ä¸ºç©ºè¡¨ */
 	}
 	
 	
-	for(k = 0;k < G->numEdges;k++)/* ½¨Á¢±ß±í */
+	for(k = 0;k < G->numEdges;k++)/* å»ºç«‹è¾¹è¡¨ */
 	{
-		printf("ÊäÈë±ß(vi,vj)ÉÏµÄ¶¥µãĞòºÅ:\n");
-		scanf("%d,%d",&i,&j); /* ÊäÈë±ß(vi,vj)ÉÏµÄ¶¥µãĞòºÅ */
-		e=(EdgeNode *)malloc(sizeof(EdgeNode)); /* ÏòÄÚ´æÉêÇë¿Õ¼ä,Éú³É±ß±í½áµã */
-		e->adjvex=j;					/* ÁÚ½ÓĞòºÅÎªj */                         
-		e->next=G->adjList[i].firstedge;	/* ½«eµÄÖ¸ÕëÖ¸Ïòµ±Ç°¶¥µãÉÏÖ¸ÏòµÄ½áµã */
-		G->adjList[i].firstedge=e;		/* ½«µ±Ç°¶¥µãµÄÖ¸ÕëÖ¸Ïòe */               
+		printf("è¾“å…¥è¾¹(vi,vj)ä¸Šçš„é¡¶ç‚¹åºå·:\n");
+		scanf("%d,%d",&i,&j); /* è¾“å…¥è¾¹(vi,vj)ä¸Šçš„é¡¶ç‚¹åºå· */
+		e=(EdgeNode *)malloc(sizeof(EdgeNode)); /* å‘å†…å­˜ç”³è¯·ç©ºé—´,ç”Ÿæˆè¾¹è¡¨ç»“ç‚¹ */
+		e->adjvex=j;					/* é‚»æ¥åºå·ä¸ºj */                         
+		e->next=G->adjList[i].firstedge;	/* å°†eçš„æŒ‡é’ˆæŒ‡å‘å½“å‰é¡¶ç‚¹ä¸ŠæŒ‡å‘çš„ç»“ç‚¹ */
+		G->adjList[i].firstedge=e;		/* å°†å½“å‰é¡¶ç‚¹çš„æŒ‡é’ˆæŒ‡å‘e */               
 		
-		e=(EdgeNode *)malloc(sizeof(EdgeNode)); /* ÏòÄÚ´æÉêÇë¿Õ¼ä,Éú³É±ß±í½áµã */
-		e->adjvex=i;					/* ÁÚ½ÓĞòºÅÎªi */                         
-		e->next=G->adjList[j].firstedge;	/* ½«eµÄÖ¸ÕëÖ¸Ïòµ±Ç°¶¥µãÉÏÖ¸ÏòµÄ½áµã */
-		G->adjList[j].firstedge=e;		/* ½«µ±Ç°¶¥µãµÄÖ¸ÕëÖ¸Ïòe */               
+		e=(EdgeNode *)malloc(sizeof(EdgeNode)); /* å‘å†…å­˜ç”³è¯·ç©ºé—´,ç”Ÿæˆè¾¹è¡¨ç»“ç‚¹ */
+		e->adjvex=i;					/* é‚»æ¥åºå·ä¸ºi */                         
+		e->next=G->adjList[j].firstedge;	/* å°†eçš„æŒ‡é’ˆæŒ‡å‘å½“å‰é¡¶ç‚¹ä¸ŠæŒ‡å‘çš„ç»“ç‚¹ */
+		G->adjList[j].firstedge=e;		/* å°†å½“å‰é¡¶ç‚¹çš„æŒ‡é’ˆæŒ‡å‘e */               
 	}
 }
 

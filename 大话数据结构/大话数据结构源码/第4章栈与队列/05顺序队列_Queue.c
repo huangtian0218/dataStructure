@@ -8,17 +8,17 @@
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-#define MAXSIZE 20 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 20 /* å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡ */
 
 typedef int Status; 
-typedef int QElemType; /* QElemTypeÀàĞÍ¸ù¾İÊµ¼ÊÇé¿ö¶ø¶¨£¬ÕâÀï¼ÙÉèÎªint */
+typedef int QElemType; /* QElemTypeç±»å‹æ ¹æ®å®é™…æƒ…å†µè€Œå®šï¼Œè¿™é‡Œå‡è®¾ä¸ºint */
 
-/* Ñ­»·¶ÓÁĞµÄË³Ğò´æ´¢½á¹¹ */
+/* å¾ªç¯é˜Ÿåˆ—çš„é¡ºåºå­˜å‚¨ç»“æ„ */
 typedef struct
 {
 	QElemType data[MAXSIZE];
-	int front;    	/* Í·Ö¸Õë */
-	int rear;		/* Î²Ö¸Õë£¬Èô¶ÓÁĞ²»¿Õ£¬Ö¸Ïò¶ÓÁĞÎ²ÔªËØµÄÏÂÒ»¸öÎ»ÖÃ */
+	int front;    	/* å¤´æŒ‡é’ˆ */
+	int rear;		/* å°¾æŒ‡é’ˆï¼Œè‹¥é˜Ÿåˆ—ä¸ç©ºï¼ŒæŒ‡å‘é˜Ÿåˆ—å°¾å…ƒç´ çš„ä¸‹ä¸€ä¸ªä½ç½® */
 }SqQueue;
 
 Status visit(QElemType c)
@@ -27,7 +27,7 @@ Status visit(QElemType c)
 	return OK;
 }
 
-/* ³õÊ¼»¯Ò»¸ö¿Õ¶ÓÁĞQ */
+/* åˆå§‹åŒ–ä¸€ä¸ªç©ºé˜Ÿåˆ—Q */
 Status InitQueue(SqQueue *Q)
 {
 	Q->front=0;
@@ -35,60 +35,60 @@ Status InitQueue(SqQueue *Q)
 	return  OK;
 }
 
-/* ½«QÇåÎª¿Õ¶ÓÁĞ */
+/* å°†Qæ¸…ä¸ºç©ºé˜Ÿåˆ— */
 Status ClearQueue(SqQueue *Q)
 {
 	Q->front=Q->rear=0;
 	return OK;
 }
 
-/* Èô¶ÓÁĞQÎª¿Õ¶ÓÁĞ,Ôò·µ»ØTRUE,·ñÔò·µ»ØFALSE */
+/* è‹¥é˜Ÿåˆ—Qä¸ºç©ºé˜Ÿåˆ—,åˆ™è¿”å›TRUE,å¦åˆ™è¿”å›FALSE */
 Status QueueEmpty(SqQueue Q)
 { 
-	if(Q.front==Q.rear) /* ¶ÓÁĞ¿ÕµÄ±êÖ¾ */
+	if(Q.front==Q.rear) /* é˜Ÿåˆ—ç©ºçš„æ ‡å¿— */
 		return TRUE;
 	else
 		return FALSE;
 }
 
-/* ·µ»ØQµÄÔªËØ¸öÊı£¬Ò²¾ÍÊÇ¶ÓÁĞµÄµ±Ç°³¤¶È */
+/* è¿”å›Qçš„å…ƒç´ ä¸ªæ•°ï¼Œä¹Ÿå°±æ˜¯é˜Ÿåˆ—çš„å½“å‰é•¿åº¦ */
 int QueueLength(SqQueue Q)
 {
 	return  (Q.rear-Q.front+MAXSIZE)%MAXSIZE;
 }
 
-/* Èô¶ÓÁĞ²»¿Õ,ÔòÓÃe·µ»ØQµÄ¶ÓÍ·ÔªËØ,²¢·µ»ØOK,·ñÔò·µ»ØERROR */
+/* è‹¥é˜Ÿåˆ—ä¸ç©º,åˆ™ç”¨eè¿”å›Qçš„é˜Ÿå¤´å…ƒç´ ,å¹¶è¿”å›OK,å¦åˆ™è¿”å›ERROR */
 Status GetHead(SqQueue Q,QElemType *e)
 {
-	if(Q.front==Q.rear) /* ¶ÓÁĞ¿Õ */
+	if(Q.front==Q.rear) /* é˜Ÿåˆ—ç©º */
 		return ERROR;
 	*e=Q.data[Q.front];
 	return OK;
 }
 
-/* Èô¶ÓÁĞÎ´Âú£¬Ôò²åÈëÔªËØeÎªQĞÂµÄ¶ÓÎ²ÔªËØ */
+/* è‹¥é˜Ÿåˆ—æœªæ»¡ï¼Œåˆ™æ’å…¥å…ƒç´ eä¸ºQæ–°çš„é˜Ÿå°¾å…ƒç´  */
 Status EnQueue(SqQueue *Q,QElemType e)
 {
-	if ((Q->rear+1)%MAXSIZE == Q->front)	/* ¶ÓÁĞÂúµÄÅĞ¶Ï */
+	if ((Q->rear+1)%MAXSIZE == Q->front)	/* é˜Ÿåˆ—æ»¡çš„åˆ¤æ–­ */
 		return ERROR;
-	Q->data[Q->rear]=e;			/* ½«ÔªËØe¸³Öµ¸ø¶ÓÎ² */
-	Q->rear=(Q->rear+1)%MAXSIZE;/* rearÖ¸ÕëÏòºóÒÆÒ»Î»ÖÃ£¬ */
-								/* Èôµ½×îºóÔò×ªµ½Êı×éÍ·²¿ */
+	Q->data[Q->rear]=e;			/* å°†å…ƒç´ eèµ‹å€¼ç»™é˜Ÿå°¾ */
+	Q->rear=(Q->rear+1)%MAXSIZE;/* rearæŒ‡é’ˆå‘åç§»ä¸€ä½ç½®ï¼Œ */
+								/* è‹¥åˆ°æœ€ååˆ™è½¬åˆ°æ•°ç»„å¤´éƒ¨ */
 	return  OK;
 }
 
-/* Èô¶ÓÁĞ²»¿Õ£¬ÔòÉ¾³ıQÖĞ¶ÓÍ·ÔªËØ£¬ÓÃe·µ»ØÆäÖµ */
+/* è‹¥é˜Ÿåˆ—ä¸ç©ºï¼Œåˆ™åˆ é™¤Qä¸­é˜Ÿå¤´å…ƒç´ ï¼Œç”¨eè¿”å›å…¶å€¼ */
 Status DeQueue(SqQueue *Q,QElemType *e)
 {
-	if (Q->front == Q->rear)			/* ¶ÓÁĞ¿ÕµÄÅĞ¶Ï */
+	if (Q->front == Q->rear)			/* é˜Ÿåˆ—ç©ºçš„åˆ¤æ–­ */
 		return ERROR;
-	*e=Q->data[Q->front];				/* ½«¶ÓÍ·ÔªËØ¸³Öµ¸øe */
-	Q->front=(Q->front+1)%MAXSIZE;	/* frontÖ¸ÕëÏòºóÒÆÒ»Î»ÖÃ£¬ */
-									/* Èôµ½×îºóÔò×ªµ½Êı×éÍ·²¿ */
+	*e=Q->data[Q->front];				/* å°†é˜Ÿå¤´å…ƒç´ èµ‹å€¼ç»™e */
+	Q->front=(Q->front+1)%MAXSIZE;	/* frontæŒ‡é’ˆå‘åç§»ä¸€ä½ç½®ï¼Œ */
+									/* è‹¥åˆ°æœ€ååˆ™è½¬åˆ°æ•°ç»„å¤´éƒ¨ */
 	return  OK;
 }
 
-/* ´Ó¶ÓÍ·µ½¶ÓÎ²ÒÀ´Î¶Ô¶ÓÁĞQÖĞÃ¿¸öÔªËØÊä³ö */
+/* ä»é˜Ÿå¤´åˆ°é˜Ÿå°¾ä¾æ¬¡å¯¹é˜Ÿåˆ—Qä¸­æ¯ä¸ªå…ƒç´ è¾“å‡º */
 Status QueueTraverse(SqQueue Q)
 { 
 	int i;
@@ -109,9 +109,9 @@ int main()
 	QElemType d;
 	SqQueue Q;
 	InitQueue(&Q);
-	printf("³õÊ¼»¯¶ÓÁĞºó£¬¶ÓÁĞ¿Õ·ñ£¿%u(1:¿Õ 0:·ñ)\n",QueueEmpty(Q));
+	printf("åˆå§‹åŒ–é˜Ÿåˆ—åï¼Œé˜Ÿåˆ—ç©ºå¦ï¼Ÿ%u(1:ç©º 0:å¦)\n",QueueEmpty(Q));
 
-	printf("ÇëÊäÈëÕûĞÍ¶ÓÁĞÔªËØ(²»³¬¹ı%d¸ö),-1ÎªÌáÇ°½áÊø·û: ",MAXSIZE-1);
+	printf("è¯·è¾“å…¥æ•´å‹é˜Ÿåˆ—å…ƒç´ (ä¸è¶…è¿‡%dä¸ª),-1ä¸ºæå‰ç»“æŸç¬¦: ",MAXSIZE-1);
 	do
 	{
 		/* scanf("%d",&d); */
@@ -122,35 +122,35 @@ int main()
 		EnQueue(&Q,d);
 	}while(i<MAXSIZE-1);
 
-	printf("¶ÓÁĞ³¤¶ÈÎª: %d\n",QueueLength(Q));
-	printf("ÏÖÔÚ¶ÓÁĞ¿Õ·ñ£¿%u(1:¿Õ 0:·ñ)\n",QueueEmpty(Q));
-	printf("Á¬Ğø%d´ÎÓÉ¶ÓÍ·É¾³ıÔªËØ,¶ÓÎ²²åÈëÔªËØ:\n",MAXSIZE);
+	printf("é˜Ÿåˆ—é•¿åº¦ä¸º: %d\n",QueueLength(Q));
+	printf("ç°åœ¨é˜Ÿåˆ—ç©ºå¦ï¼Ÿ%u(1:ç©º 0:å¦)\n",QueueEmpty(Q));
+	printf("è¿ç»­%dæ¬¡ç”±é˜Ÿå¤´åˆ é™¤å…ƒç´ ,é˜Ÿå°¾æ’å…¥å…ƒç´ :\n",MAXSIZE);
 	for(l=1;l<=MAXSIZE;l++)
 	{
 		DeQueue(&Q,&d);
-		printf("É¾³ıµÄÔªËØÊÇ%d,²åÈëµÄÔªËØ:%d \n",d,l+1000);
+		printf("åˆ é™¤çš„å…ƒç´ æ˜¯%d,æ’å…¥çš„å…ƒç´ :%d \n",d,l+1000);
 		/* scanf("%d",&d); */
 		d=l+1000;
 		EnQueue(&Q,d);
 	}
 	l=QueueLength(Q);
 
-	printf("ÏÖÔÚ¶ÓÁĞÖĞµÄÔªËØÎª: \n");
+	printf("ç°åœ¨é˜Ÿåˆ—ä¸­çš„å…ƒç´ ä¸º: \n");
 	QueueTraverse(Q);
-	printf("¹²Ïò¶ÓÎ²²åÈëÁË%d¸öÔªËØ\n",i+MAXSIZE);
+	printf("å…±å‘é˜Ÿå°¾æ’å…¥äº†%dä¸ªå…ƒç´ \n",i+MAXSIZE);
 	if(l-2>0)
-		printf("ÏÖÔÚÓÉ¶ÓÍ·É¾³ı%d¸öÔªËØ:\n",l-2);
+		printf("ç°åœ¨ç”±é˜Ÿå¤´åˆ é™¤%dä¸ªå…ƒç´ :\n",l-2);
 	while(QueueLength(Q)>2)
 	{
 		DeQueue(&Q,&d);
-		printf("É¾³ıµÄÔªËØÖµÎª%d\n",d);
+		printf("åˆ é™¤çš„å…ƒç´ å€¼ä¸º%d\n",d);
 	}
 
 	j=GetHead(Q,&d);
 	if(j)
-		printf("ÏÖÔÚ¶ÓÍ·ÔªËØÎª: %d\n",d);
+		printf("ç°åœ¨é˜Ÿå¤´å…ƒç´ ä¸º: %d\n",d);
 	ClearQueue(&Q);
-	printf("Çå¿Õ¶ÓÁĞºó, ¶ÓÁĞ¿Õ·ñ£¿%u(1:¿Õ 0:·ñ)\n",QueueEmpty(Q));
+	printf("æ¸…ç©ºé˜Ÿåˆ—å, é˜Ÿåˆ—ç©ºå¦ï¼Ÿ%u(1:ç©º 0:å¦)\n",QueueEmpty(Q));
 	return 0;
 }
 

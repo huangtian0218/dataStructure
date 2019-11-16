@@ -1,17 +1,17 @@
 #include "stdio.h"
 
-int Fbi(int i)  /* 斐波那契的递归函数 */
+int Fbi(int i)  /* 鏂愭尝閭ｅ鐨勯�掑綊鍑芥暟 */
 {
 	if( i < 2 )
 		return i == 0 ? 0 : 1;  
-    return Fbi(i - 1) + Fbi(i - 2);  /* 这里Fbi就是函数自己，等于在调用自己 */
+    return Fbi(i - 1) + Fbi(i - 2);  /* 杩欓噷Fbi灏辨槸鍑芥暟鑷繁锛岀瓑浜庡湪璋冪敤鑷繁 */
 }  
 
 int main()
 {
 	int i;
 	int a[40];  
-	printf("迭代显示斐波那契数列：\n");
+	printf("杩唬鏄剧ず鏂愭尝閭ｅ鏁板垪锛歕n");
 	a[0]=0;
 	a[1]=1;
 	printf("%d ",a[0]);  
@@ -23,7 +23,7 @@ int main()
 	} 
 	printf("\n");
 	
-	printf("递归显示斐波那契数列：\n");
+	printf("閫掑綊鏄剧ず鏂愭尝閭ｅ鏁板垪锛歕n");
 	for(i = 0;i < 40;i++)  
 		printf("%d ", Fbi(i));  
     return 0;

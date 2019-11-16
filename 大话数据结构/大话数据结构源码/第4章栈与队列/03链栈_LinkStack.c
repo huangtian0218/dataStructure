@@ -8,13 +8,13 @@
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-#define MAXSIZE 20 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 20 /* å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡ */
 
 typedef int Status; 
-typedef int SElemType; /* SElemTypeÀàÐÍ¸ù¾ÝÊµ¼ÊÇé¿ö¶ø¶¨£¬ÕâÀï¼ÙÉèÎªint */
+typedef int SElemType; /* SElemTypeç±»åž‹æ ¹æ®å®žé™…æƒ…å†µè€Œå®šï¼Œè¿™é‡Œå‡è®¾ä¸ºint */
 
 
-/* Á´Õ»½á¹¹ */
+/* é“¾æ ˆç»“æž„ */
 typedef struct StackNode
 {
         SElemType data;
@@ -34,7 +34,7 @@ Status visit(SElemType c)
         return OK;
 }
 
-/*  ¹¹ÔìÒ»¸ö¿ÕÕ»S */
+/*  æž„é€ ä¸€ä¸ªç©ºæ ˆS */
 Status InitStack(LinkStack *S)
 { 
         S->top = (LinkStackPtr)malloc(sizeof(StackNode));
@@ -45,7 +45,7 @@ Status InitStack(LinkStack *S)
         return OK;
 }
 
-/* °ÑSÖÃÎª¿ÕÕ» */
+/* æŠŠSç½®ä¸ºç©ºæ ˆ */
 Status ClearStack(LinkStack *S)
 { 
         LinkStackPtr p,q;
@@ -60,7 +60,7 @@ Status ClearStack(LinkStack *S)
         return OK;
 }
 
-/* ÈôÕ»SÎª¿ÕÕ»£¬Ôò·µ»ØTRUE£¬·ñÔò·µ»ØFALSE */
+/* è‹¥æ ˆSä¸ºç©ºæ ˆï¼Œåˆ™è¿”å›žTRUEï¼Œå¦åˆ™è¿”å›žFALSE */
 Status StackEmpty(LinkStack S)
 { 
         if (S.count==0)
@@ -69,13 +69,13 @@ Status StackEmpty(LinkStack S)
                 return FALSE;
 }
 
-/* ·µ»ØSµÄÔªËØ¸öÊý£¬¼´Õ»µÄ³¤¶È */
+/* è¿”å›žSçš„å…ƒç´ ä¸ªæ•°ï¼Œå³æ ˆçš„é•¿åº¦ */
 int StackLength(LinkStack S)
 { 
         return S.count;
 }
 
-/* ÈôÕ»²»¿Õ£¬ÔòÓÃe·µ»ØSµÄÕ»¶¥ÔªËØ£¬²¢·µ»ØOK£»·ñÔò·µ»ØERROR */
+/* è‹¥æ ˆä¸ç©ºï¼Œåˆ™ç”¨eè¿”å›žSçš„æ ˆé¡¶å…ƒç´ ï¼Œå¹¶è¿”å›žOKï¼›å¦åˆ™è¿”å›žERROR */
 Status GetTop(LinkStack S,SElemType *e)
 {
         if (S.top==NULL)
@@ -85,27 +85,27 @@ Status GetTop(LinkStack S,SElemType *e)
         return OK;
 }
 
-/* ²åÈëÔªËØeÎªÐÂµÄÕ»¶¥ÔªËØ */
+/* æ’å…¥å…ƒç´ eä¸ºæ–°çš„æ ˆé¡¶å…ƒç´  */
 Status Push(LinkStack *S,SElemType e)
 {
         LinkStackPtr s=(LinkStackPtr)malloc(sizeof(StackNode)); 
         s->data=e; 
-        s->next=S->top;	/* °Ñµ±Ç°µÄÕ»¶¥ÔªËØ¸³Öµ¸øÐÂ½áµãµÄÖ±½Óºó¼Ì£¬¼ûÍ¼ÖÐ¢Ù */
-        S->top=s;         /* ½«ÐÂµÄ½áµãs¸³Öµ¸øÕ»¶¥Ö¸Õë£¬¼ûÍ¼ÖÐ¢Ú */
+        s->next=S->top;	/* æŠŠå½“å‰çš„æ ˆé¡¶å…ƒç´ èµ‹å€¼ç»™æ–°ç»“ç‚¹çš„ç›´æŽ¥åŽç»§ï¼Œè§å›¾ä¸­â‘  */
+        S->top=s;         /* å°†æ–°çš„ç»“ç‚¹sèµ‹å€¼ç»™æ ˆé¡¶æŒ‡é’ˆï¼Œè§å›¾ä¸­â‘¡ */
         S->count++;
         return OK;
 }
 
-/* ÈôÕ»²»¿Õ£¬ÔòÉ¾³ýSµÄÕ»¶¥ÔªËØ£¬ÓÃe·µ»ØÆäÖµ£¬²¢·µ»ØOK£»·ñÔò·µ»ØERROR */
+/* è‹¥æ ˆä¸ç©ºï¼Œåˆ™åˆ é™¤Sçš„æ ˆé¡¶å…ƒç´ ï¼Œç”¨eè¿”å›žå…¶å€¼ï¼Œå¹¶è¿”å›žOKï¼›å¦åˆ™è¿”å›žERROR */
 Status Pop(LinkStack *S,SElemType *e)
 { 
         LinkStackPtr p;
         if(StackEmpty(*S))
                 return ERROR;
         *e=S->top->data;
-        p=S->top;					/* ½«Õ»¶¥½áµã¸³Öµ¸øp£¬¼ûÍ¼ÖÐ¢Û */
-        S->top=S->top->next;    /* Ê¹µÃÕ»¶¥Ö¸ÕëÏÂÒÆÒ»Î»£¬Ö¸ÏòºóÒ»½áµã£¬¼ûÍ¼ÖÐ¢Ü */
-        free(p);                    /* ÊÍ·Å½áµãp */        
+        p=S->top;					/* å°†æ ˆé¡¶ç»“ç‚¹èµ‹å€¼ç»™pï¼Œè§å›¾ä¸­â‘¢ */
+        S->top=S->top->next;    /* ä½¿å¾—æ ˆé¡¶æŒ‡é’ˆä¸‹ç§»ä¸€ä½ï¼ŒæŒ‡å‘åŽä¸€ç»“ç‚¹ï¼Œè§å›¾ä¸­â‘£ */
+        free(p);                    /* é‡Šæ”¾ç»“ç‚¹p */        
         S->count--;
         return OK;
 }
@@ -131,14 +131,14 @@ int main()
         if(InitStack(&s)==OK)
                 for(j=1;j<=10;j++)
                         Push(&s,j);
-        printf("Õ»ÖÐÔªËØÒÀ´ÎÎª£º");
+        printf("æ ˆä¸­å…ƒç´ ä¾æ¬¡ä¸ºï¼š");
         StackTraverse(s);
         Pop(&s,&e);
-        printf("µ¯³öµÄÕ»¶¥ÔªËØ e=%d\n",e);
-        printf("Õ»¿Õ·ñ£º%d(1:¿Õ 0:·ñ)\n",StackEmpty(s));
+        printf("å¼¹å‡ºçš„æ ˆé¡¶å…ƒç´  e=%d\n",e);
+        printf("æ ˆç©ºå¦ï¼š%d(1:ç©º 0:å¦)\n",StackEmpty(s));
         GetTop(s,&e);
-        printf("Õ»¶¥ÔªËØ e=%d Õ»µÄ³¤¶ÈÎª%d\n",e,StackLength(s));
+        printf("æ ˆé¡¶å…ƒç´  e=%d æ ˆçš„é•¿åº¦ä¸º%d\n",e,StackLength(s));
         ClearStack(&s);
-        printf("Çå¿ÕÕ»ºó£¬Õ»¿Õ·ñ£º%d(1:¿Õ 0:·ñ)\n",StackEmpty(s));
+        printf("æ¸…ç©ºæ ˆåŽï¼Œæ ˆç©ºå¦ï¼š%d(1:ç©º 0:å¦)\n",StackEmpty(s));
         return 0;
 }

@@ -9,19 +9,19 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 100 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
-#define MAX_TREE_SIZE 100 /* ¶ş²æÊ÷µÄ×î´ó½áµãÊı */
+#define MAXSIZE 100 /* å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡ */
+#define MAX_TREE_SIZE 100 /* äºŒå‰æ ‘çš„æœ€å¤§ç»“ç‚¹æ•° */
 
-typedef int Status;		/* StatusÊÇº¯ÊıµÄÀàĞÍ,ÆäÖµÊÇº¯Êı½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */
-typedef int TElemType;  /* Ê÷½áµãµÄÊı¾İÀàĞÍ£¬Ä¿Ç°Ôİ¶¨ÎªÕûĞÍ */
-typedef TElemType SqBiTree[MAX_TREE_SIZE]; /* 0ºÅµ¥Ôª´æ´¢¸ù½áµã  */
+typedef int Status;		/* Statusæ˜¯å‡½æ•°çš„ç±»å‹,å…¶å€¼æ˜¯å‡½æ•°ç»“æœçŠ¶æ€ä»£ç ï¼Œå¦‚OKç­‰ */
+typedef int TElemType;  /* æ ‘ç»“ç‚¹çš„æ•°æ®ç±»å‹ï¼Œç›®å‰æš‚å®šä¸ºæ•´å‹ */
+typedef TElemType SqBiTree[MAX_TREE_SIZE]; /* 0å·å•å…ƒå­˜å‚¨æ ¹ç»“ç‚¹  */
 
 typedef struct
 {
-	int level,order; /* ½áµãµÄ²ã,±¾²ãĞòºÅ(°´Âú¶ş²æÊ÷¼ÆËã) */
+	int level,order; /* ç»“ç‚¹çš„å±‚,æœ¬å±‚åºå·(æŒ‰æ»¡äºŒå‰æ ‘è®¡ç®—) */
 }Position;
 
-TElemType Nil=0; /*  ÉèÕûĞÍÒÔ0Îª¿Õ */
+TElemType Nil=0; /*  è®¾æ•´å‹ä»¥0ä¸ºç©º */
 
 Status visit(TElemType c)
 {
@@ -29,71 +29,71 @@ Status visit(TElemType c)
 	return OK;
 }
 
-/* ¹¹Ôì¿Õ¶ş²æÊ÷T¡£ÒòÎªTÊÇ¹Ì¶¨Êı×é£¬²»»á¸Ä±ä£¬¹Ê²»ĞèÒª& */
+/* æ„é€ ç©ºäºŒå‰æ ‘Tã€‚å› ä¸ºTæ˜¯å›ºå®šæ•°ç»„ï¼Œä¸ä¼šæ”¹å˜ï¼Œæ•…ä¸éœ€è¦& */
 Status InitBiTree(SqBiTree T)
 {
 	int i;
 	for(i=0;i<MAX_TREE_SIZE;i++)
-		T[i]=Nil; /* ³õÖµÎª¿Õ */
+		T[i]=Nil; /* åˆå€¼ä¸ºç©º */
 	return OK;
 }
 
-/* °´²ãĞò´ÎĞòÊäÈë¶ş²æÊ÷ÖĞ½áµãµÄÖµ(×Ö·ûĞÍ»òÕûĞÍ), ¹¹ÔìË³Ğò´æ´¢µÄ¶ş²æÊ÷T */
+/* æŒ‰å±‚åºæ¬¡åºè¾“å…¥äºŒå‰æ ‘ä¸­ç»“ç‚¹çš„å€¼(å­—ç¬¦å‹æˆ–æ•´å‹), æ„é€ é¡ºåºå­˜å‚¨çš„äºŒå‰æ ‘T */
 Status CreateBiTree(SqBiTree T)
 { 
 	int i=0;
- 	printf("Çë°´²ãĞòÊäÈë½áµãµÄÖµ(ÕûĞÍ)£¬0±íÊ¾¿Õ½áµã£¬Êä999½áÊø¡£½áµãÊı¡Ü%d:\n",MAX_TREE_SIZE);
+ 	printf("è¯·æŒ‰å±‚åºè¾“å…¥ç»“ç‚¹çš„å€¼(æ•´å‹)ï¼Œ0è¡¨ç¤ºç©ºç»“ç‚¹ï¼Œè¾“999ç»“æŸã€‚ç»“ç‚¹æ•°â‰¤%d:\n",MAX_TREE_SIZE);
 	while(i<10)
 	{
 		T[i]=i+1;
 		
-		if(i!=0&&T[(i+1)/2-1]==Nil&&T[i]!=Nil) /* ´Ë½áµã(²»¿Õ)ÎŞË«Ç×ÇÒ²»ÊÇ¸ù */
+		if(i!=0&&T[(i+1)/2-1]==Nil&&T[i]!=Nil) /* æ­¤ç»“ç‚¹(ä¸ç©º)æ— åŒäº²ä¸”ä¸æ˜¯æ ¹ */
 		{
-			printf("³öÏÖÎŞË«Ç×µÄ·Ç¸ù½áµã%d\n",T[i]);
+			printf("å‡ºç°æ— åŒäº²çš„éæ ¹ç»“ç‚¹%d\n",T[i]);
 			exit(ERROR);
 		}
 		i++;
 	}
 	while(i<MAX_TREE_SIZE)
 	{
-		T[i]=Nil; /* ½«¿Õ¸³Öµ¸øTµÄºóÃæµÄ½áµã */
+		T[i]=Nil; /* å°†ç©ºèµ‹å€¼ç»™Tçš„åé¢çš„ç»“ç‚¹ */
 		i++;
 	}
 
 	return OK;
 }
 
-#define ClearBiTree InitBiTree /* ÔÚË³Ğò´æ´¢½á¹¹ÖĞ£¬Á½º¯ÊıÍêÈ«Ò»Ñù */
+#define ClearBiTree InitBiTree /* åœ¨é¡ºåºå­˜å‚¨ç»“æ„ä¸­ï¼Œä¸¤å‡½æ•°å®Œå…¨ä¸€æ · */
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ */
-/* ²Ù×÷½á¹û: ÈôTÎª¿Õ¶ş²æÊ÷,Ôò·µ»ØTRUE,·ñÔòFALSE */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨ */
+/* æ“ä½œç»“æœ: è‹¥Tä¸ºç©ºäºŒå‰æ ‘,åˆ™è¿”å›TRUE,å¦åˆ™FALSE */
 Status BiTreeEmpty(SqBiTree T)
 { 
-	if(T[0]==Nil) /* ¸ù½áµãÎª¿Õ,ÔòÊ÷¿Õ */
+	if(T[0]==Nil) /* æ ¹ç»“ç‚¹ä¸ºç©º,åˆ™æ ‘ç©º */
 		return TRUE;
 	else
 		return FALSE;
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ¡£²Ù×÷½á¹û: ·µ»ØTµÄÉî¶È */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨ã€‚æ“ä½œç»“æœ: è¿”å›Tçš„æ·±åº¦ */
 int BiTreeDepth(SqBiTree T)
 { 
    int i,j=-1;
-   for(i=MAX_TREE_SIZE-1;i>=0;i--) /* ÕÒµ½×îºóÒ»¸ö½áµã */
+   for(i=MAX_TREE_SIZE-1;i>=0;i--) /* æ‰¾åˆ°æœ€åä¸€ä¸ªç»“ç‚¹ */
      if(T[i]!=Nil)
        break;
    i++; 
    do
      j++;
-   while(i>=powl(2,j));/* ¼ÆËã2µÄj´ÎÃİ¡£ */
+   while(i>=powl(2,j));/* è®¡ç®—2çš„jæ¬¡å¹‚ã€‚ */
    return j;
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ */
-/* ²Ù×÷½á¹û:  µ±T²»¿Õ,ÓÃe·µ»ØTµÄ¸ù,·µ»ØOK;·ñÔò·µ»ØERROR,eÎŞ¶¨Òå */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨ */
+/* æ“ä½œç»“æœ:  å½“Tä¸ç©º,ç”¨eè¿”å›Tçš„æ ¹,è¿”å›OK;å¦åˆ™è¿”å›ERROR,eæ— å®šä¹‰ */
 Status Root(SqBiTree T,TElemType *e)
 { 
-	if(BiTreeEmpty(T)) /* T¿Õ */
+	if(BiTreeEmpty(T)) /* Tç©º */
 		return ERROR;
 	else
 	{	
@@ -102,165 +102,165 @@ Status Root(SqBiTree T,TElemType *e)
 	}
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ,eÊÇTÖĞÄ³¸ö½áµã(µÄÎ»ÖÃ) */
-/* ²Ù×÷½á¹û: ·µ»Ø´¦ÓÚÎ»ÖÃe(²ã,±¾²ãĞòºÅ)µÄ½áµãµÄÖµ */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨,eæ˜¯Tä¸­æŸä¸ªç»“ç‚¹(çš„ä½ç½®) */
+/* æ“ä½œç»“æœ: è¿”å›å¤„äºä½ç½®e(å±‚,æœ¬å±‚åºå·)çš„ç»“ç‚¹çš„å€¼ */
 TElemType Value(SqBiTree T,Position e)
 { 
 	 return T[(int)powl(2,e.level-1)+e.order-2];
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ,eÊÇTÖĞÄ³¸ö½áµã(µÄÎ»ÖÃ) */
-/* ²Ù×÷½á¹û: ¸ø´¦ÓÚÎ»ÖÃe(²ã,±¾²ãĞòºÅ)µÄ½áµã¸³ĞÂÖµvalue */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨,eæ˜¯Tä¸­æŸä¸ªç»“ç‚¹(çš„ä½ç½®) */
+/* æ“ä½œç»“æœ: ç»™å¤„äºä½ç½®e(å±‚,æœ¬å±‚åºå·)çš„ç»“ç‚¹èµ‹æ–°å€¼value */
 Status Assign(SqBiTree T,Position e,TElemType value)
 { 
-	int i=(int)powl(2,e.level-1)+e.order-2; /* ½«²ã¡¢±¾²ãĞòºÅ×ªÎª¾ØÕóµÄĞòºÅ */
-	if(value!=Nil&&T[(i+1)/2-1]==Nil) /* ¸øÒ¶×Ó¸³·Ç¿ÕÖµµ«Ë«Ç×Îª¿Õ */
+	int i=(int)powl(2,e.level-1)+e.order-2; /* å°†å±‚ã€æœ¬å±‚åºå·è½¬ä¸ºçŸ©é˜µçš„åºå· */
+	if(value!=Nil&&T[(i+1)/2-1]==Nil) /* ç»™å¶å­èµ‹éç©ºå€¼ä½†åŒäº²ä¸ºç©º */
 		return ERROR;
-	else if(value==Nil&&(T[i*2+1]!=Nil||T[i*2+2]!=Nil)) /*  ¸øË«Ç×¸³¿ÕÖµµ«ÓĞÒ¶×Ó£¨²»¿Õ£© */
+	else if(value==Nil&&(T[i*2+1]!=Nil||T[i*2+2]!=Nil)) /*  ç»™åŒäº²èµ‹ç©ºå€¼ä½†æœ‰å¶å­ï¼ˆä¸ç©ºï¼‰ */
 		return ERROR;
 	T[i]=value;
 	return OK;
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ,eÊÇTÖĞÄ³¸ö½áµã */
-/* ²Ù×÷½á¹û: ÈôeÊÇTµÄ·Ç¸ù½áµã,Ôò·µ»ØËüµÄË«Ç×,·ñÔò·µ»Ø£¢¿Õ£¢ */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨,eæ˜¯Tä¸­æŸä¸ªç»“ç‚¹ */
+/* æ“ä½œç»“æœ: è‹¥eæ˜¯Tçš„éæ ¹ç»“ç‚¹,åˆ™è¿”å›å®ƒçš„åŒäº²,å¦åˆ™è¿”å›ï¼‚ç©ºï¼‚ */
 TElemType Parent(SqBiTree T,TElemType e)
 { 
 	int i;
-	if(T[0]==Nil) /* ¿ÕÊ÷ */
+	if(T[0]==Nil) /* ç©ºæ ‘ */
 		return Nil;
 	for(i=1;i<=MAX_TREE_SIZE-1;i++)
-		if(T[i]==e) /* ÕÒµ½e */
+		if(T[i]==e) /* æ‰¾åˆ°e */
 			return T[(i+1)/2-1];
-	return Nil; /* Ã»ÕÒµ½e */
+	return Nil; /* æ²¡æ‰¾åˆ°e */
 }
 
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ,eÊÇTÖĞÄ³¸ö½áµã */
-/* ²Ù×÷½á¹û: ·µ»ØeµÄ×óº¢×Ó¡£ÈôeÎŞ×óº¢×Ó,Ôò·µ»Ø£¢¿Õ£¢ */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨,eæ˜¯Tä¸­æŸä¸ªç»“ç‚¹ */
+/* æ“ä½œç»“æœ: è¿”å›eçš„å·¦å­©å­ã€‚è‹¥eæ— å·¦å­©å­,åˆ™è¿”å›ï¼‚ç©ºï¼‚ */
 TElemType LeftChild(SqBiTree T,TElemType e)
 { 
 	int i;
-	if(T[0]==Nil) /* ¿ÕÊ÷ */
+	if(T[0]==Nil) /* ç©ºæ ‘ */
 		return Nil;
 	for(i=0;i<=MAX_TREE_SIZE-1;i++)
-		if(T[i]==e) /* ÕÒµ½e */
+		if(T[i]==e) /* æ‰¾åˆ°e */
 			return T[i*2+1];
-	return Nil; /* Ã»ÕÒµ½e */
+	return Nil; /* æ²¡æ‰¾åˆ°e */
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ,eÊÇTÖĞÄ³¸ö½áµã */
-/* ²Ù×÷½á¹û: ·µ»ØeµÄÓÒº¢×Ó¡£ÈôeÎŞÓÒº¢×Ó,Ôò·µ»Ø£¢¿Õ£¢ */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨,eæ˜¯Tä¸­æŸä¸ªç»“ç‚¹ */
+/* æ“ä½œç»“æœ: è¿”å›eçš„å³å­©å­ã€‚è‹¥eæ— å³å­©å­,åˆ™è¿”å›ï¼‚ç©ºï¼‚ */
 TElemType RightChild(SqBiTree T,TElemType e)
 { 
 	int i;
-	if(T[0]==Nil) /* ¿ÕÊ÷ */
+	if(T[0]==Nil) /* ç©ºæ ‘ */
 		return Nil;
 	for(i=0;i<=MAX_TREE_SIZE-1;i++)
-		if(T[i]==e) /* ÕÒµ½e */
+		if(T[i]==e) /* æ‰¾åˆ°e */
 			return T[i*2+2];
-	return Nil; /* Ã»ÕÒµ½e */
+	return Nil; /* æ²¡æ‰¾åˆ°e */
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ,eÊÇTÖĞÄ³¸ö½áµã */
-/* ²Ù×÷½á¹û: ·µ»ØeµÄ×óĞÖµÜ¡£ÈôeÊÇTµÄ×óº¢×Ó»òÎŞ×óĞÖµÜ,Ôò·µ»Ø£¢¿Õ£¢ */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨,eæ˜¯Tä¸­æŸä¸ªç»“ç‚¹ */
+/* æ“ä½œç»“æœ: è¿”å›eçš„å·¦å…„å¼Ÿã€‚è‹¥eæ˜¯Tçš„å·¦å­©å­æˆ–æ— å·¦å…„å¼Ÿ,åˆ™è¿”å›ï¼‚ç©ºï¼‚ */
 TElemType LeftSibling(SqBiTree T,TElemType e)
 { 
 	int i;
-	if(T[0]==Nil) /* ¿ÕÊ÷ */
+	if(T[0]==Nil) /* ç©ºæ ‘ */
 		return Nil;
 	for(i=1;i<=MAX_TREE_SIZE-1;i++)
-		if(T[i]==e&&i%2==0) /* ÕÒµ½eÇÒÆäĞòºÅÎªÅ¼Êı(ÊÇÓÒº¢×Ó) */
+		if(T[i]==e&&i%2==0) /* æ‰¾åˆ°eä¸”å…¶åºå·ä¸ºå¶æ•°(æ˜¯å³å­©å­) */
 			return T[i-1];
-	return Nil; /* Ã»ÕÒµ½e */
+	return Nil; /* æ²¡æ‰¾åˆ°e */
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ,eÊÇTÖĞÄ³¸ö½áµã */
-/* ²Ù×÷½á¹û: ·µ»ØeµÄÓÒĞÖµÜ¡£ÈôeÊÇTµÄÓÒº¢×Ó»òÎŞÓÒĞÖµÜ,Ôò·µ»Ø£¢¿Õ£¢ */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨,eæ˜¯Tä¸­æŸä¸ªç»“ç‚¹ */
+/* æ“ä½œç»“æœ: è¿”å›eçš„å³å…„å¼Ÿã€‚è‹¥eæ˜¯Tçš„å³å­©å­æˆ–æ— å³å…„å¼Ÿ,åˆ™è¿”å›ï¼‚ç©ºï¼‚ */
 TElemType RightSibling(SqBiTree T,TElemType e)
 { 
 	int i;
-	if(T[0]==Nil) /* ¿ÕÊ÷ */
+	if(T[0]==Nil) /* ç©ºæ ‘ */
 		return Nil;
 	for(i=1;i<=MAX_TREE_SIZE-1;i++)
-		if(T[i]==e&&i%2) /* ÕÒµ½eÇÒÆäĞòºÅÎªÆæÊı(ÊÇ×óº¢×Ó) */
+		if(T[i]==e&&i%2) /* æ‰¾åˆ°eä¸”å…¶åºå·ä¸ºå¥‡æ•°(æ˜¯å·¦å­©å­) */
 			return T[i+1];
-	return Nil; /* Ã»ÕÒµ½e */
+	return Nil; /* æ²¡æ‰¾åˆ°e */
 }
 
-/* PreOrderTraverse()µ÷ÓÃ */
+/* PreOrderTraverse()è°ƒç”¨ */
 void PreTraverse(SqBiTree T,int e)
 { 
 	visit(T[e]);
-	if(T[2*e+1]!=Nil) /* ×ó×ÓÊ÷²»¿Õ */
+	if(T[2*e+1]!=Nil) /* å·¦å­æ ‘ä¸ç©º */
 		PreTraverse(T,2*e+1);
-	if(T[2*e+2]!=Nil) /* ÓÒ×ÓÊ÷²»¿Õ */
+	if(T[2*e+2]!=Nil) /* å³å­æ ‘ä¸ç©º */
 		PreTraverse(T,2*e+2);
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷´æÔÚ */
-/* ²Ù×÷½á¹û: ÏÈĞò±éÀúT¡£ */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘å­˜åœ¨ */
+/* æ“ä½œç»“æœ: å…ˆåºéå†Tã€‚ */
 Status PreOrderTraverse(SqBiTree T)
 { 
-	if(!BiTreeEmpty(T)) /* Ê÷²»¿Õ */
+	if(!BiTreeEmpty(T)) /* æ ‘ä¸ç©º */
 	 PreTraverse(T,0);
 	printf("\n");
 	return OK;
 }
 
-/* InOrderTraverse()µ÷ÓÃ */
+/* InOrderTraverse()è°ƒç”¨ */
 void InTraverse(SqBiTree T,int e)
 { 
-	if(T[2*e+1]!=Nil) /* ×ó×ÓÊ÷²»¿Õ */
+	if(T[2*e+1]!=Nil) /* å·¦å­æ ‘ä¸ç©º */
 		InTraverse(T,2*e+1);
 	visit(T[e]);
-	if(T[2*e+2]!=Nil) /* ÓÒ×ÓÊ÷²»¿Õ */
+	if(T[2*e+2]!=Nil) /* å³å­æ ‘ä¸ç©º */
 		InTraverse(T,2*e+2);
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷´æÔÚ */
-/* ²Ù×÷½á¹û: ÖĞĞò±éÀúT¡£ */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘å­˜åœ¨ */
+/* æ“ä½œç»“æœ: ä¸­åºéå†Tã€‚ */
 Status InOrderTraverse(SqBiTree T)
 { 
-	if(!BiTreeEmpty(T)) /* Ê÷²»¿Õ */
+	if(!BiTreeEmpty(T)) /* æ ‘ä¸ç©º */
 		InTraverse(T,0);
 	printf("\n");
 	return OK;
 }
 
-/* PostOrderTraverse()µ÷ÓÃ */
+/* PostOrderTraverse()è°ƒç”¨ */
 void PostTraverse(SqBiTree T,int e)
 { 
-	if(T[2*e+1]!=Nil) /* ×ó×ÓÊ÷²»¿Õ */
+	if(T[2*e+1]!=Nil) /* å·¦å­æ ‘ä¸ç©º */
 		PostTraverse(T,2*e+1);
-	if(T[2*e+2]!=Nil) /* ÓÒ×ÓÊ÷²»¿Õ */
+	if(T[2*e+2]!=Nil) /* å³å­æ ‘ä¸ç©º */
 		PostTraverse(T,2*e+2);
 	visit(T[e]);
 }
 
-/* ³õÊ¼Ìõ¼ş: ¶ş²æÊ÷T´æÔÚ */
-/* ²Ù×÷½á¹û: ºóĞò±éÀúT¡£ */
+/* åˆå§‹æ¡ä»¶: äºŒå‰æ ‘Tå­˜åœ¨ */
+/* æ“ä½œç»“æœ: ååºéå†Tã€‚ */
 Status PostOrderTraverse(SqBiTree T)
 { 
-	if(!BiTreeEmpty(T)) /* Ê÷²»¿Õ */
+	if(!BiTreeEmpty(T)) /* æ ‘ä¸ç©º */
 		PostTraverse(T,0);
 	printf("\n");
 	return OK;
 }
 
-/* ²ãĞò±éÀú¶ş²æÊ÷ */
+/* å±‚åºéå†äºŒå‰æ ‘ */
 void LevelOrderTraverse(SqBiTree T)
 { 
 	int i=MAX_TREE_SIZE-1,j;
 	while(T[i]==Nil)
-		i--; /* ÕÒµ½×îºóÒ»¸ö·Ç¿Õ½áµãµÄĞòºÅ */
-	for(j=0;j<=i;j++)  /* ´Ó¸ù½áµãÆğ,°´²ãĞò±éÀú¶ş²æÊ÷ */
+		i--; /* æ‰¾åˆ°æœ€åä¸€ä¸ªéç©ºç»“ç‚¹çš„åºå· */
+	for(j=0;j<=i;j++)  /* ä»æ ¹ç»“ç‚¹èµ·,æŒ‰å±‚åºéå†äºŒå‰æ ‘ */
 		if(T[j]!=Nil)
-			visit(T[j]); /* Ö»±éÀú·Ç¿ÕµÄ½áµã */
+			visit(T[j]); /* åªéå†éç©ºçš„ç»“ç‚¹ */
 	printf("\n");
 }
 
-/* Öğ²ã¡¢°´±¾²ãĞòºÅÊä³ö¶ş²æÊ÷ */
+/* é€å±‚ã€æŒ‰æœ¬å±‚åºå·è¾“å‡ºäºŒå‰æ ‘ */
 void Print(SqBiTree T)
 { 
 	int j,k;
@@ -268,7 +268,7 @@ void Print(SqBiTree T)
 	TElemType e;
 	for(j=1;j<=BiTreeDepth(T);j++)
 	{
-		printf("µÚ%d²ã: ",j);
+		printf("ç¬¬%då±‚: ",j);
 		for(k=1;k<=powl(2,j-1);k++)
 		{
 			p.level=j;
@@ -290,39 +290,39 @@ int main()
 	SqBiTree T;
 	InitBiTree(T);
 	CreateBiTree(T);
-	printf("½¨Á¢¶ş²æÊ÷ºó,Ê÷¿Õ·ñ£¿%d(1:ÊÇ 0:·ñ) Ê÷µÄÉî¶È=%d\n",BiTreeEmpty(T),BiTreeDepth(T));
+	printf("å»ºç«‹äºŒå‰æ ‘å,æ ‘ç©ºå¦ï¼Ÿ%d(1:æ˜¯ 0:å¦) æ ‘çš„æ·±åº¦=%d\n",BiTreeEmpty(T),BiTreeDepth(T));
 	i=Root(T,&e);
 	if(i)
-		printf("¶ş²æÊ÷µÄ¸ùÎª£º%d\n",e);
+		printf("äºŒå‰æ ‘çš„æ ¹ä¸ºï¼š%d\n",e);
 	else
-		printf("Ê÷¿Õ£¬ÎŞ¸ù\n");
-	printf("²ãĞò±éÀú¶ş²æÊ÷:\n");
+		printf("æ ‘ç©ºï¼Œæ— æ ¹\n");
+	printf("å±‚åºéå†äºŒå‰æ ‘:\n");
 	LevelOrderTraverse(T);
-	printf("Ç°Ğò±éÀú¶ş²æÊ÷:\n");
+	printf("å‰åºéå†äºŒå‰æ ‘:\n");
 	PreOrderTraverse(T);
-	printf("ÖĞĞò±éÀú¶ş²æÊ÷:\n");
+	printf("ä¸­åºéå†äºŒå‰æ ‘:\n");
 	InOrderTraverse(T);
-	printf("ºóĞò±éÀú¶ş²æÊ÷:\n");
+	printf("ååºéå†äºŒå‰æ ‘:\n");
 	PostOrderTraverse(T);
-	printf("ĞŞ¸Ä½áµãµÄ²ãºÅ3±¾²ãĞòºÅ2¡£");
+	printf("ä¿®æ”¹ç»“ç‚¹çš„å±‚å·3æœ¬å±‚åºå·2ã€‚");
 	p.level=3;
 	p.order=2;
 	e=Value(T,p);
-	printf("´ıĞŞ¸Ä½áµãµÄÔ­ÖµÎª%dÇëÊäÈëĞÂÖµ:50 ",e);
+	printf("å¾…ä¿®æ”¹ç»“ç‚¹çš„åŸå€¼ä¸º%dè¯·è¾“å…¥æ–°å€¼:50 ",e);
 	e=50;
 	Assign(T,p,e);
-	printf("Ç°Ğò±éÀú¶ş²æÊ÷:\n");
+	printf("å‰åºéå†äºŒå‰æ ‘:\n");
 	PreOrderTraverse(T);
-	printf("½áµã%dµÄË«Ç×Îª%d,×óÓÒº¢×Ó·Ö±ğÎª",e,Parent(T,e));
-	printf("%d,%d,×óÓÒĞÖµÜ·Ö±ğÎª",LeftChild(T,e),RightChild(T,e));
+	printf("ç»“ç‚¹%dçš„åŒäº²ä¸º%d,å·¦å³å­©å­åˆ†åˆ«ä¸º",e,Parent(T,e));
+	printf("%d,%d,å·¦å³å…„å¼Ÿåˆ†åˆ«ä¸º",LeftChild(T,e),RightChild(T,e));
 	printf("%d,%d\n",LeftSibling(T,e),RightSibling(T,e));
 	ClearBiTree(T);
-	printf("Çå³ı¶ş²æÊ÷ºó,Ê÷¿Õ·ñ£¿%d(1:ÊÇ 0:·ñ) Ê÷µÄÉî¶È=%d\n",BiTreeEmpty(T),BiTreeDepth(T));
+	printf("æ¸…é™¤äºŒå‰æ ‘å,æ ‘ç©ºå¦ï¼Ÿ%d(1:æ˜¯ 0:å¦) æ ‘çš„æ·±åº¦=%d\n",BiTreeEmpty(T),BiTreeDepth(T));
 	i=Root(T,&e);
 	if(i)
-		printf("¶ş²æÊ÷µÄ¸ùÎª£º%d\n",e);
+		printf("äºŒå‰æ ‘çš„æ ¹ä¸ºï¼š%d\n",e);
 	else
-		printf("Ê÷¿Õ£¬ÎŞ¸ù\n");
+		printf("æ ‘ç©ºï¼Œæ— æ ¹\n");
 	
 	return 0;
 }

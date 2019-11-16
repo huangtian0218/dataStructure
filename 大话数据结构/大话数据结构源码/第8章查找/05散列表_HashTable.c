@@ -9,24 +9,24 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 100 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 100 /* å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡ */
 
 #define SUCCESS 1
 #define UNSUCCESS 0
-#define HASHSIZE 12 /* ¶¨ÒåÉ¢ÁĞ±í³¤ÎªÊı×éµÄ³¤¶È */
+#define HASHSIZE 12 /* å®šä¹‰æ•£åˆ—è¡¨é•¿ä¸ºæ•°ç»„çš„é•¿åº¦ */
 #define NULLKEY -32768 
 
-typedef int Status;	/* StatusÊÇº¯ÊıµÄÀàĞÍ,ÆäÖµÊÇº¯Êı½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */ 
+typedef int Status;	/* Statusæ˜¯å‡½æ•°çš„ç±»å‹,å…¶å€¼æ˜¯å‡½æ•°ç»“æœçŠ¶æ€ä»£ç ï¼Œå¦‚OKç­‰ */ 
 
 typedef struct
 {
-   int *elem; /* Êı¾İÔªËØ´æ´¢»ùÖ·£¬¶¯Ì¬·ÖÅäÊı×é */
-   int count; /*  µ±Ç°Êı¾İÔªËØ¸öÊı */
+   int *elem; /* æ•°æ®å…ƒç´ å­˜å‚¨åŸºå€ï¼ŒåŠ¨æ€åˆ†é…æ•°ç»„ */
+   int count; /*  å½“å‰æ•°æ®å…ƒç´ ä¸ªæ•° */
 }HashTable;
 
-int m=0; /* É¢ÁĞ±í±í³¤£¬È«¾Ö±äÁ¿ */
+int m=0; /* æ•£åˆ—è¡¨è¡¨é•¿ï¼Œå…¨å±€å˜é‡ */
 
-/* ³õÊ¼»¯É¢ÁĞ±í */
+/* åˆå§‹åŒ–æ•£åˆ—è¡¨ */
 Status InitHashTable(HashTable *H)
 {
 	int i;
@@ -38,32 +38,32 @@ Status InitHashTable(HashTable *H)
 	return OK;
 }
 
-/* É¢ÁĞº¯Êı */
+/* æ•£åˆ—å‡½æ•° */
 int Hash(int key)
 {
-	return key % m; /* ³ıÁôÓàÊı·¨ */
+	return key % m; /* é™¤ç•™ä½™æ•°æ³• */
 }
 
-/* ²åÈë¹Ø¼ü×Ö½øÉ¢ÁĞ±í */
+/* æ’å…¥å…³é”®å­—è¿›æ•£åˆ—è¡¨ */
 void InsertHash(HashTable *H,int key)
 {
-	int addr = Hash(key); /* ÇóÉ¢ÁĞµØÖ· */
-	while (H->elem[addr] != NULLKEY) /* Èç¹û²»Îª¿Õ£¬Ôò³åÍ» */
+	int addr = Hash(key); /* æ±‚æ•£åˆ—åœ°å€ */
+	while (H->elem[addr] != NULLKEY) /* å¦‚æœä¸ä¸ºç©ºï¼Œåˆ™å†²çª */
 	{
-		addr = (addr+1) % m; /* ¿ª·Å¶¨Ö··¨µÄÏßĞÔÌ½²â */
+		addr = (addr+1) % m; /* å¼€æ”¾å®šå€æ³•çš„çº¿æ€§æ¢æµ‹ */
 	}
-	H->elem[addr] = key; /* Ö±µ½ÓĞ¿ÕÎ»ºó²åÈë¹Ø¼ü×Ö */
+	H->elem[addr] = key; /* ç›´åˆ°æœ‰ç©ºä½åæ’å…¥å…³é”®å­— */
 }
 
-/* É¢ÁĞ±í²éÕÒ¹Ø¼ü×Ö */
+/* æ•£åˆ—è¡¨æŸ¥æ‰¾å…³é”®å­— */
 Status SearchHash(HashTable H,int key,int *addr)
 {
-	*addr = Hash(key);  /* ÇóÉ¢ÁĞµØÖ· */
-	while(H.elem[*addr] != key) /* Èç¹û²»Îª¿Õ£¬Ôò³åÍ» */
+	*addr = Hash(key);  /* æ±‚æ•£åˆ—åœ°å€ */
+	while(H.elem[*addr] != key) /* å¦‚æœä¸ä¸ºç©ºï¼Œåˆ™å†²çª */
 	{
-		*addr = (*addr+1) % m; /* ¿ª·Å¶¨Ö··¨µÄÏßĞÔÌ½²â */
-		if (H.elem[*addr] == NULLKEY || *addr == Hash(key)) /* Èç¹ûÑ­»·»Øµ½Ô­µã */
-			return UNSUCCESS;	/* ÔòËµÃ÷¹Ø¼ü×Ö²»´æÔÚ */
+		*addr = (*addr+1) % m; /* å¼€æ”¾å®šå€æ³•çš„çº¿æ€§æ¢æµ‹ */
+		if (H.elem[*addr] == NULLKEY || *addr == Hash(key)) /* å¦‚æœå¾ªç¯å›åˆ°åŸç‚¹ */
+			return UNSUCCESS;	/* åˆ™è¯´æ˜å…³é”®å­—ä¸å­˜åœ¨ */
 	}
 	return SUCCESS;
 }
@@ -82,15 +82,15 @@ int main()
 	
 	result=SearchHash(H,key,&p);
 	if (result)
-		printf("²éÕÒ %d µÄµØÖ·Îª£º%d \n",key,p);
+		printf("æŸ¥æ‰¾ %d çš„åœ°å€ä¸ºï¼š%d \n",key,p);
 	else
-		printf("²éÕÒ %d Ê§°Ü¡£\n",key);
+		printf("æŸ¥æ‰¾ %d å¤±è´¥ã€‚\n",key);
 
 	for(i=0;i<m;i++)
 	{
 		key=arr[i];
 		SearchHash(H,key,&p);
-		printf("²éÕÒ %d µÄµØÖ·Îª£º%d \n",key,p);
+		printf("æŸ¥æ‰¾ %d çš„åœ°å€ä¸ºï¼š%d \n",key,p);
 	}
 
 	return 0;

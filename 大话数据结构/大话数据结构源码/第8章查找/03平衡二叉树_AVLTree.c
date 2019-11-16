@@ -8,62 +8,62 @@
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-#define MAXSIZE 100 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 100 /* å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡ */
 
-typedef int Status;	/* StatusÊÇº¯ÊýµÄÀàÐÍ,ÆäÖµÊÇº¯Êý½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */ 
+typedef int Status;	/* Statusæ˜¯å‡½æ•°çš„ç±»åž‹,å…¶å€¼æ˜¯å‡½æ•°ç»“æžœçŠ¶æ€ä»£ç ï¼Œå¦‚OKç­‰ */ 
 
 
-/* ¶þ²æÊ÷µÄ¶þ²æÁ´±í½áµã½á¹¹¶¨Òå */
-typedef  struct BiTNode	/* ½áµã½á¹¹ */
+/* äºŒå‰æ ‘çš„äºŒå‰é“¾è¡¨ç»“ç‚¹ç»“æž„å®šä¹‰ */
+typedef  struct BiTNode	/* ç»“ç‚¹ç»“æž„ */
 {
-	int data;	/* ½áµãÊý¾Ý */
-	int bf; /*  ½áµãµÄÆ½ºâÒò×Ó */ 
-	struct BiTNode *lchild, *rchild;	/* ×óÓÒº¢×ÓÖ¸Õë */
+	int data;	/* ç»“ç‚¹æ•°æ® */
+	int bf; /*  ç»“ç‚¹çš„å¹³è¡¡å› å­ */ 
+	struct BiTNode *lchild, *rchild;	/* å·¦å³å­©å­æŒ‡é’ˆ */
 } BiTNode, *BiTree;
 
 
-/* ¶ÔÒÔpÎª¸ùµÄ¶þ²æÅÅÐòÊ÷×÷ÓÒÐý´¦Àí£¬ */
-/* ´¦ÀíÖ®ºópÖ¸ÏòÐÂµÄÊ÷¸ù½áµã£¬¼´Ðý×ª´¦ÀíÖ®Ç°µÄ×ó×ÓÊ÷µÄ¸ù½áµã */
+/* å¯¹ä»¥pä¸ºæ ¹çš„äºŒå‰æŽ’åºæ ‘ä½œå³æ—‹å¤„ç†ï¼Œ */
+/* å¤„ç†ä¹‹åŽpæŒ‡å‘æ–°çš„æ ‘æ ¹ç»“ç‚¹ï¼Œå³æ—‹è½¬å¤„ç†ä¹‹å‰çš„å·¦å­æ ‘çš„æ ¹ç»“ç‚¹ */
 void R_Rotate(BiTree *P)
 { 
 	BiTree L;
-	L=(*P)->lchild; /*  LÖ¸ÏòPµÄ×ó×ÓÊ÷¸ù½áµã */ 
-	(*P)->lchild=L->rchild; /*  LµÄÓÒ×ÓÊ÷¹Ò½ÓÎªPµÄ×ó×ÓÊ÷ */ 
+	L=(*P)->lchild; /*  LæŒ‡å‘Pçš„å·¦å­æ ‘æ ¹ç»“ç‚¹ */ 
+	(*P)->lchild=L->rchild; /*  Lçš„å³å­æ ‘æŒ‚æŽ¥ä¸ºPçš„å·¦å­æ ‘ */ 
 	L->rchild=(*P);
-	*P=L; /*  PÖ¸ÏòÐÂµÄ¸ù½áµã */ 
+	*P=L; /*  PæŒ‡å‘æ–°çš„æ ¹ç»“ç‚¹ */ 
 }
 
-/* ¶ÔÒÔPÎª¸ùµÄ¶þ²æÅÅÐòÊ÷×÷×óÐý´¦Àí£¬ */
-/* ´¦ÀíÖ®ºóPÖ¸ÏòÐÂµÄÊ÷¸ù½áµã£¬¼´Ðý×ª´¦ÀíÖ®Ç°µÄÓÒ×ÓÊ÷µÄ¸ù½áµã0  */
+/* å¯¹ä»¥Pä¸ºæ ¹çš„äºŒå‰æŽ’åºæ ‘ä½œå·¦æ—‹å¤„ç†ï¼Œ */
+/* å¤„ç†ä¹‹åŽPæŒ‡å‘æ–°çš„æ ‘æ ¹ç»“ç‚¹ï¼Œå³æ—‹è½¬å¤„ç†ä¹‹å‰çš„å³å­æ ‘çš„æ ¹ç»“ç‚¹0  */
 void L_Rotate(BiTree *P)
 { 
 	BiTree R;
-	R=(*P)->rchild; /*  RÖ¸ÏòPµÄÓÒ×ÓÊ÷¸ù½áµã */ 
-	(*P)->rchild=R->lchild; /* RµÄ×ó×ÓÊ÷¹Ò½ÓÎªPµÄÓÒ×ÓÊ÷ */ 
+	R=(*P)->rchild; /*  RæŒ‡å‘Pçš„å³å­æ ‘æ ¹ç»“ç‚¹ */ 
+	(*P)->rchild=R->lchild; /* Rçš„å·¦å­æ ‘æŒ‚æŽ¥ä¸ºPçš„å³å­æ ‘ */ 
 	R->lchild=(*P);
-	*P=R; /*  PÖ¸ÏòÐÂµÄ¸ù½áµã */ 
+	*P=R; /*  PæŒ‡å‘æ–°çš„æ ¹ç»“ç‚¹ */ 
 }
 
-#define LH +1 /*  ×ó¸ß */ 
-#define EH 0  /*  µÈ¸ß */ 
-#define RH -1 /*  ÓÒ¸ß */ 
+#define LH +1 /*  å·¦é«˜ */ 
+#define EH 0  /*  ç­‰é«˜ */ 
+#define RH -1 /*  å³é«˜ */ 
 
-/*  ¶ÔÒÔÖ¸ÕëTËùÖ¸½áµãÎª¸ùµÄ¶þ²æÊ÷×÷×óÆ½ºâÐý×ª´¦Àí */
-/*  ±¾Ëã·¨½áÊøÊ±£¬Ö¸ÕëTÖ¸ÏòÐÂµÄ¸ù½áµã */
+/*  å¯¹ä»¥æŒ‡é’ˆTæ‰€æŒ‡ç»“ç‚¹ä¸ºæ ¹çš„äºŒå‰æ ‘ä½œå·¦å¹³è¡¡æ—‹è½¬å¤„ç† */
+/*  æœ¬ç®—æ³•ç»“æŸæ—¶ï¼ŒæŒ‡é’ˆTæŒ‡å‘æ–°çš„æ ¹ç»“ç‚¹ */
 void LeftBalance(BiTree *T)
 { 
 	BiTree L,Lr;
-	L=(*T)->lchild; /*  LÖ¸ÏòTµÄ×ó×ÓÊ÷¸ù½áµã */ 
+	L=(*T)->lchild; /*  LæŒ‡å‘Tçš„å·¦å­æ ‘æ ¹ç»“ç‚¹ */ 
 	switch(L->bf)
-	{ /*  ¼ì²éTµÄ×ó×ÓÊ÷µÄÆ½ºâ¶È£¬²¢×÷ÏàÓ¦Æ½ºâ´¦Àí */ 
-		 case LH: /*  ÐÂ½áµã²åÈëÔÚTµÄ×óº¢×ÓµÄ×ó×ÓÊ÷ÉÏ£¬Òª×÷µ¥ÓÒÐý´¦Àí */ 
+	{ /*  æ£€æŸ¥Tçš„å·¦å­æ ‘çš„å¹³è¡¡åº¦ï¼Œå¹¶ä½œç›¸åº”å¹³è¡¡å¤„ç† */ 
+		 case LH: /*  æ–°ç»“ç‚¹æ’å…¥åœ¨Tçš„å·¦å­©å­çš„å·¦å­æ ‘ä¸Šï¼Œè¦ä½œå•å³æ—‹å¤„ç† */ 
 			(*T)->bf=L->bf=EH;
 			R_Rotate(T);
 			break;
-		 case RH: /*  ÐÂ½áµã²åÈëÔÚTµÄ×óº¢×ÓµÄÓÒ×ÓÊ÷ÉÏ£¬Òª×÷Ë«Ðý´¦Àí */ 
-			Lr=L->rchild; /*  LrÖ¸ÏòTµÄ×óº¢×ÓµÄÓÒ×ÓÊ÷¸ù */ 
+		 case RH: /*  æ–°ç»“ç‚¹æ’å…¥åœ¨Tçš„å·¦å­©å­çš„å³å­æ ‘ä¸Šï¼Œè¦ä½œåŒæ—‹å¤„ç† */ 
+			Lr=L->rchild; /*  LræŒ‡å‘Tçš„å·¦å­©å­çš„å³å­æ ‘æ ¹ */ 
 			switch(Lr->bf)
-			{ /*  ÐÞ¸ÄT¼°Æä×óº¢×ÓµÄÆ½ºâÒò×Ó */ 
+			{ /*  ä¿®æ”¹TåŠå…¶å·¦å­©å­çš„å¹³è¡¡å› å­ */ 
 				case LH: (*T)->bf=RH;
 						 L->bf=EH;
 						 break;
@@ -74,27 +74,27 @@ void LeftBalance(BiTree *T)
 						 break;
 			}
 			Lr->bf=EH;
-			L_Rotate(&(*T)->lchild); /*  ¶ÔTµÄ×ó×ÓÊ÷×÷×óÐýÆ½ºâ´¦Àí */ 
-			R_Rotate(T); /*  ¶ÔT×÷ÓÒÐýÆ½ºâ´¦Àí */ 
+			L_Rotate(&(*T)->lchild); /*  å¯¹Tçš„å·¦å­æ ‘ä½œå·¦æ—‹å¹³è¡¡å¤„ç† */ 
+			R_Rotate(T); /*  å¯¹Tä½œå³æ—‹å¹³è¡¡å¤„ç† */ 
 	}
 }
 
-/*  ¶ÔÒÔÖ¸ÕëTËùÖ¸½áµãÎª¸ùµÄ¶þ²æÊ÷×÷ÓÒÆ½ºâÐý×ª´¦Àí£¬ */ 
-/*  ±¾Ëã·¨½áÊøÊ±£¬Ö¸ÕëTÖ¸ÏòÐÂµÄ¸ù½áµã */ 
+/*  å¯¹ä»¥æŒ‡é’ˆTæ‰€æŒ‡ç»“ç‚¹ä¸ºæ ¹çš„äºŒå‰æ ‘ä½œå³å¹³è¡¡æ—‹è½¬å¤„ç†ï¼Œ */ 
+/*  æœ¬ç®—æ³•ç»“æŸæ—¶ï¼ŒæŒ‡é’ˆTæŒ‡å‘æ–°çš„æ ¹ç»“ç‚¹ */ 
 void RightBalance(BiTree *T)
 { 
 	BiTree R,Rl;
-	R=(*T)->rchild; /*  RÖ¸ÏòTµÄÓÒ×ÓÊ÷¸ù½áµã */ 
+	R=(*T)->rchild; /*  RæŒ‡å‘Tçš„å³å­æ ‘æ ¹ç»“ç‚¹ */ 
 	switch(R->bf)
-	{ /*  ¼ì²éTµÄÓÒ×ÓÊ÷µÄÆ½ºâ¶È£¬²¢×÷ÏàÓ¦Æ½ºâ´¦Àí */ 
-	 case RH: /*  ÐÂ½áµã²åÈëÔÚTµÄÓÒº¢×ÓµÄÓÒ×ÓÊ÷ÉÏ£¬Òª×÷µ¥×óÐý´¦Àí */ 
+	{ /*  æ£€æŸ¥Tçš„å³å­æ ‘çš„å¹³è¡¡åº¦ï¼Œå¹¶ä½œç›¸åº”å¹³è¡¡å¤„ç† */ 
+	 case RH: /*  æ–°ç»“ç‚¹æ’å…¥åœ¨Tçš„å³å­©å­çš„å³å­æ ‘ä¸Šï¼Œè¦ä½œå•å·¦æ—‹å¤„ç† */ 
 			  (*T)->bf=R->bf=EH;
 			  L_Rotate(T);
 			  break;
-	 case LH: /*  ÐÂ½áµã²åÈëÔÚTµÄÓÒº¢×ÓµÄ×ó×ÓÊ÷ÉÏ£¬Òª×÷Ë«Ðý´¦Àí */ 
-			  Rl=R->lchild; /*  RlÖ¸ÏòTµÄÓÒº¢×ÓµÄ×ó×ÓÊ÷¸ù */ 
+	 case LH: /*  æ–°ç»“ç‚¹æ’å…¥åœ¨Tçš„å³å­©å­çš„å·¦å­æ ‘ä¸Šï¼Œè¦ä½œåŒæ—‹å¤„ç† */ 
+			  Rl=R->lchild; /*  RlæŒ‡å‘Tçš„å³å­©å­çš„å·¦å­æ ‘æ ¹ */ 
 			  switch(Rl->bf)
-			  { /*  ÐÞ¸ÄT¼°ÆäÓÒº¢×ÓµÄÆ½ºâÒò×Ó */ 
+			  { /*  ä¿®æ”¹TåŠå…¶å³å­©å­çš„å¹³è¡¡å› å­ */ 
 				case RH: (*T)->bf=LH;
 						 R->bf=EH;
 						 break;
@@ -105,18 +105,18 @@ void RightBalance(BiTree *T)
 						 break;
 			  }
 			  Rl->bf=EH;
-			  R_Rotate(&(*T)->rchild); /*  ¶ÔTµÄÓÒ×ÓÊ÷×÷ÓÒÐýÆ½ºâ´¦Àí */ 
-			  L_Rotate(T); /*  ¶ÔT×÷×óÐýÆ½ºâ´¦Àí */ 
+			  R_Rotate(&(*T)->rchild); /*  å¯¹Tçš„å³å­æ ‘ä½œå³æ—‹å¹³è¡¡å¤„ç† */ 
+			  L_Rotate(T); /*  å¯¹Tä½œå·¦æ—‹å¹³è¡¡å¤„ç† */ 
 	}
 }
 
-/*  ÈôÔÚÆ½ºâµÄ¶þ²æÅÅÐòÊ÷TÖÐ²»´æÔÚºÍeÓÐÏàÍ¬¹Ø¼ü×ÖµÄ½áµã£¬Ôò²åÈëÒ»¸ö */ 
-/*  Êý¾ÝÔªËØÎªeµÄÐÂ½áµã£¬²¢·µ»Ø1£¬·ñÔò·µ»Ø0¡£ÈôÒò²åÈë¶øÊ¹¶þ²æÅÅÐòÊ÷ */ 
-/*  Ê§È¥Æ½ºâ£¬Ôò×÷Æ½ºâÐý×ª´¦Àí£¬²¼¶û±äÁ¿taller·´Ó³T³¤¸ßÓë·ñ¡£ */
+/*  è‹¥åœ¨å¹³è¡¡çš„äºŒå‰æŽ’åºæ ‘Tä¸­ä¸å­˜åœ¨å’Œeæœ‰ç›¸åŒå…³é”®å­—çš„ç»“ç‚¹ï¼Œåˆ™æ’å…¥ä¸€ä¸ª */ 
+/*  æ•°æ®å…ƒç´ ä¸ºeçš„æ–°ç»“ç‚¹ï¼Œå¹¶è¿”å›ž1ï¼Œå¦åˆ™è¿”å›ž0ã€‚è‹¥å› æ’å…¥è€Œä½¿äºŒå‰æŽ’åºæ ‘ */ 
+/*  å¤±åŽ»å¹³è¡¡ï¼Œåˆ™ä½œå¹³è¡¡æ—‹è½¬å¤„ç†ï¼Œå¸ƒå°”å˜é‡talleråæ˜ Té•¿é«˜ä¸Žå¦ã€‚ */
 Status InsertAVL(BiTree *T,int e,Status *taller)
 {  
 	if(!*T)
-	{ /*  ²åÈëÐÂ½áµã£¬Ê÷¡°³¤¸ß¡±£¬ÖÃtallerÎªTRUE */ 
+	{ /*  æ’å…¥æ–°ç»“ç‚¹ï¼Œæ ‘â€œé•¿é«˜â€ï¼Œç½®tallerä¸ºTRUE */ 
 		 *T=(BiTree)malloc(sizeof(BiTNode));
 		 (*T)->data=e; (*T)->lchild=(*T)->rchild=NULL; (*T)->bf=EH;
 		 *taller=TRUE;
@@ -124,36 +124,36 @@ Status InsertAVL(BiTree *T,int e,Status *taller)
 	else
 	{
 		if (e==(*T)->data)
-		{ /*  Ê÷ÖÐÒÑ´æÔÚºÍeÓÐÏàÍ¬¹Ø¼ü×ÖµÄ½áµãÔò²»ÔÙ²åÈë */ 
+		{ /*  æ ‘ä¸­å·²å­˜åœ¨å’Œeæœ‰ç›¸åŒå…³é”®å­—çš„ç»“ç‚¹åˆ™ä¸å†æ’å…¥ */ 
 			*taller=FALSE; return FALSE;
 		}
 		if (e<(*T)->data)
-		{ /*  Ó¦¼ÌÐøÔÚTµÄ×ó×ÓÊ÷ÖÐ½øÐÐËÑË÷ */ 
-			if(!InsertAVL(&(*T)->lchild,e,taller)) /*  Î´²åÈë */ 
+		{ /*  åº”ç»§ç»­åœ¨Tçš„å·¦å­æ ‘ä¸­è¿›è¡Œæœç´¢ */ 
+			if(!InsertAVL(&(*T)->lchild,e,taller)) /*  æœªæ’å…¥ */ 
 				return FALSE;
-			if(*taller) /*   ÒÑ²åÈëµ½TµÄ×ó×ÓÊ÷ÖÐÇÒ×ó×ÓÊ÷¡°³¤¸ß¡± */ 
-				switch((*T)->bf) /*  ¼ì²éTµÄÆ½ºâ¶È */ 
+			if(*taller) /*   å·²æ’å…¥åˆ°Tçš„å·¦å­æ ‘ä¸­ä¸”å·¦å­æ ‘â€œé•¿é«˜â€ */ 
+				switch((*T)->bf) /*  æ£€æŸ¥Tçš„å¹³è¡¡åº¦ */ 
 				{
-					case LH: /*  Ô­±¾×ó×ÓÊ÷±ÈÓÒ×ÓÊ÷¸ß£¬ÐèÒª×÷×óÆ½ºâ´¦Àí */ 
+					case LH: /*  åŽŸæœ¬å·¦å­æ ‘æ¯”å³å­æ ‘é«˜ï¼Œéœ€è¦ä½œå·¦å¹³è¡¡å¤„ç† */ 
 							LeftBalance(T);	*taller=FALSE; break;
-					case EH: /*  Ô­±¾×ó¡¢ÓÒ×ÓÊ÷µÈ¸ß£¬ÏÖÒò×ó×ÓÊ÷Ôö¸ß¶øÊ¹Ê÷Ôö¸ß */ 
+					case EH: /*  åŽŸæœ¬å·¦ã€å³å­æ ‘ç­‰é«˜ï¼ŒçŽ°å› å·¦å­æ ‘å¢žé«˜è€Œä½¿æ ‘å¢žé«˜ */ 
 							(*T)->bf=LH; *taller=TRUE; break;
-					case RH: /*  Ô­±¾ÓÒ×ÓÊ÷±È×ó×ÓÊ÷¸ß£¬ÏÖ×ó¡¢ÓÒ×ÓÊ÷µÈ¸ß */  
+					case RH: /*  åŽŸæœ¬å³å­æ ‘æ¯”å·¦å­æ ‘é«˜ï¼ŒçŽ°å·¦ã€å³å­æ ‘ç­‰é«˜ */  
 							(*T)->bf=EH; *taller=FALSE; break;
 				}
 		}
 		else
-		{ /*  Ó¦¼ÌÐøÔÚTµÄÓÒ×ÓÊ÷ÖÐ½øÐÐËÑË÷ */ 
-			if(!InsertAVL(&(*T)->rchild,e,taller)) /*  Î´²åÈë */ 
+		{ /*  åº”ç»§ç»­åœ¨Tçš„å³å­æ ‘ä¸­è¿›è¡Œæœç´¢ */ 
+			if(!InsertAVL(&(*T)->rchild,e,taller)) /*  æœªæ’å…¥ */ 
 				return FALSE;
-			if(*taller) /*  ÒÑ²åÈëµ½TµÄÓÒ×ÓÊ÷ÇÒÓÒ×ÓÊ÷¡°³¤¸ß¡± */ 
-				switch((*T)->bf) /*  ¼ì²éTµÄÆ½ºâ¶È */ 
+			if(*taller) /*  å·²æ’å…¥åˆ°Tçš„å³å­æ ‘ä¸”å³å­æ ‘â€œé•¿é«˜â€ */ 
+				switch((*T)->bf) /*  æ£€æŸ¥Tçš„å¹³è¡¡åº¦ */ 
 				{
-					case LH: /*  Ô­±¾×ó×ÓÊ÷±ÈÓÒ×ÓÊ÷¸ß£¬ÏÖ×ó¡¢ÓÒ×ÓÊ÷µÈ¸ß */ 
+					case LH: /*  åŽŸæœ¬å·¦å­æ ‘æ¯”å³å­æ ‘é«˜ï¼ŒçŽ°å·¦ã€å³å­æ ‘ç­‰é«˜ */ 
 							(*T)->bf=EH; *taller=FALSE;	break;
-					case EH: /*  Ô­±¾×ó¡¢ÓÒ×ÓÊ÷µÈ¸ß£¬ÏÖÒòÓÒ×ÓÊ÷Ôö¸ß¶øÊ¹Ê÷Ôö¸ß  */
+					case EH: /*  åŽŸæœ¬å·¦ã€å³å­æ ‘ç­‰é«˜ï¼ŒçŽ°å› å³å­æ ‘å¢žé«˜è€Œä½¿æ ‘å¢žé«˜  */
 							(*T)->bf=RH; *taller=TRUE; break;
-					case RH: /*  Ô­±¾ÓÒ×ÓÊ÷±È×ó×ÓÊ÷¸ß£¬ÐèÒª×÷ÓÒÆ½ºâ´¦Àí */ 
+					case RH: /*  åŽŸæœ¬å³å­æ ‘æ¯”å·¦å­æ ‘é«˜ï¼Œéœ€è¦ä½œå³å¹³è¡¡å¤„ç† */ 
 							RightBalance(T); *taller=FALSE; break;
 				}
 		}
@@ -171,6 +171,6 @@ int main(void)
 	{
 		InsertAVL(&T,a[i],&taller);
 	}
-	printf("±¾ÑùÀý½¨Òé¶Ïµã¸ú×Ù²é¿´Æ½ºâ¶þ²æÊ÷½á¹¹");
+	printf("æœ¬æ ·ä¾‹å»ºè®®æ–­ç‚¹è·Ÿè¸ªæŸ¥çœ‹å¹³è¡¡äºŒå‰æ ‘ç»“æž„");
 	return 0;
 }

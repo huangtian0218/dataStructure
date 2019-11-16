@@ -12,9 +12,9 @@
 #define MAXVEX 14
 #define INFINITY 65535
 
-typedef int Status;	/* StatusÊÇº¯ÊıµÄÀàĞÍ,ÆäÖµÊÇº¯Êı½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */
+typedef int Status;	/* Statusæ˜¯å‡½æ•°çš„ç±»å‹,å…¶å€¼æ˜¯å‡½æ•°ç»“æœçŠ¶æ€ä»£ç ï¼Œå¦‚OKç­‰ */
 
-/* ÁÚ½Ó¾ØÕó½á¹¹ */
+/* é‚»æ¥çŸ©é˜µç»“æ„ */
 typedef struct
 {
 	int vexs[MAXVEX];
@@ -22,43 +22,43 @@ typedef struct
 	int numVertexes, numEdges;
 }MGraph;
 
-/* ÁÚ½Ó±í½á¹¹****************** */
-typedef struct EdgeNode /* ±ß±í½áµã  */
+/* é‚»æ¥è¡¨ç»“æ„****************** */
+typedef struct EdgeNode /* è¾¹è¡¨ç»“ç‚¹  */
 {
-	int adjvex;    /* ÁÚ½ÓµãÓò£¬´æ´¢¸Ã¶¥µã¶ÔÓ¦µÄÏÂ±ê */
-	int weight;		/* ÓÃÓÚ´æ´¢È¨Öµ£¬¶ÔÓÚ·ÇÍøÍ¼¿ÉÒÔ²»ĞèÒª */
-	struct EdgeNode *next; /* Á´Óò£¬Ö¸ÏòÏÂÒ»¸öÁÚ½Óµã */
+	int adjvex;    /* é‚»æ¥ç‚¹åŸŸï¼Œå­˜å‚¨è¯¥é¡¶ç‚¹å¯¹åº”çš„ä¸‹æ ‡ */
+	int weight;		/* ç”¨äºå­˜å‚¨æƒå€¼ï¼Œå¯¹äºéç½‘å›¾å¯ä»¥ä¸éœ€è¦ */
+	struct EdgeNode *next; /* é“¾åŸŸï¼ŒæŒ‡å‘ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹ */
 }EdgeNode;
 
-typedef struct VertexNode /* ¶¥µã±í½áµã */
+typedef struct VertexNode /* é¡¶ç‚¹è¡¨ç»“ç‚¹ */
 {
-	int in;	/* ¶¥µãÈë¶È */
-	int data; /* ¶¥µãÓò£¬´æ´¢¶¥µãĞÅÏ¢ */
-	EdgeNode *firstedge;/* ±ß±íÍ·Ö¸Õë */
+	int in;	/* é¡¶ç‚¹å…¥åº¦ */
+	int data; /* é¡¶ç‚¹åŸŸï¼Œå­˜å‚¨é¡¶ç‚¹ä¿¡æ¯ */
+	EdgeNode *firstedge;/* è¾¹è¡¨å¤´æŒ‡é’ˆ */
 }VertexNode, AdjList[MAXVEX];
 
 typedef struct
 {
 	AdjList adjList; 
-	int numVertexes,numEdges; /* Í¼ÖĞµ±Ç°¶¥µãÊıºÍ±ßÊı */
+	int numVertexes,numEdges; /* å›¾ä¸­å½“å‰é¡¶ç‚¹æ•°å’Œè¾¹æ•° */
 }graphAdjList,*GraphAdjList;
 /* **************************** */
 
 
-void CreateMGraph(MGraph *G)/* ¹¹¼şÍ¼ */
+void CreateMGraph(MGraph *G)/* æ„ä»¶å›¾ */
 {
 	int i, j;
 	
-	/* printf("ÇëÊäÈë±ßÊıºÍ¶¥µãÊı:"); */
+	/* printf("è¯·è¾“å…¥è¾¹æ•°å’Œé¡¶ç‚¹æ•°:"); */
 	G->numEdges=MAXEDGE;
 	G->numVertexes=MAXVEX;
 
-	for (i = 0; i < G->numVertexes; i++)/* ³õÊ¼»¯Í¼ */
+	for (i = 0; i < G->numVertexes; i++)/* åˆå§‹åŒ–å›¾ */
 	{
 		G->vexs[i]=i;
 	}
 
-	for (i = 0; i < G->numVertexes; i++)/* ³õÊ¼»¯Í¼ */
+	for (i = 0; i < G->numVertexes; i++)/* åˆå§‹åŒ–å›¾ */
 	{
 		for ( j = 0; j < G->numVertexes; j++)
 		{
@@ -89,7 +89,7 @@ void CreateMGraph(MGraph *G)/* ¹¹¼şÍ¼ */
 
 }
 
-/* ÀûÓÃÁÚ½Ó¾ØÕó¹¹½¨ÁÚ½Ó±í */
+/* åˆ©ç”¨é‚»æ¥çŸ©é˜µæ„å»ºé‚»æ¥è¡¨ */
 void CreateALGraph(MGraph G,GraphAdjList *GL)
 {
 	int i,j;
@@ -99,23 +99,23 @@ void CreateALGraph(MGraph G,GraphAdjList *GL)
 
 	(*GL)->numVertexes=G.numVertexes;
 	(*GL)->numEdges=G.numEdges;
-	for(i= 0;i <G.numVertexes;i++) /* ¶ÁÈë¶¥µãĞÅÏ¢£¬½¨Á¢¶¥µã±í */
+	for(i= 0;i <G.numVertexes;i++) /* è¯»å…¥é¡¶ç‚¹ä¿¡æ¯ï¼Œå»ºç«‹é¡¶ç‚¹è¡¨ */
 	{
 		(*GL)->adjList[i].in=0;
 		(*GL)->adjList[i].data=G.vexs[i];
-		(*GL)->adjList[i].firstedge=NULL; 	/* ½«±ß±íÖÃÎª¿Õ±í */
+		(*GL)->adjList[i].firstedge=NULL; 	/* å°†è¾¹è¡¨ç½®ä¸ºç©ºè¡¨ */
 	}
 	
-	for(i=0;i<G.numVertexes;i++) /* ½¨Á¢±ß±í */
+	for(i=0;i<G.numVertexes;i++) /* å»ºç«‹è¾¹è¡¨ */
 	{ 
 		for(j=0;j<G.numVertexes;j++)
 		{
 			if (G.arc[i][j]==1)
 			{
 				e=(EdgeNode *)malloc(sizeof(EdgeNode));
-				e->adjvex=j;					/* ÁÚ½ÓĞòºÅÎªj  */                        
-				e->next=(*GL)->adjList[i].firstedge;	/* ½«µ±Ç°¶¥µãÉÏµÄÖ¸ÏòµÄ½áµãÖ¸Õë¸³Öµ¸øe */
-				(*GL)->adjList[i].firstedge=e;		/* ½«µ±Ç°¶¥µãµÄÖ¸ÕëÖ¸Ïòe  */  
+				e->adjvex=j;					/* é‚»æ¥åºå·ä¸ºj  */                        
+				e->next=(*GL)->adjList[i].firstedge;	/* å°†å½“å‰é¡¶ç‚¹ä¸Šçš„æŒ‡å‘çš„ç»“ç‚¹æŒ‡é’ˆèµ‹å€¼ç»™e */
+				(*GL)->adjList[i].firstedge=e;		/* å°†å½“å‰é¡¶ç‚¹çš„æŒ‡é’ˆæŒ‡å‘e  */  
 				(*GL)->adjList[j].in++;
 				
 			}
@@ -125,28 +125,28 @@ void CreateALGraph(MGraph G,GraphAdjList *GL)
 }
 
 
-/* ÍØÆËÅÅĞò£¬ÈôGLÎŞ»ØÂ·£¬ÔòÊä³öÍØÆËÅÅĞòĞòÁĞ²¢·µ»Ø1£¬ÈôÓĞ»ØÂ··µ»Ø0¡£ */
+/* æ‹“æ‰‘æ’åºï¼Œè‹¥GLæ— å›è·¯ï¼Œåˆ™è¾“å‡ºæ‹“æ‰‘æ’åºåºåˆ—å¹¶è¿”å›1ï¼Œè‹¥æœ‰å›è·¯è¿”å›0ã€‚ */
 Status TopologicalSort(GraphAdjList GL)
 {    
 	EdgeNode *e;    
 	int i,k,gettop;   
-	int top=0;  /* ÓÃÓÚÕ»Ö¸ÕëÏÂ±ê  */
-	int count=0;/* ÓÃÓÚÍ³¼ÆÊä³ö¶¥µãµÄ¸öÊı  */    
-	int *stack;	/* ½¨Õ»½«Èë¶ÈÎª0µÄ¶¥µãÈëÕ»  */   
+	int top=0;  /* ç”¨äºæ ˆæŒ‡é’ˆä¸‹æ ‡  */
+	int count=0;/* ç”¨äºç»Ÿè®¡è¾“å‡ºé¡¶ç‚¹çš„ä¸ªæ•°  */    
+	int *stack;	/* å»ºæ ˆå°†å…¥åº¦ä¸º0çš„é¡¶ç‚¹å…¥æ ˆ  */   
 	stack=(int *)malloc(GL->numVertexes * sizeof(int) );    
 
 	for(i = 0; i<GL->numVertexes; i++)                
-		if(0 == GL->adjList[i].in) /* ½«Èë¶ÈÎª0µÄ¶¥µãÈëÕ» */         
+		if(0 == GL->adjList[i].in) /* å°†å…¥åº¦ä¸º0çš„é¡¶ç‚¹å…¥æ ˆ */         
 			stack[++top]=i;    
 	while(top!=0)    
 	{        
 		gettop=stack[top--];        
 		printf("%d -> ",GL->adjList[gettop].data);        
-		count++;        /* Êä³öiºÅ¶¥µã£¬²¢¼ÆÊı */        
+		count++;        /* è¾“å‡ºiå·é¡¶ç‚¹ï¼Œå¹¶è®¡æ•° */        
 		for(e = GL->adjList[gettop].firstedge; e; e = e->next)        
 		{            
 			k=e->adjvex;            
-			if( !(--GL->adjList[k].in) )  /* ½«iºÅ¶¥µãµÄÁÚ½ÓµãµÄÈë¶È¼õ1£¬Èç¹û¼õ1ºóÎª0£¬ÔòÈëÕ» */                
+			if( !(--GL->adjList[k].in) )  /* å°†iå·é¡¶ç‚¹çš„é‚»æ¥ç‚¹çš„å…¥åº¦å‡1ï¼Œå¦‚æœå‡1åä¸º0ï¼Œåˆ™å…¥æ ˆ */                
 				stack[++top]=k;        
 		}
 	}   

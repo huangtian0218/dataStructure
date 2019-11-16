@@ -12,10 +12,10 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 1000 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 1000 /* å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡ */
 
-typedef int Status;           /* StatusÊÇº¯ÊıµÄÀàĞÍ,ÆäÖµÊÇº¯Êı½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */
-typedef char ElemType;        /* ElemTypeÀàĞÍ¸ù¾İÊµ¼ÊÇé¿ö¶ø¶¨£¬ÕâÀï¼ÙÉèÎªchar */
+typedef int Status;           /* Statusæ˜¯å‡½æ•°çš„ç±»å‹,å…¶å€¼æ˜¯å‡½æ•°ç»“æœçŠ¶æ€ä»£ç ï¼Œå¦‚OKç­‰ */
+typedef char ElemType;        /* ElemTypeç±»å‹æ ¹æ®å®é™…æƒ…å†µè€Œå®šï¼Œè¿™é‡Œå‡è®¾ä¸ºchar */
 
 
 Status visit(ElemType c)
@@ -24,46 +24,46 @@ Status visit(ElemType c)
     return OK;
 }
 
-/* ÏßĞÔ±íµÄ¾²Ì¬Á´±í´æ´¢½á¹¹ */
+/* çº¿æ€§è¡¨çš„é™æ€é“¾è¡¨å­˜å‚¨ç»“æ„ */
 typedef struct 
 {
     ElemType data;
-    int cur;  /* ÓÎ±ê(Cursor) £¬Îª0Ê±±íÊ¾ÎŞÖ¸Ïò */
+    int cur;  /* æ¸¸æ ‡(Cursor) ï¼Œä¸º0æ—¶è¡¨ç¤ºæ— æŒ‡å‘ */
 } Component,StaticLinkList[MAXSIZE];
 
 
-/* ½«Ò»Î¬Êı×éspaceÖĞ¸÷·ÖÁ¿Á´³ÉÒ»¸ö±¸ÓÃÁ´±í£¬space[0].curÎªÍ·Ö¸Õë£¬"0"±íÊ¾¿ÕÖ¸Õë */
+/* å°†ä¸€ç»´æ•°ç»„spaceä¸­å„åˆ†é‡é“¾æˆä¸€ä¸ªå¤‡ç”¨é“¾è¡¨ï¼Œspace[0].curä¸ºå¤´æŒ‡é’ˆï¼Œ"0"è¡¨ç¤ºç©ºæŒ‡é’ˆ */
 Status InitList(StaticLinkList space) 
 {
 	int i;
 	for (i=0; i<MAXSIZE-1; i++)  
 		space[i].cur = i+1;
-	space[MAXSIZE-1].cur = 0; /* Ä¿Ç°¾²Ì¬Á´±íÎª¿Õ£¬×îºóÒ»¸öÔªËØµÄcurÎª0 */
+	space[MAXSIZE-1].cur = 0; /* ç›®å‰é™æ€é“¾è¡¨ä¸ºç©ºï¼Œæœ€åä¸€ä¸ªå…ƒç´ çš„curä¸º0 */
 	return OK;
 }
 
 
-/* Èô±¸ÓÃ¿Õ¼äÁ´±í·Ç¿Õ£¬Ôò·µ»Ø·ÖÅäµÄ½áµãÏÂ±ê£¬·ñÔò·µ»Ø0 */
+/* è‹¥å¤‡ç”¨ç©ºé—´é“¾è¡¨éç©ºï¼Œåˆ™è¿”å›åˆ†é…çš„ç»“ç‚¹ä¸‹æ ‡ï¼Œå¦åˆ™è¿”å›0 */
 int Malloc_SSL(StaticLinkList space) 
 { 
-	int i = space[0].cur;           		/* µ±Ç°Êı×éµÚÒ»¸öÔªËØµÄcur´æµÄÖµ */
-	                                		/* ¾ÍÊÇÒª·µ»ØµÄµÚÒ»¸ö±¸ÓÃ¿ÕÏĞµÄÏÂ±ê */
+	int i = space[0].cur;           		/* å½“å‰æ•°ç»„ç¬¬ä¸€ä¸ªå…ƒç´ çš„curå­˜çš„å€¼ */
+	                                		/* å°±æ˜¯è¦è¿”å›çš„ç¬¬ä¸€ä¸ªå¤‡ç”¨ç©ºé—²çš„ä¸‹æ ‡ */
 	if (space[0]. cur)         
-	    space[0]. cur = space[i].cur;       /* ÓÉÓÚÒªÄÃ³öÒ»¸ö·ÖÁ¿À´Ê¹ÓÃÁË£¬ */
-	                                        /* ËùÒÔÎÒÃÇ¾ÍµÃ°ÑËüµÄÏÂÒ»¸ö */
-	                                        /* ·ÖÁ¿ÓÃÀ´×ö±¸ÓÃ */
+	    space[0]. cur = space[i].cur;       /* ç”±äºè¦æ‹¿å‡ºä¸€ä¸ªåˆ†é‡æ¥ä½¿ç”¨äº†ï¼Œ */
+	                                        /* æ‰€ä»¥æˆ‘ä»¬å°±å¾—æŠŠå®ƒçš„ä¸‹ä¸€ä¸ª */
+	                                        /* åˆ†é‡ç”¨æ¥åšå¤‡ç”¨ */
 	return i;
 }
 
 
-/*  ½«ÏÂ±êÎªkµÄ¿ÕÏĞ½áµã»ØÊÕµ½±¸ÓÃÁ´±í */
+/*  å°†ä¸‹æ ‡ä¸ºkçš„ç©ºé—²ç»“ç‚¹å›æ”¶åˆ°å¤‡ç”¨é“¾è¡¨ */
 void Free_SSL(StaticLinkList space, int k) 
 {  
-    space[k].cur = space[0].cur;    /* °ÑµÚÒ»¸öÔªËØµÄcurÖµ¸³¸øÒªÉ¾³ıµÄ·ÖÁ¿cur */
-    space[0].cur = k;               /* °ÑÒªÉ¾³ıµÄ·ÖÁ¿ÏÂ±ê¸³Öµ¸øµÚÒ»¸öÔªËØµÄcur */
+    space[k].cur = space[0].cur;    /* æŠŠç¬¬ä¸€ä¸ªå…ƒç´ çš„curå€¼èµ‹ç»™è¦åˆ é™¤çš„åˆ†é‡cur */
+    space[0].cur = k;               /* æŠŠè¦åˆ é™¤çš„åˆ†é‡ä¸‹æ ‡èµ‹å€¼ç»™ç¬¬ä¸€ä¸ªå…ƒç´ çš„cur */
 }
 
-/* ³õÊ¼Ìõ¼ş£º¾²Ì¬Á´±íLÒÑ´æÔÚ¡£²Ù×÷½á¹û£º·µ»ØLÖĞÊı¾İÔªËØ¸öÊı */
+/* åˆå§‹æ¡ä»¶ï¼šé™æ€é“¾è¡¨Lå·²å­˜åœ¨ã€‚æ“ä½œç»“æœï¼šè¿”å›Lä¸­æ•°æ®å…ƒç´ ä¸ªæ•° */
 int ListLength(StaticLinkList L)
 {
     int j=0;
@@ -76,27 +76,27 @@ int ListLength(StaticLinkList L)
     return j;
 }
 
-/*  ÔÚLÖĞµÚi¸öÔªËØÖ®Ç°²åÈëĞÂµÄÊı¾İÔªËØe   */
+/*  åœ¨Lä¸­ç¬¬iä¸ªå…ƒç´ ä¹‹å‰æ’å…¥æ–°çš„æ•°æ®å…ƒç´ e   */
 Status ListInsert(StaticLinkList L, int i, ElemType e)   
 {  
     int j, k, l;   
-    k = MAXSIZE - 1;   /* ×¢ÒâkÊ×ÏÈÊÇ×îºóÒ»¸öÔªËØµÄÏÂ±ê */
+    k = MAXSIZE - 1;   /* æ³¨æ„ké¦–å…ˆæ˜¯æœ€åä¸€ä¸ªå…ƒç´ çš„ä¸‹æ ‡ */
     if (i < 1 || i > ListLength(L) + 1)   
         return ERROR;   
-    j = Malloc_SSL(L);   /* »ñµÃ¿ÕÏĞ·ÖÁ¿µÄÏÂ±ê */
+    j = Malloc_SSL(L);   /* è·å¾—ç©ºé—²åˆ†é‡çš„ä¸‹æ ‡ */
     if (j)   
     {   
-		L[j].data = e;   /* ½«Êı¾İ¸³Öµ¸ø´Ë·ÖÁ¿µÄdata */
-		for(l = 1; l <= i - 1; l++)   /* ÕÒµ½µÚi¸öÔªËØÖ®Ç°µÄÎ»ÖÃ */
+		L[j].data = e;   /* å°†æ•°æ®èµ‹å€¼ç»™æ­¤åˆ†é‡çš„data */
+		for(l = 1; l <= i - 1; l++)   /* æ‰¾åˆ°ç¬¬iä¸ªå…ƒç´ ä¹‹å‰çš„ä½ç½® */
 		   k = L[k].cur;           
-		L[j].cur = L[k].cur;    /* °ÑµÚi¸öÔªËØÖ®Ç°µÄcur¸³Öµ¸øĞÂÔªËØµÄcur */
-		L[k].cur = j;           /* °ÑĞÂÔªËØµÄÏÂ±ê¸³Öµ¸øµÚi¸öÔªËØÖ®Ç°ÔªËØµÄur */
+		L[j].cur = L[k].cur;    /* æŠŠç¬¬iä¸ªå…ƒç´ ä¹‹å‰çš„curèµ‹å€¼ç»™æ–°å…ƒç´ çš„cur */
+		L[k].cur = j;           /* æŠŠæ–°å…ƒç´ çš„ä¸‹æ ‡èµ‹å€¼ç»™ç¬¬iä¸ªå…ƒç´ ä¹‹å‰å…ƒç´ çš„ur */
 		return OK;   
     }   
     return ERROR;   
 }
 
-/*  É¾³ıÔÚLÖĞµÚi¸öÊı¾İÔªËØ   */
+/*  åˆ é™¤åœ¨Lä¸­ç¬¬iä¸ªæ•°æ®å…ƒç´    */
 Status ListDelete(StaticLinkList L, int i)   
 { 
     int j, k;   
@@ -132,7 +132,7 @@ int main()
     StaticLinkList L;
     Status i;
     i=InitList(L);
-    printf("³õÊ¼»¯Lºó£ºL.length=%d\n",ListLength(L));
+    printf("åˆå§‹åŒ–Låï¼šL.length=%d\n",ListLength(L));
 
     i=ListInsert(L,1,'F');
     i=ListInsert(L,1,'E');
@@ -140,15 +140,15 @@ int main()
     i=ListInsert(L,1,'B');
     i=ListInsert(L,1,'A');
 
-    printf("\nÔÚLµÄ±íÍ·ÒÀ´Î²åÈëFEDBAºó£º\nL.data=");
+    printf("\nåœ¨Lçš„è¡¨å¤´ä¾æ¬¡æ’å…¥FEDBAåï¼š\nL.data=");
     ListTraverse(L); 
 
     i=ListInsert(L,3,'C');
-    printf("\nÔÚLµÄ¡°B¡±Óë¡°D¡±Ö®¼ä²åÈë¡°C¡±ºó£º\nL.data=");
+    printf("\nåœ¨Lçš„â€œBâ€ä¸â€œDâ€ä¹‹é—´æ’å…¥â€œCâ€åï¼š\nL.data=");
     ListTraverse(L); 
 
     i=ListDelete(L,1);
-    printf("\nÔÚLµÄÉ¾³ı¡°A¡±ºó£º\nL.data=");
+    printf("\nåœ¨Lçš„åˆ é™¤â€œAâ€åï¼š\nL.data=");
     ListTraverse(L); 
 
     printf("\n");

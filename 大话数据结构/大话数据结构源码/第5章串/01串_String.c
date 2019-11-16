@@ -10,14 +10,14 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 40 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 40 /* å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡ */
 
-typedef int Status;		/* StatusÊÇº¯ÊıµÄÀàĞÍ,ÆäÖµÊÇº¯Êı½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */
-typedef int ElemType;	/* ElemTypeÀàĞÍ¸ù¾İÊµ¼ÊÇé¿ö¶ø¶¨£¬ÕâÀï¼ÙÉèÎªint */
+typedef int Status;		/* Statusæ˜¯å‡½æ•°çš„ç±»å‹,å…¶å€¼æ˜¯å‡½æ•°ç»“æœçŠ¶æ€ä»£ç ï¼Œå¦‚OKç­‰ */
+typedef int ElemType;	/* ElemTypeç±»å‹æ ¹æ®å®é™…æƒ…å†µè€Œå®šï¼Œè¿™é‡Œå‡è®¾ä¸ºint */
 
-typedef char String[MAXSIZE+1]; /*  0ºÅµ¥Ôª´æ·Å´®µÄ³¤¶È */
+typedef char String[MAXSIZE+1]; /*  0å·å•å…ƒå­˜æ”¾ä¸²çš„é•¿åº¦ */
 
-/* Éú³ÉÒ»¸öÆäÖµµÈÓÚcharsµÄ´®T */
+/* ç”Ÿæˆä¸€ä¸ªå…¶å€¼ç­‰äºcharsçš„ä¸²T */
 Status StrAssign(String T,char *chars)
 { 
 	int i;
@@ -32,7 +32,7 @@ Status StrAssign(String T,char *chars)
 	}
 }
 
-/* ÓÉ´®S¸´ÖÆµÃ´®T */
+/* ç”±ä¸²Så¤åˆ¶å¾—ä¸²T */
 Status StrCopy(String T,String S)
 { 
 	int i;
@@ -41,7 +41,7 @@ Status StrCopy(String T,String S)
 	return OK;
 }
 
-/* ÈôSÎª¿Õ´®,Ôò·µ»ØTRUE,·ñÔò·µ»ØFALSE */
+/* è‹¥Sä¸ºç©ºä¸²,åˆ™è¿”å›TRUE,å¦åˆ™è¿”å›FALSE */
 Status StrEmpty(String S)
 { 
 	if(S[0]==0)
@@ -50,8 +50,8 @@ Status StrEmpty(String S)
 		return FALSE;
 }
 
-/*  ³õÊ¼Ìõ¼ş: ´®SºÍT´æÔÚ */
-/*  ²Ù×÷½á¹û: ÈôS>T,Ôò·µ»ØÖµ>0;ÈôS=T,Ôò·µ»ØÖµ=0;ÈôS<T,Ôò·µ»ØÖµ<0 */
+/*  åˆå§‹æ¡ä»¶: ä¸²Så’ŒTå­˜åœ¨ */
+/*  æ“ä½œç»“æœ: è‹¥S>T,åˆ™è¿”å›å€¼>0;è‹¥S=T,åˆ™è¿”å›å€¼=0;è‹¥S<T,åˆ™è¿”å›å€¼<0 */
 int StrCompare(String S,String T)
 { 
 	int i;
@@ -61,25 +61,25 @@ int StrCompare(String S,String T)
 	return S[0]-T[0];
 }
 
-/* ·µ»Ø´®µÄÔªËØ¸öÊı */
+/* è¿”å›ä¸²çš„å…ƒç´ ä¸ªæ•° */
 int StrLength(String S)
 { 
 	return S[0];
 }
 
-/* ³õÊ¼Ìõ¼ş:´®S´æÔÚ¡£²Ù×÷½á¹û:½«SÇåÎª¿Õ´® */
+/* åˆå§‹æ¡ä»¶:ä¸²Så­˜åœ¨ã€‚æ“ä½œç»“æœ:å°†Sæ¸…ä¸ºç©ºä¸² */
 Status ClearString(String S)
 { 
-	S[0]=0;/*  Áî´®³¤ÎªÁã */
+	S[0]=0;/*  ä»¤ä¸²é•¿ä¸ºé›¶ */
 	return OK;
 }
 
-/* ÓÃT·µ»ØS1ºÍS2Áª½Ó¶ø³ÉµÄĞÂ´®¡£ÈôÎ´½Ø¶Ï£¬Ôò·µ»ØTRUE£¬·ñÔòFALSE */
+/* ç”¨Tè¿”å›S1å’ŒS2è”æ¥è€Œæˆçš„æ–°ä¸²ã€‚è‹¥æœªæˆªæ–­ï¼Œåˆ™è¿”å›TRUEï¼Œå¦åˆ™FALSE */
 Status Concat(String T,String S1,String S2)
 {
 	int i;
 	if(S1[0]+S2[0]<=MAXSIZE)
-	{ /*  Î´½Ø¶Ï */
+	{ /*  æœªæˆªæ–­ */
 		for(i=1;i<=S1[0];i++)
 			T[i]=S1[i];
 		for(i=1;i<=S2[0];i++)
@@ -88,7 +88,7 @@ Status Concat(String T,String S1,String S2)
 		return TRUE;
 	}
 	else
-	{ /*  ½Ø¶ÏS2 */
+	{ /*  æˆªæ–­S2 */
 		for(i=1;i<=S1[0];i++)
 			T[i]=S1[i];
 		for(i=1;i<=MAXSIZE-S1[0];i++)
@@ -98,7 +98,7 @@ Status Concat(String T,String S1,String S2)
 	}
 }
 
-/* ÓÃSub·µ»Ø´®SµÄµÚpos¸ö×Ö·ûÆğ³¤¶ÈÎªlenµÄ×Ó´®¡£ */
+/* ç”¨Subè¿”å›ä¸²Sçš„ç¬¬posä¸ªå­—ç¬¦èµ·é•¿åº¦ä¸ºlençš„å­ä¸²ã€‚ */
 Status SubString(String Sub,String S,int pos,int len)
 {
 	int i;
@@ -110,23 +110,23 @@ Status SubString(String Sub,String S,int pos,int len)
 	return OK;
 }
 
-/* ·µ»Ø×Ó´®TÔÚÖ÷´®SÖĞµÚpos¸ö×Ö·ûÖ®ºóµÄÎ»ÖÃ¡£Èô²»´æÔÚ,Ôòº¯Êı·µ»ØÖµÎª0¡£ */
-/* ÆäÖĞ,T·Ç¿Õ,1¡Üpos¡ÜStrLength(S)¡£ */
+/* è¿”å›å­ä¸²Tåœ¨ä¸»ä¸²Sä¸­ç¬¬posä¸ªå­—ç¬¦ä¹‹åçš„ä½ç½®ã€‚è‹¥ä¸å­˜åœ¨,åˆ™å‡½æ•°è¿”å›å€¼ä¸º0ã€‚ */
+/* å…¶ä¸­,Téç©º,1â‰¤posâ‰¤StrLength(S)ã€‚ */
 int Index(String S, String T, int pos) 
 {
-	int i = pos;	/* iÓÃÓÚÖ÷´®SÖĞµ±Ç°Î»ÖÃÏÂ±êÖµ£¬Èôpos²»Îª1£¬Ôò´ÓposÎ»ÖÃ¿ªÊ¼Æ¥Åä */
-	int j = 1;				/* jÓÃÓÚ×Ó´®TÖĞµ±Ç°Î»ÖÃÏÂ±êÖµ */
-	while (i <= S[0] && j <= T[0]) /* ÈôiĞ¡ÓÚSµÄ³¤¶È²¢ÇÒjĞ¡ÓÚTµÄ³¤¶ÈÊ±£¬Ñ­»·¼ÌĞø */
+	int i = pos;	/* iç”¨äºä¸»ä¸²Sä¸­å½“å‰ä½ç½®ä¸‹æ ‡å€¼ï¼Œè‹¥posä¸ä¸º1ï¼Œåˆ™ä»posä½ç½®å¼€å§‹åŒ¹é… */
+	int j = 1;				/* jç”¨äºå­ä¸²Tä¸­å½“å‰ä½ç½®ä¸‹æ ‡å€¼ */
+	while (i <= S[0] && j <= T[0]) /* è‹¥iå°äºSçš„é•¿åº¦å¹¶ä¸”jå°äºTçš„é•¿åº¦æ—¶ï¼Œå¾ªç¯ç»§ç»­ */
 	{
-		if (S[i] == T[j]) 	/* Á½×ÖÄ¸ÏàµÈÔò¼ÌĞø */
+		if (S[i] == T[j]) 	/* ä¸¤å­—æ¯ç›¸ç­‰åˆ™ç»§ç»­ */
       	{
 			++i;
          	++j; 
       	} 
-      	else 				/* Ö¸ÕëºóÍËÖØĞÂ¿ªÊ¼Æ¥Åä */
+      	else 				/* æŒ‡é’ˆåé€€é‡æ–°å¼€å§‹åŒ¹é… */
       	{  
-         	i = i-j+2;		/* iÍË»Øµ½ÉÏ´ÎÆ¥ÅäÊ×Î»µÄÏÂÒ»Î» */
-         	j = 1; 			/* jÍË»Øµ½×Ó´®TµÄÊ×Î» */
+         	i = i-j+2;		/* ié€€å›åˆ°ä¸Šæ¬¡åŒ¹é…é¦–ä½çš„ä¸‹ä¸€ä½ */
+         	j = 1; 			/* jé€€å›åˆ°å­ä¸²Tçš„é¦–ä½ */
       	}      
 	}
 	if (j > T[0]) 
@@ -136,39 +136,39 @@ int Index(String S, String T, int pos)
 }
 
 
-/*  TÎª·Ç¿Õ´®¡£ÈôÖ÷´®SÖĞµÚpos¸ö×Ö·ûÖ®ºó´æÔÚÓëTÏàµÈµÄ×Ó´®£¬ */
-/*  Ôò·µ»ØµÚÒ»¸öÕâÑùµÄ×Ó´®ÔÚSÖĞµÄÎ»ÖÃ£¬·ñÔò·µ»Ø0 */
+/*  Tä¸ºéç©ºä¸²ã€‚è‹¥ä¸»ä¸²Sä¸­ç¬¬posä¸ªå­—ç¬¦ä¹‹åå­˜åœ¨ä¸Tç›¸ç­‰çš„å­ä¸²ï¼Œ */
+/*  åˆ™è¿”å›ç¬¬ä¸€ä¸ªè¿™æ ·çš„å­ä¸²åœ¨Sä¸­çš„ä½ç½®ï¼Œå¦åˆ™è¿”å›0 */
 int Index2(String S, String T, int pos) 
 {
 	int n,m,i;
 	String sub;
 	if (pos > 0) 
 	{
-		n = StrLength(S);	/* µÃµ½Ö÷´®SµÄ³¤¶È */
-		m = StrLength(T);	/* µÃµ½×Ó´®TµÄ³¤¶È */
+		n = StrLength(S);	/* å¾—åˆ°ä¸»ä¸²Sçš„é•¿åº¦ */
+		m = StrLength(T);	/* å¾—åˆ°å­ä¸²Tçš„é•¿åº¦ */
 		i = pos;
 		while (i <= n-m+1) 
 		{
-			SubString (sub, S, i, m);	/* È¡Ö÷´®ÖĞµÚi¸öÎ»ÖÃ³¤¶ÈÓëTÏàµÈµÄ×Ó´®¸øsub */
-			if (StrCompare(sub,T) != 0)    /* Èç¹ûÁ½´®²»ÏàµÈ */
+			SubString (sub, S, i, m);	/* å–ä¸»ä¸²ä¸­ç¬¬iä¸ªä½ç½®é•¿åº¦ä¸Tç›¸ç­‰çš„å­ä¸²ç»™sub */
+			if (StrCompare(sub,T) != 0)    /* å¦‚æœä¸¤ä¸²ä¸ç›¸ç­‰ */
 				++i;
-			else 				/* Èç¹ûÁ½´®ÏàµÈ */
-				return i;		/* Ôò·µ»ØiÖµ */
+			else 				/* å¦‚æœä¸¤ä¸²ç›¸ç­‰ */
+				return i;		/* åˆ™è¿”å›iå€¼ */
 		}
 	}
-	return 0;	/* ÈôÎŞ×Ó´®ÓëTÏàµÈ£¬·µ»Ø0 */
+	return 0;	/* è‹¥æ— å­ä¸²ä¸Tç›¸ç­‰ï¼Œè¿”å›0 */
 }
 
 
-/*  ³õÊ¼Ìõ¼ş: ´®SºÍT´æÔÚ,1¡Üpos¡ÜStrLength(S)+1 */
-/*  ²Ù×÷½á¹û: ÔÚ´®SµÄµÚpos¸ö×Ö·ûÖ®Ç°²åÈë´®T¡£ÍêÈ«²åÈë·µ»ØTRUE,²¿·Ö²åÈë·µ»ØFALSE */
+/*  åˆå§‹æ¡ä»¶: ä¸²Så’ŒTå­˜åœ¨,1â‰¤posâ‰¤StrLength(S)+1 */
+/*  æ“ä½œç»“æœ: åœ¨ä¸²Sçš„ç¬¬posä¸ªå­—ç¬¦ä¹‹å‰æ’å…¥ä¸²Tã€‚å®Œå…¨æ’å…¥è¿”å›TRUE,éƒ¨åˆ†æ’å…¥è¿”å›FALSE */
 Status StrInsert(String S,int pos,String T)
 { 
 	int i;
 	if(pos<1||pos>S[0]+1)
 		return ERROR;
 	if(S[0]+T[0]<=MAXSIZE)
-	{ /*  ÍêÈ«²åÈë */
+	{ /*  å®Œå…¨æ’å…¥ */
 		for(i=S[0];i>=pos;i--)
 			S[i+T[0]]=S[i];
 		for(i=pos;i<pos+T[0];i++)
@@ -177,7 +177,7 @@ Status StrInsert(String S,int pos,String T)
 		return TRUE;
 	}
 	else
-	{ /*  ²¿·Ö²åÈë */
+	{ /*  éƒ¨åˆ†æ’å…¥ */
 		for(i=MAXSIZE;i<=pos;i--)
 			S[i]=S[i-T[0]];
 		for(i=pos;i<pos+T[0];i++)
@@ -187,8 +187,8 @@ Status StrInsert(String S,int pos,String T)
 	}
 }
 
-/*  ³õÊ¼Ìõ¼ş: ´®S´æÔÚ,1¡Üpos¡ÜStrLength(S)-len+1 */
-/*  ²Ù×÷½á¹û: ´Ó´®SÖĞÉ¾³ıµÚpos¸ö×Ö·ûÆğ³¤¶ÈÎªlenµÄ×Ó´® */
+/*  åˆå§‹æ¡ä»¶: ä¸²Så­˜åœ¨,1â‰¤posâ‰¤StrLength(S)-len+1 */
+/*  æ“ä½œç»“æœ: ä»ä¸²Sä¸­åˆ é™¤ç¬¬posä¸ªå­—ç¬¦èµ·é•¿åº¦ä¸ºlençš„å­ä¸² */
 Status StrDelete(String S,int pos,int len)
 { 
 	int i;
@@ -200,27 +200,27 @@ Status StrDelete(String S,int pos,int len)
 	return OK;
 }
 
-/*  ³õÊ¼Ìõ¼ş: ´®S,TºÍV´æÔÚ,TÊÇ·Ç¿Õ´®£¨´Ëº¯ÊıÓë´®µÄ´æ´¢½á¹¹ÎŞ¹Ø£© */
-/*  ²Ù×÷½á¹û: ÓÃVÌæ»»Ö÷´®SÖĞ³öÏÖµÄËùÓĞÓëTÏàµÈµÄ²»ÖØµşµÄ×Ó´® */
+/*  åˆå§‹æ¡ä»¶: ä¸²S,Tå’ŒVå­˜åœ¨,Tæ˜¯éç©ºä¸²ï¼ˆæ­¤å‡½æ•°ä¸ä¸²çš„å­˜å‚¨ç»“æ„æ— å…³ï¼‰ */
+/*  æ“ä½œç»“æœ: ç”¨Væ›¿æ¢ä¸»ä¸²Sä¸­å‡ºç°çš„æ‰€æœ‰ä¸Tç›¸ç­‰çš„ä¸é‡å çš„å­ä¸² */
 Status Replace(String S,String T,String V)
 { 
-	int i=1; /*  ´Ó´®SµÄµÚÒ»¸ö×Ö·ûÆğ²éÕÒ´®T */
-	if(StrEmpty(T)) /*  TÊÇ¿Õ´® */
+	int i=1; /*  ä»ä¸²Sçš„ç¬¬ä¸€ä¸ªå­—ç¬¦èµ·æŸ¥æ‰¾ä¸²T */
+	if(StrEmpty(T)) /*  Tæ˜¯ç©ºä¸² */
 		return ERROR;
 	do
 	{
-		i=Index(S,T,i); /*  ½á¹ûiÎª´ÓÉÏÒ»¸öiÖ®ºóÕÒµ½µÄ×Ó´®TµÄÎ»ÖÃ */
-		if(i) /*  ´®SÖĞ´æÔÚ´®T */
+		i=Index(S,T,i); /*  ç»“æœiä¸ºä»ä¸Šä¸€ä¸ªiä¹‹åæ‰¾åˆ°çš„å­ä¸²Tçš„ä½ç½® */
+		if(i) /*  ä¸²Sä¸­å­˜åœ¨ä¸²T */
 		{
-			StrDelete(S,i,StrLength(T)); /*  É¾³ı¸Ã´®T */
-			StrInsert(S,i,V); /*  ÔÚÔ­´®TµÄÎ»ÖÃ²åÈë´®V */
-			i+=StrLength(V); /*  ÔÚ²åÈëµÄ´®VºóÃæ¼ÌĞø²éÕÒ´®T */
+			StrDelete(S,i,StrLength(T)); /*  åˆ é™¤è¯¥ä¸²T */
+			StrInsert(S,i,V); /*  åœ¨åŸä¸²Tçš„ä½ç½®æ’å…¥ä¸²V */
+			i+=StrLength(V); /*  åœ¨æ’å…¥çš„ä¸²Våé¢ç»§ç»­æŸ¥æ‰¾ä¸²T */
 		}
 	}while(i);
 	return OK;
 }
 
-/*  Êä³ö×Ö·û´®T */
+/*  è¾“å‡ºå­—ç¬¦ä¸²T */
 void StrPrint(String T)
 { 
 	int i;
@@ -237,24 +237,24 @@ int main()
 	Status k;
 	char s;
 	String t,s1,s2;
-	printf("ÇëÊäÈë´®s1: ");
+	printf("è¯·è¾“å…¥ä¸²s1: ");
 	
 	k=StrAssign(s1,"abcd");
 	if(!k)
 	{
-		printf("´®³¤³¬¹ıMAXSIZE(=%d)\n",MAXSIZE);
+		printf("ä¸²é•¿è¶…è¿‡MAXSIZE(=%d)\n",MAXSIZE);
 		exit(0);
 	}
-	printf("´®³¤Îª%d ´®¿Õ·ñ£¿%d(1:ÊÇ 0:·ñ)\n",StrLength(s1),StrEmpty(s1));
+	printf("ä¸²é•¿ä¸º%d ä¸²ç©ºå¦ï¼Ÿ%d(1:æ˜¯ 0:å¦)\n",StrLength(s1),StrEmpty(s1));
 	StrCopy(s2,s1);
-	printf("¿½±´s1Éú³ÉµÄ´®Îª: ");
+	printf("æ‹·è´s1ç”Ÿæˆçš„ä¸²ä¸º: ");
 	StrPrint(s2);
-	printf("ÇëÊäÈë´®s2: ");
+	printf("è¯·è¾“å…¥ä¸²s2: ");
 	
 	k=StrAssign(s2,"efghijk");
 	if(!k)
 	{
-		printf("´®³¤³¬¹ıMAXSIZE(%d)\n",MAXSIZE);
+		printf("ä¸²é•¿è¶…è¿‡MAXSIZE(%d)\n",MAXSIZE);
 		exit(0);
 	}
 	i=StrCompare(s1,s2);
@@ -264,17 +264,17 @@ int main()
 		s='=';
 	else
 		s='>';
-	printf("´®s1%c´®s2\n",s);
+	printf("ä¸²s1%cä¸²s2\n",s);
 	k=Concat(t,s1,s2);
-	printf("´®s1Áª½Ó´®s2µÃµ½µÄ´®tÎª: ");
+	printf("ä¸²s1è”æ¥ä¸²s2å¾—åˆ°çš„ä¸²tä¸º: ");
 	StrPrint(t);
 	if(k==FALSE)
-		printf("´®tÓĞ½Ø¶Ï\n");
+		printf("ä¸²tæœ‰æˆªæ–­\n");
 	ClearString(s1);
-	printf("ÇåÎª¿Õ´®ºó,´®s1Îª: ");
+	printf("æ¸…ä¸ºç©ºä¸²å,ä¸²s1ä¸º: ");
 	StrPrint(s1);
-	printf("´®³¤Îª%d ´®¿Õ·ñ£¿%d(1:ÊÇ 0:·ñ)\n",StrLength(s1),StrEmpty(s1));
-	printf("Çó´®tµÄ×Ó´®,ÇëÊäÈë×Ó´®µÄÆğÊ¼Î»ÖÃ,×Ó´®³¤¶È: ");
+	printf("ä¸²é•¿ä¸º%d ä¸²ç©ºå¦ï¼Ÿ%d(1:æ˜¯ 0:å¦)\n",StrLength(s1),StrEmpty(s1));
+	printf("æ±‚ä¸²tçš„å­ä¸²,è¯·è¾“å…¥å­ä¸²çš„èµ·å§‹ä½ç½®,å­ä¸²é•¿åº¦: ");
 
 	i=2;
 	j=3;
@@ -283,10 +283,10 @@ int main()
 	k=SubString(s2,t,i,j);
 	if(k)
 	{
-		printf("×Ó´®s2Îª: ");
+		printf("å­ä¸²s2ä¸º: ");
 		StrPrint(s2);
 	}
-	printf("´Ó´®tµÄµÚpos¸ö×Ö·ûÆğ,É¾³ılen¸ö×Ö·û£¬ÇëÊäÈëpos,len: ");
+	printf("ä»ä¸²tçš„ç¬¬posä¸ªå­—ç¬¦èµ·,åˆ é™¤lenä¸ªå­—ç¬¦ï¼Œè¯·è¾“å…¥pos,len: ");
 	
 	i=4;
 	j=2;
@@ -294,22 +294,22 @@ int main()
 
 
 	StrDelete(t,i,j);
-	printf("É¾³ıºóµÄ´®tÎª: ");
+	printf("åˆ é™¤åçš„ä¸²tä¸º: ");
 	StrPrint(t);
 	i=StrLength(s2)/2;
 	StrInsert(s2,i,t);
-	printf("ÔÚ´®s2µÄµÚ%d¸ö×Ö·ûÖ®Ç°²åÈë´®tºó,´®s2Îª:\n",i);
+	printf("åœ¨ä¸²s2çš„ç¬¬%dä¸ªå­—ç¬¦ä¹‹å‰æ’å…¥ä¸²tå,ä¸²s2ä¸º:\n",i);
 	StrPrint(s2);
 	i=Index(s2,t,1);
-	printf("s2µÄµÚ%d¸ö×ÖÄ¸ÆğºÍtµÚÒ»´ÎÆ¥Åä\n",i);
+	printf("s2çš„ç¬¬%dä¸ªå­—æ¯èµ·å’Œtç¬¬ä¸€æ¬¡åŒ¹é…\n",i);
 	SubString(t,s2,1,1);
-	printf("´®tÎª£º");
+	printf("ä¸²tä¸ºï¼š");
 	StrPrint(t);
 	Concat(s1,t,t);
-	printf("´®s1Îª£º");
+	printf("ä¸²s1ä¸ºï¼š");
 	StrPrint(s1);
 	Replace(s2,t,s1);
-	printf("ÓÃ´®s1È¡´ú´®s2ÖĞºÍ´®tÏàÍ¬µÄ²»ÖØµşµÄ´®ºó,´®s2Îª: ");
+	printf("ç”¨ä¸²s1å–ä»£ä¸²s2ä¸­å’Œä¸²tç›¸åŒçš„ä¸é‡å çš„ä¸²å,ä¸²s2ä¸º: ");
 	StrPrint(s2);
 
 

@@ -9,14 +9,14 @@
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-#define MAXSIZE 100 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 100 /* å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡ */
 
-typedef int Status;		/* StatusÊÇº¯ÊıµÄÀàĞÍ,ÆäÖµÊÇº¯Êı½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */
-typedef int ElemType;	/* ElemTypeÀàĞÍ¸ù¾İÊµ¼ÊÇé¿ö¶ø¶¨£¬ÕâÀï¼ÙÉèÎªint */
+typedef int Status;		/* Statusæ˜¯å‡½æ•°çš„ç±»å‹,å…¶å€¼æ˜¯å‡½æ•°ç»“æœçŠ¶æ€ä»£ç ï¼Œå¦‚OKç­‰ */
+typedef int ElemType;	/* ElemTypeç±»å‹æ ¹æ®å®é™…æƒ…å†µè€Œå®šï¼Œè¿™é‡Œå‡è®¾ä¸ºint */
 
-typedef char String[MAXSIZE+1]; /*  0ºÅµ¥Ôª´æ·Å´®µÄ³¤¶È */
+typedef char String[MAXSIZE+1]; /*  0å·å•å…ƒå­˜æ”¾ä¸²çš„é•¿åº¦ */
 
-/* Éú³ÉÒ»¸öÆäÖµµÈÓÚcharsµÄ´®T */
+/* ç”Ÿæˆä¸€ä¸ªå…¶å€¼ç­‰äºcharsçš„ä¸²T */
 Status StrAssign(String T,char *chars)
 { 
 	int i;
@@ -33,11 +33,11 @@ Status StrAssign(String T,char *chars)
 
 Status ClearString(String S)
 { 
-	S[0]=0;/*  Áî´®³¤ÎªÁã */
+	S[0]=0;/*  ä»¤ä¸²é•¿ä¸ºé›¶ */
 	return OK;
 }
 
-/*  Êä³ö×Ö·û´®T¡£ */
+/*  è¾“å‡ºå­—ç¬¦ä¸²Tã€‚ */
 void StrPrint(String T)
 { 
 	int i;
@@ -46,7 +46,7 @@ void StrPrint(String T)
 	printf("\n");
 }
 
-/*  Êä³öNextÊı×éÖµ¡£ */
+/*  è¾“å‡ºNextæ•°ç»„å€¼ã€‚ */
 void NextPrint(int next[],int length)
 { 
 	int i;
@@ -55,28 +55,28 @@ void NextPrint(int next[],int length)
 	printf("\n");
 }
 
-/* ·µ»Ø´®µÄÔªËØ¸öÊı */
+/* è¿”å›ä¸²çš„å…ƒç´ ä¸ªæ•° */
 int StrLength(String S)
 { 
 	return S[0];
 }
 
-/* ÆÓËØµÄÄ£Ê½Æ¥Åä·¨ */
+/* æœ´ç´ çš„æ¨¡å¼åŒ¹é…æ³• */
 int Index(String S, String T, int pos) 
 {
-	int i = pos;	/* iÓÃÓÚÖ÷´®SÖĞµ±Ç°Î»ÖÃÏÂ±êÖµ£¬Èôpos²»Îª1£¬Ôò´ÓposÎ»ÖÃ¿ªÊ¼Æ¥Åä */
-	int j = 1;				/* jÓÃÓÚ×Ó´®TÖĞµ±Ç°Î»ÖÃÏÂ±êÖµ */
-	while (i <= S[0] && j <= T[0]) /* ÈôiĞ¡ÓÚSµÄ³¤¶È²¢ÇÒjĞ¡ÓÚTµÄ³¤¶ÈÊ±£¬Ñ­»·¼ÌĞø */
+	int i = pos;	/* iç”¨äºä¸»ä¸²Sä¸­å½“å‰ä½ç½®ä¸‹æ ‡å€¼ï¼Œè‹¥posä¸ä¸º1ï¼Œåˆ™ä»posä½ç½®å¼€å§‹åŒ¹é… */
+	int j = 1;				/* jç”¨äºå­ä¸²Tä¸­å½“å‰ä½ç½®ä¸‹æ ‡å€¼ */
+	while (i <= S[0] && j <= T[0]) /* è‹¥iå°äºSçš„é•¿åº¦å¹¶ä¸”jå°äºTçš„é•¿åº¦æ—¶ï¼Œå¾ªç¯ç»§ç»­ */
 	{
-		if (S[i] == T[j]) 	/* Á½×ÖÄ¸ÏàµÈÔò¼ÌĞø */
+		if (S[i] == T[j]) 	/* ä¸¤å­—æ¯ç›¸ç­‰åˆ™ç»§ç»­ */
       	{
 			++i;
          	++j; 
       	} 
-      	else 				/* Ö¸ÕëºóÍËÖØĞÂ¿ªÊ¼Æ¥Åä */
+      	else 				/* æŒ‡é’ˆåé€€é‡æ–°å¼€å§‹åŒ¹é… */
       	{  
-         	i = i-j+2;		/* iÍË»Øµ½ÉÏ´ÎÆ¥ÅäÊ×Î»µÄÏÂÒ»Î» */
-         	j = 1; 			/* jÍË»Øµ½×Ó´®TµÄÊ×Î» */
+         	i = i-j+2;		/* ié€€å›åˆ°ä¸Šæ¬¡åŒ¹é…é¦–ä½çš„ä¸‹ä¸€ä½ */
+         	j = 1; 			/* jé€€å›åˆ°å­ä¸²Tçš„é¦–ä½ */
       	}      
 	}
 	if (j > T[0]) 
@@ -85,43 +85,43 @@ int Index(String S, String T, int pos)
 		return 0;
 }
 
-/* Í¨¹ı¼ÆËã·µ»Ø×Ó´®TµÄnextÊı×é¡£ */
+/* é€šè¿‡è®¡ç®—è¿”å›å­ä¸²Tçš„nextæ•°ç»„ã€‚ */
 void get_next(String T, int *next) 
 {
 	int i,j;
   	i=1;
   	j=0;
   	next[1]=0;
-  	while (i<T[0])  /* ´Ë´¦T[0]±íÊ¾´®TµÄ³¤¶È */
+  	while (i<T[0])  /* æ­¤å¤„T[0]è¡¨ç¤ºä¸²Tçš„é•¿åº¦ */
  	{
-    	if(j==0 || T[i]== T[j]) 	/* T[i]±íÊ¾ºó×ºµÄµ¥¸ö×Ö·û£¬T[j]±íÊ¾Ç°×ºµÄµ¥¸ö×Ö·û */
+    	if(j==0 || T[i]== T[j]) 	/* T[i]è¡¨ç¤ºåç¼€çš„å•ä¸ªå­—ç¬¦ï¼ŒT[j]è¡¨ç¤ºå‰ç¼€çš„å•ä¸ªå­—ç¬¦ */
 		{
       		++i;  
 			++j;  
 			next[i] = j;
     	} 
 		else 
-			j= next[j];	/* Èô×Ö·û²»ÏàÍ¬£¬ÔòjÖµ»ØËİ */
+			j= next[j];	/* è‹¥å­—ç¬¦ä¸ç›¸åŒï¼Œåˆ™jå€¼å›æº¯ */
   	}
 }
 
-/* ·µ»Ø×Ó´®TÔÚÖ÷´®SÖĞµÚpos¸ö×Ö·ûÖ®ºóµÄÎ»ÖÃ¡£Èô²»´æÔÚ£¬Ôòº¯Êı·µ»ØÖµÎª0¡£ */
-/*  T·Ç¿Õ£¬1¡Üpos¡ÜStrLength(S)¡£ */
+/* è¿”å›å­ä¸²Tåœ¨ä¸»ä¸²Sä¸­ç¬¬posä¸ªå­—ç¬¦ä¹‹åçš„ä½ç½®ã€‚è‹¥ä¸å­˜åœ¨ï¼Œåˆ™å‡½æ•°è¿”å›å€¼ä¸º0ã€‚ */
+/*  Téç©ºï¼Œ1â‰¤posâ‰¤StrLength(S)ã€‚ */
 int Index_KMP(String S, String T, int pos) 
 {
-	int i = pos;		/* iÓÃÓÚÖ÷´®SÖĞµ±Ç°Î»ÖÃÏÂ±êÖµ£¬Èôpos²»Îª1£¬Ôò´ÓposÎ»ÖÃ¿ªÊ¼Æ¥Åä */
-	int j = 1;			/* jÓÃÓÚ×Ó´®TÖĞµ±Ç°Î»ÖÃÏÂ±êÖµ */
-	int next[255];		/* ¶¨ÒåÒ»nextÊı×é */
-	get_next(T, next);	/* ¶Ô´®T×÷·ÖÎö£¬µÃµ½nextÊı×é */
-	while (i <= S[0] && j <= T[0]) /* ÈôiĞ¡ÓÚSµÄ³¤¶È²¢ÇÒjĞ¡ÓÚTµÄ³¤¶ÈÊ±£¬Ñ­»·¼ÌĞø */
+	int i = pos;		/* iç”¨äºä¸»ä¸²Sä¸­å½“å‰ä½ç½®ä¸‹æ ‡å€¼ï¼Œè‹¥posä¸ä¸º1ï¼Œåˆ™ä»posä½ç½®å¼€å§‹åŒ¹é… */
+	int j = 1;			/* jç”¨äºå­ä¸²Tä¸­å½“å‰ä½ç½®ä¸‹æ ‡å€¼ */
+	int next[255];		/* å®šä¹‰ä¸€nextæ•°ç»„ */
+	get_next(T, next);	/* å¯¹ä¸²Tä½œåˆ†æï¼Œå¾—åˆ°nextæ•°ç»„ */
+	while (i <= S[0] && j <= T[0]) /* è‹¥iå°äºSçš„é•¿åº¦å¹¶ä¸”jå°äºTçš„é•¿åº¦æ—¶ï¼Œå¾ªç¯ç»§ç»­ */
 	{
-		if (j==0 || S[i] == T[j]) 	/* Á½×ÖÄ¸ÏàµÈÔò¼ÌĞø£¬ÓëÆÓËØËã·¨Ôö¼ÓÁËj=0ÅĞ¶Ï */
+		if (j==0 || S[i] == T[j]) 	/* ä¸¤å­—æ¯ç›¸ç­‰åˆ™ç»§ç»­ï¼Œä¸æœ´ç´ ç®—æ³•å¢åŠ äº†j=0åˆ¤æ–­ */
       	{
          	++i;
          	++j; 
       	} 
-      	else 			/* Ö¸ÕëºóÍËÖØĞÂ¿ªÊ¼Æ¥Åä */
-      	 	j = next[j];/* jÍË»ØºÏÊÊµÄÎ»ÖÃ£¬iÖµ²»±ä */
+      	else 			/* æŒ‡é’ˆåé€€é‡æ–°å¼€å§‹åŒ¹é… */
+      	 	j = next[j];/* jé€€å›åˆé€‚çš„ä½ç½®ï¼Œiå€¼ä¸å˜ */
 	}
 	if (j > T[0]) 
 		return i-T[0];
@@ -129,45 +129,45 @@ int Index_KMP(String S, String T, int pos)
 		return 0;
 }
 
-/* ÇóÄ£Ê½´®TµÄnextº¯ÊıĞŞÕıÖµ²¢´æÈëÊı×énextval */
+/* æ±‚æ¨¡å¼ä¸²Tçš„nextå‡½æ•°ä¿®æ­£å€¼å¹¶å­˜å…¥æ•°ç»„nextval */
 void get_nextval(String T, int *nextval) 
 {
   	int i,j;
   	i=1;
   	j=0;
   	nextval[1]=0;
-  	while (i<T[0])  /* ´Ë´¦T[0]±íÊ¾´®TµÄ³¤¶È */
+  	while (i<T[0])  /* æ­¤å¤„T[0]è¡¨ç¤ºä¸²Tçš„é•¿åº¦ */
  	{
-    	if(j==0 || T[i]== T[j]) 	/* T[i]±íÊ¾ºó×ºµÄµ¥¸ö×Ö·û£¬T[j]±íÊ¾Ç°×ºµÄµ¥¸ö×Ö·û */
+    	if(j==0 || T[i]== T[j]) 	/* T[i]è¡¨ç¤ºåç¼€çš„å•ä¸ªå­—ç¬¦ï¼ŒT[j]è¡¨ç¤ºå‰ç¼€çš„å•ä¸ªå­—ç¬¦ */
 		{
       		++i;  
 			++j;  
-			if (T[i]!=T[j])      /* Èôµ±Ç°×Ö·ûÓëÇ°×º×Ö·û²»Í¬ */
-				nextval[i] = j;	/* Ôòµ±Ç°µÄjÎªnextvalÔÚiÎ»ÖÃµÄÖµ */
+			if (T[i]!=T[j])      /* è‹¥å½“å‰å­—ç¬¦ä¸å‰ç¼€å­—ç¬¦ä¸åŒ */
+				nextval[i] = j;	/* åˆ™å½“å‰çš„jä¸ºnextvalåœ¨iä½ç½®çš„å€¼ */
       		else 
-				nextval[i] = nextval[j];	/* Èç¹ûÓëÇ°×º×Ö·ûÏàÍ¬£¬Ôò½«Ç°×º×Ö·ûµÄ */
-											/* nextvalÖµ¸³Öµ¸ønextvalÔÚiÎ»ÖÃµÄÖµ */
+				nextval[i] = nextval[j];	/* å¦‚æœä¸å‰ç¼€å­—ç¬¦ç›¸åŒï¼Œåˆ™å°†å‰ç¼€å­—ç¬¦çš„ */
+											/* nextvalå€¼èµ‹å€¼ç»™nextvalåœ¨iä½ç½®çš„å€¼ */
     	} 
 		else 
-			j= nextval[j];			/* Èô×Ö·û²»ÏàÍ¬£¬ÔòjÖµ»ØËİ */
+			j= nextval[j];			/* è‹¥å­—ç¬¦ä¸ç›¸åŒï¼Œåˆ™jå€¼å›æº¯ */
   	}
 }
 
 int Index_KMP1(String S, String T, int pos) 
 {
-	int i = pos;		/* iÓÃÓÚÖ÷´®SÖĞµ±Ç°Î»ÖÃÏÂ±êÖµ£¬Èôpos²»Îª1£¬Ôò´ÓposÎ»ÖÃ¿ªÊ¼Æ¥Åä */
-	int j = 1;			/* jÓÃÓÚ×Ó´®TÖĞµ±Ç°Î»ÖÃÏÂ±êÖµ */
-	int next[255];		/* ¶¨ÒåÒ»nextÊı×é */
-	get_nextval(T, next);	/* ¶Ô´®T×÷·ÖÎö£¬µÃµ½nextÊı×é */
-	while (i <= S[0] && j <= T[0]) /* ÈôiĞ¡ÓÚSµÄ³¤¶È²¢ÇÒjĞ¡ÓÚTµÄ³¤¶ÈÊ±£¬Ñ­»·¼ÌĞø */
+	int i = pos;		/* iç”¨äºä¸»ä¸²Sä¸­å½“å‰ä½ç½®ä¸‹æ ‡å€¼ï¼Œè‹¥posä¸ä¸º1ï¼Œåˆ™ä»posä½ç½®å¼€å§‹åŒ¹é… */
+	int j = 1;			/* jç”¨äºå­ä¸²Tä¸­å½“å‰ä½ç½®ä¸‹æ ‡å€¼ */
+	int next[255];		/* å®šä¹‰ä¸€nextæ•°ç»„ */
+	get_nextval(T, next);	/* å¯¹ä¸²Tä½œåˆ†æï¼Œå¾—åˆ°nextæ•°ç»„ */
+	while (i <= S[0] && j <= T[0]) /* è‹¥iå°äºSçš„é•¿åº¦å¹¶ä¸”jå°äºTçš„é•¿åº¦æ—¶ï¼Œå¾ªç¯ç»§ç»­ */
 	{
-		if (j==0 || S[i] == T[j]) 	/* Á½×ÖÄ¸ÏàµÈÔò¼ÌĞø£¬ÓëÆÓËØËã·¨Ôö¼ÓÁËj=0ÅĞ¶Ï */
+		if (j==0 || S[i] == T[j]) 	/* ä¸¤å­—æ¯ç›¸ç­‰åˆ™ç»§ç»­ï¼Œä¸æœ´ç´ ç®—æ³•å¢åŠ äº†j=0åˆ¤æ–­ */
       	{
          	++i;
          	++j; 
       	} 
-      	else 			/* Ö¸ÕëºóÍËÖØĞÂ¿ªÊ¼Æ¥Åä */
-      	 	j = next[j];/* jÍË»ØºÏÊÊµÄÎ»ÖÃ£¬iÖµ²»±ä */
+      	else 			/* æŒ‡é’ˆåé€€é‡æ–°å¼€å§‹åŒ¹é… */
+      	 	j = next[j];/* jé€€å›åˆé€‚çš„ä½ç½®ï¼Œiå€¼ä¸å˜ */
 	}
 	if (j > T[0]) 
 		return i-T[0];
@@ -181,82 +181,82 @@ int main()
 	String s1,s2;
 	
 	StrAssign(s1,"abcdex");
-	printf("×Ó´®Îª: ");
+	printf("å­ä¸²ä¸º: ");
 	StrPrint(s1);
 	i=StrLength(s1);
 	p=(int*)malloc((i+1)*sizeof(int));
 	get_next(s1,p); 
-	printf("NextÎª: ");
+	printf("Nextä¸º: ");
 	NextPrint(p,StrLength(s1));
 	printf("\n");
 
 	StrAssign(s1,"abcabx");
-	printf("×Ó´®Îª: ");
+	printf("å­ä¸²ä¸º: ");
 	StrPrint(s1);
 	i=StrLength(s1);
 	p=(int*)malloc((i+1)*sizeof(int));
 	get_next(s1,p); 
-	printf("NextÎª: ");
+	printf("Nextä¸º: ");
 	NextPrint(p,StrLength(s1));
 	printf("\n");
 
 	StrAssign(s1,"ababaaaba");
-	printf("×Ó´®Îª: ");
+	printf("å­ä¸²ä¸º: ");
 	StrPrint(s1);
 	i=StrLength(s1);
 	p=(int*)malloc((i+1)*sizeof(int));
 	get_next(s1,p); 
-	printf("NextÎª: ");
+	printf("Nextä¸º: ");
 	NextPrint(p,StrLength(s1));
 	printf("\n");
 
 	StrAssign(s1,"aaaaaaaab");
-	printf("×Ó´®Îª: ");
+	printf("å­ä¸²ä¸º: ");
 	StrPrint(s1);
 	i=StrLength(s1);
 	p=(int*)malloc((i+1)*sizeof(int));
 	get_next(s1,p); 
-	printf("NextÎª: ");
+	printf("Nextä¸º: ");
 	NextPrint(p,StrLength(s1));
 	printf("\n");
 
 	StrAssign(s1,"ababaaaba");
-	printf("   ×Ó´®Îª: ");
+	printf("   å­ä¸²ä¸º: ");
 	StrPrint(s1);
 	i=StrLength(s1);
 	p=(int*)malloc((i+1)*sizeof(int));
 	get_next(s1,p); 
-	printf("   NextÎª: ");
+	printf("   Nextä¸º: ");
 	NextPrint(p,StrLength(s1));
 	get_nextval(s1,p); 
-	printf("NextValÎª: ");
+	printf("NextValä¸º: ");
 	NextPrint(p,StrLength(s1));
 	printf("\n");
 
 	StrAssign(s1,"aaaaaaaab");
-	printf("   ×Ó´®Îª: ");
+	printf("   å­ä¸²ä¸º: ");
 	StrPrint(s1);
 	i=StrLength(s1);
 	p=(int*)malloc((i+1)*sizeof(int));
 	get_next(s1,p); 
-	printf("   NextÎª: ");
+	printf("   Nextä¸º: ");
 	NextPrint(p,StrLength(s1));
 	get_nextval(s1,p); 
-	printf("NextValÎª: ");
+	printf("NextValä¸º: ");
 	NextPrint(p,StrLength(s1));
 
 	printf("\n");
 
 	StrAssign(s1,"00000000000000000000000000000000000000000000000001");
-	printf("Ö÷´®Îª: ");
+	printf("ä¸»ä¸²ä¸º: ");
 	StrPrint(s1);
 	StrAssign(s2,"0000000001");
-	printf("×Ó´®Îª: ");
+	printf("å­ä¸²ä¸º: ");
 	StrPrint(s2);
 	printf("\n");
-	printf("Ö÷´®ºÍ×Ó´®ÔÚµÚ%d¸ö×Ö·û´¦Ê×´ÎÆ¥Åä£¨ÆÓËØÄ£Ê½Æ¥ÅäËã·¨£©\n",Index(s1,s2,1));
-	printf("Ö÷´®ºÍ×Ó´®ÔÚµÚ%d¸ö×Ö·û´¦Ê×´ÎÆ¥Åä£¨KMPËã·¨£© \n",Index_KMP(s1,s2,1));
-	printf("Ö÷´®ºÍ×Ó´®ÔÚµÚ%d¸ö×Ö·û´¦Ê×´ÎÆ¥Åä£¨KMP¸ÄÁ¼Ëã·¨£© \n",Index_KMP1(s1,s2,1));
+	printf("ä¸»ä¸²å’Œå­ä¸²åœ¨ç¬¬%dä¸ªå­—ç¬¦å¤„é¦–æ¬¡åŒ¹é…ï¼ˆæœ´ç´ æ¨¡å¼åŒ¹é…ç®—æ³•ï¼‰\n",Index(s1,s2,1));
+	printf("ä¸»ä¸²å’Œå­ä¸²åœ¨ç¬¬%dä¸ªå­—ç¬¦å¤„é¦–æ¬¡åŒ¹é…ï¼ˆKMPç®—æ³•ï¼‰ \n",Index_KMP(s1,s2,1));
+	printf("ä¸»ä¸²å’Œå­ä¸²åœ¨ç¬¬%dä¸ªå­—ç¬¦å¤„é¦–æ¬¡åŒ¹é…ï¼ˆKMPæ”¹è‰¯ç®—æ³•ï¼‰ \n",Index_KMP1(s1,s2,1));
 
 	return 0;
 }

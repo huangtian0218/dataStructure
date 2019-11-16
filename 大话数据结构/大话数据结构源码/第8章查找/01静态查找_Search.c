@@ -8,13 +8,13 @@
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-#define MAXSIZE 100 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 100 /* å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡ */
 
-typedef int Status;	/* StatusÊÇº¯ÊıµÄÀàĞÍ,ÆäÖµÊÇº¯Êı½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */ 
+typedef int Status;	/* Statusæ˜¯å‡½æ•°çš„ç±»å‹,å…¶å€¼æ˜¯å‡½æ•°ç»“æœçŠ¶æ€ä»£ç ï¼Œå¦‚OKç­‰ */ 
 
-int F[100]; /* ì³²¨ÄÇÆõÊıÁĞ */
+int F[100]; /* æ–æ³¢é‚£å¥‘æ•°åˆ— */
 
-/* ÎŞÉÚ±øË³Ğò²éÕÒ£¬aÎªÊı×é£¬nÎªÒª²éÕÒµÄÊı×é¸öÊı£¬keyÎªÒª²éÕÒµÄ¹Ø¼ü×Ö */
+/* æ— å“¨å…µé¡ºåºæŸ¥æ‰¾ï¼Œaä¸ºæ•°ç»„ï¼Œnä¸ºè¦æŸ¥æ‰¾çš„æ•°ç»„ä¸ªæ•°ï¼Œkeyä¸ºè¦æŸ¥æ‰¾çš„å…³é”®å­— */
 int Sequential_Search(int *a,int n,int key)
 {
 	int i;
@@ -25,7 +25,7 @@ int Sequential_Search(int *a,int n,int key)
 	}
 	return 0;
 }
-/* ÓĞÉÚ±øË³Ğò²éÕÒ */
+/* æœ‰å“¨å…µé¡ºåºæŸ¥æ‰¾ */
 int Sequential_Search2(int *a,int n,int key)
 {
 	int i;
@@ -38,53 +38,53 @@ int Sequential_Search2(int *a,int n,int key)
 	return i;
 }
 
-/* ÕÛ°ë²éÕÒ */
+/* æŠ˜åŠæŸ¥æ‰¾ */
 int Binary_Search(int *a,int n,int key)
 {
 	int low,high,mid;
-	low=1;	/* ¶¨Òå×îµÍÏÂ±êÎª¼ÇÂ¼Ê×Î» */
-	high=n;	/* ¶¨Òå×î¸ßÏÂ±êÎª¼ÇÂ¼Ä©Î» */
+	low=1;	/* å®šä¹‰æœ€ä½ä¸‹æ ‡ä¸ºè®°å½•é¦–ä½ */
+	high=n;	/* å®šä¹‰æœ€é«˜ä¸‹æ ‡ä¸ºè®°å½•æœ«ä½ */
 	while(low<=high)
 	{
-		mid=(low+high)/2;	/* ÕÛ°ë */
-		if (key<a[mid])		/* Èô²éÕÒÖµ±ÈÖĞÖµĞ¡ */
-			high=mid-1;		/* ×î¸ßÏÂ±êµ÷Õûµ½ÖĞÎ»ÏÂ±êĞ¡Ò»Î» */
-		else if (key>a[mid])/* Èô²éÕÒÖµ±ÈÖĞÖµ´ó */
-			low=mid+1;		/* ×îµÍÏÂ±êµ÷Õûµ½ÖĞÎ»ÏÂ±ê´óÒ»Î» */
+		mid=(low+high)/2;	/* æŠ˜åŠ */
+		if (key<a[mid])		/* è‹¥æŸ¥æ‰¾å€¼æ¯”ä¸­å€¼å° */
+			high=mid-1;		/* æœ€é«˜ä¸‹æ ‡è°ƒæ•´åˆ°ä¸­ä½ä¸‹æ ‡å°ä¸€ä½ */
+		else if (key>a[mid])/* è‹¥æŸ¥æ‰¾å€¼æ¯”ä¸­å€¼å¤§ */
+			low=mid+1;		/* æœ€ä½ä¸‹æ ‡è°ƒæ•´åˆ°ä¸­ä½ä¸‹æ ‡å¤§ä¸€ä½ */
 		else
 		{
-			return mid;		/* ÈôÏàµÈÔòËµÃ÷mid¼´Îª²éÕÒµ½µÄÎ»ÖÃ */
+			return mid;		/* è‹¥ç›¸ç­‰åˆ™è¯´æ˜midå³ä¸ºæŸ¥æ‰¾åˆ°çš„ä½ç½® */
 		}
 		
 	}
 	return 0;
 }
 
-/* ²åÖµ²éÕÒ */
+/* æ’å€¼æŸ¥æ‰¾ */
 int Interpolation_Search(int *a,int n,int key)
 {
 	int low,high,mid;
-	low=1;	/* ¶¨Òå×îµÍÏÂ±êÎª¼ÇÂ¼Ê×Î» */
-	high=n;	/* ¶¨Òå×î¸ßÏÂ±êÎª¼ÇÂ¼Ä©Î» */
+	low=1;	/* å®šä¹‰æœ€ä½ä¸‹æ ‡ä¸ºè®°å½•é¦–ä½ */
+	high=n;	/* å®šä¹‰æœ€é«˜ä¸‹æ ‡ä¸ºè®°å½•æœ«ä½ */
 	while(low<=high)
 	{
-		mid=low+ (high-low)*(key-a[low])/(a[high]-a[low]); /* ²åÖµ */
-		if (key<a[mid])		/* Èô²éÕÒÖµ±È²åÖµĞ¡ */
-			high=mid-1;		/* ×î¸ßÏÂ±êµ÷Õûµ½²åÖµÏÂ±êĞ¡Ò»Î» */
-		else if (key>a[mid])/* Èô²éÕÒÖµ±È²åÖµ´ó */
-			low=mid+1;		/* ×îµÍÏÂ±êµ÷Õûµ½²åÖµÏÂ±ê´óÒ»Î» */
+		mid=low+ (high-low)*(key-a[low])/(a[high]-a[low]); /* æ’å€¼ */
+		if (key<a[mid])		/* è‹¥æŸ¥æ‰¾å€¼æ¯”æ’å€¼å° */
+			high=mid-1;		/* æœ€é«˜ä¸‹æ ‡è°ƒæ•´åˆ°æ’å€¼ä¸‹æ ‡å°ä¸€ä½ */
+		else if (key>a[mid])/* è‹¥æŸ¥æ‰¾å€¼æ¯”æ’å€¼å¤§ */
+			low=mid+1;		/* æœ€ä½ä¸‹æ ‡è°ƒæ•´åˆ°æ’å€¼ä¸‹æ ‡å¤§ä¸€ä½ */
 		else
-			return mid;		/* ÈôÏàµÈÔòËµÃ÷mid¼´Îª²éÕÒµ½µÄÎ»ÖÃ */
+			return mid;		/* è‹¥ç›¸ç­‰åˆ™è¯´æ˜midå³ä¸ºæŸ¥æ‰¾åˆ°çš„ä½ç½® */
 	}
 	return 0;
 }
 
-/* ì³²¨ÄÇÆõ²éÕÒ */
+/* æ–æ³¢é‚£å¥‘æŸ¥æ‰¾ */
 int Fibonacci_Search(int *a,int n,int key)
 {
 	int low,high,mid,i,k=0;
-	low=1;	/* ¶¨Òå×îµÍÏÂ±êÎª¼ÇÂ¼Ê×Î» */
-	high=n;	/* ¶¨Òå×î¸ßÏÂ±êÎª¼ÇÂ¼Ä©Î» */
+	low=1;	/* å®šä¹‰æœ€ä½ä¸‹æ ‡ä¸ºè®°å½•é¦–ä½ */
+	high=n;	/* å®šä¹‰æœ€é«˜ä¸‹æ ‡ä¸ºè®°å½•æœ«ä½ */
 	while(n>F[k]-1)
 		k++;
 	for (i=n;i<F[k]-1;i++)
@@ -106,7 +106,7 @@ int Fibonacci_Search(int *a,int n,int key)
 		else
 		{
 			if (mid<=n)
-				return mid;		/* ÈôÏàµÈÔòËµÃ÷mid¼´Îª²éÕÒµ½µÄÎ»ÖÃ */
+				return mid;		/* è‹¥ç›¸ç­‰åˆ™è¯´æ˜midå³ä¸ºæŸ¥æ‰¾åˆ°çš„ä½ç½® */
 			else 
 				return n;
 		}
