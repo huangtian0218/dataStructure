@@ -11,7 +11,7 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 20 /* 存储空间初始分配量 */
+#define MAXSIZE 20           /* 存储空间初始分配量 */
 
 typedef int Status;          /* Status是函数的类型,其值是函数结果状态代码，如OK等 */
 typedef int ElemType;        /* ElemType类型根据实际情况而定，这里假设为int */
@@ -25,11 +25,13 @@ Status visit(ElemType c)
 
 typedef struct
 {
-	ElemType data[MAXSIZE];        /* 数组，存储数据元素 */
+	ElemType data[MAXSIZE];                  /* 数组，存储数据元素 */
 	int length;                                /* 线性表当前长度 */
 }SqList;
 
 /* 初始化顺序线性表 */
+// 线性表长度设置成 0
+// 返回1
 Status InitList(SqList *L)
 {
     L->length=0;
@@ -37,6 +39,7 @@ Status InitList(SqList *L)
 }
 
 /* 初始条件：顺序线性表L已存在。操作结果：若L为空表，则返回TRUE，否则返回FALSE */
+// 判断线性表是不是空
 Status ListEmpty(SqList L)
 {
 	if(L.length==0)
@@ -46,6 +49,7 @@ Status ListEmpty(SqList L)
 }
 
 /* 初始条件：顺序线性表L已存在。操作结果：将L重置为空表 */
+
 Status ClearList(SqList *L)
 {
     L->length=0;
@@ -140,12 +144,14 @@ Status ListTraverse(SqList L)
     return OK;
 }
 
+// 两个线性表合并
 void unionL(SqList *La,SqList Lb)
 {
 	int La_len,Lb_len,i;
 	ElemType e;
 	La_len=ListLength(*La);
 	Lb_len=ListLength(Lb);
+
 	for (i=1;i<=Lb_len;i++)
 	{
 		GetElem(Lb,i,&e);
@@ -157,39 +163,48 @@ void unionL(SqList *La,SqList Lb)
 int main()
 {
 
-    SqList L;
+    SqList L; //线性表 L
 	SqList Lb;
 
     ElemType e;
     Status i;
     int j,k;
-    i=InitList(&L);
+
+    i=InitList(&L);// i就是线性表L
+
     printf("初始化L后：L.length=%d\n",L.length);
+    printf("-----------------------------\n");
+
     for(j=1;j<=5;j++)
             i=ListInsert(&L,1,j);
     printf("在L的表头依次插入1～5后：L.data=");
     ListTraverse(L);
+    printf("-----------------------------\n");
 
     printf("L.length=%d \n",L.length);
-    i=ListEmpty(L);
+    i=ListEmpty(L); //检查线性表是不是空
     printf("L是否空：i=%d(1:是 0:否)\n",i);
+    printf("-----------------------------\n");
 
     i=ClearList(&L);
     printf("清空L后：L.length=%d\n",L.length);
-    i=ListEmpty(L);
+    i=ListEmpty(L); // 清空线性表
     printf("L是否空：i=%d(1:是 0:否)\n",i);
+    printf("-----------------------------\n");
 
     for(j=1;j<=10;j++)
             ListInsert(&L,j,j);
     printf("在L的表尾依次插入1～10后：L.data=");
     ListTraverse(L);
+    printf("-----------------------------\n");
+
 
     printf("L.length=%d \n",L.length);
-
     ListInsert(&L,1,0);
     printf("在L的表头插入0后：L.data=");
     ListTraverse(L);
     printf("L.length=%d \n",L.length);
+    printf("-----------------------------\n");
 
     GetElem(L,5,&e);
     printf("第5个元素的值为：%d\n",e);
@@ -201,6 +216,7 @@ int main()
             else
                     printf("没有值为%d的元素\n",j);
     }
+    printf("-----------------------------\n");
 
 
     k=ListLength(L); /* k为表长 */
@@ -214,15 +230,18 @@ int main()
     }
     printf("依次输出L的元素：");
     ListTraverse(L);
+    printf("-----------------------------\n");
+
 
     j=5;
     ListDelete(&L,j,&e); /* 删除第5个数据 */
     printf("删除第%d个的元素值为：%d\n",j,e);
-
     printf("依次输出L的元素：");
     ListTraverse(L);
+    printf("-----------------------------\n");
 
-	//构造一个有10个数的Lb
+
+	// //构造一个有10个数的Lb
 	i=InitList(&Lb);
     for(j=6;j<=15;j++)
             i=ListInsert(&Lb,1,j);
@@ -231,6 +250,7 @@ int main()
 
 	printf("依次输出合并了Lb的L的元素：");
     ListTraverse(L);
+    printf("-----------------------------\n");
 
     return 0;
 }
