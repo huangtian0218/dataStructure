@@ -1,6 +1,6 @@
 #include "stdio.h"    
 #include "stdlib.h"   
-#include "io.h"  
+//#include "io.h"  
 #include "math.h"  
 #include "time.h"
 
@@ -14,7 +14,7 @@ typedef int Status;
 typedef int SElemType; /* SElemType类型根据实际情况而定，这里假设为int */
 
 
-/* 链栈结构 */
+/* 💡 链栈结构 */
 typedef struct StackNode
 {
         SElemType data;

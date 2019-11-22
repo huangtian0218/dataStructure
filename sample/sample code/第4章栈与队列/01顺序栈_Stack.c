@@ -1,6 +1,6 @@
 #include "stdio.h"    
 #include "stdlib.h"   
-#include "io.h"  
+//#include "io.h"  
 #include "math.h"  
 #include "time.h"
 
@@ -73,6 +73,7 @@ Status Push(SqStack *S,SElemType e)
         {
                 return ERROR;
         }
+		
         S->top++;				/* 栈顶指针增加一 */
         S->data[S->top]=e;  /* 将新插入元素赋值给栈顶空间 */
         return OK;
@@ -109,14 +110,19 @@ int main()
         if(InitStack(&s)==OK)
                 for(j=1;j<=10;j++)
                         Push(&s,j);
-        printf("栈中元素依次为：");
+        
+		printf("栈中元素依次为：");
         StackTraverse(s);
+		
         Pop(&s,&e);
         printf("弹出的栈顶元素 e=%d\n",e);
+		
         printf("栈空否：%d(1:空 0:否)\n",StackEmpty(s));
-        GetTop(s,&e);
+        
+		GetTop(s,&e);
         printf("栈顶元素 e=%d 栈的长度为%d\n",e,StackLength(s));
-        ClearStack(&s);
+        
+		ClearStack(&s);
         printf("清空栈后，栈空否：%d(1:空 0:否)\n",StackEmpty(s));
         
         return 0;

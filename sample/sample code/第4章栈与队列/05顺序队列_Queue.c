@@ -1,6 +1,6 @@
 #include "stdio.h"    
 #include "stdlib.h"   
-#include "io.h"  
+//#include "io.h"  
 #include "math.h"  
 #include "time.h"
 
@@ -13,7 +13,7 @@
 typedef int Status; 
 typedef int QElemType; /* QElemType类型根据实际情况而定，这里假设为int */
 
-/* 循环队列的顺序存储结构 */
+/* 💡循环队列的顺序存储结构 */
 typedef struct
 {
 	QElemType data[MAXSIZE];
