@@ -113,7 +113,7 @@ int listInsert(linkList *L,int location ,int input){
 
 // Traverse the whole list
 int listTraverse(linkList L, int mathod){
-	// mathod means the display mode 
+	// mathod means the display mode
     linkList p = L->right;
     int result = 0;
     int max = 0;
@@ -136,9 +136,9 @@ int listTraverse(linkList L, int mathod){
         p = p -> right;
 
     }
-	
+
     printf("\n");
-	
+
     if(mathod == 2){
         printf("数据域之和：%d\n",result);
 
@@ -209,13 +209,13 @@ int doubleListInsert(doubleLinkList *L, int location, int input){
     }
 
     s = (doubleLinkList)malloc(sizeof(doubleNode)); // create a new node;
-   
+
     s -> data = input;
     s->left = p;
     s -> right = *L; // the new node's right is the head
-	
+
     p -> right = s;
-    (*L)-> left = s; // the head's left is the new node 
+    (*L)-> left = s; // the head's left is the new node
 
     return 0;
 
@@ -254,7 +254,7 @@ int doubleListTraverse(doubleLinkList *L, int location) {
 
     while (p != start) {
 
-        if (p == *L) { 
+        if (p == *L) {
             p = p->right; // skip the head node
         } else {
             visit(p->data);
@@ -272,6 +272,7 @@ int main(){
 
     int arr[MAXSIZE] = {9,2,5};
     int len = 3;
+
     initList(&L1);
     initList(&L2);
     initDoubleList(&L3);
