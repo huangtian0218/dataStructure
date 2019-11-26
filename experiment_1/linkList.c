@@ -163,15 +163,36 @@ int listBuild(linkList L ,int *arr,int len,int mathod){
             listInsert(&L,location,arr[i]);
         }
     }
+
     if (mathod == 1){ // mathod == 1 代表非降序排列
-        for (int i = 1; i < len; i++){
-            if(arr[i] >= arr[i-1]){
-                location++;
-                listInsert(&L,location,arr[i]);
-            }else{
-                listInsert(&L,location,arr[i]);
+        int arr2[len];
+        for (int i = 0; i < len ; i++){
+            arr2[i] = arr[i];
+        }
+
+        int temp;
+        for (int i = 0; i< len-1 ; i++){
+            for (int j = i+1; j < len; j++){
+            if (arr2[j] < arr2[i]){
+                    temp = arr2[j];
+                    arr2[j] = arr2[i];
+                    arr2[i] = temp;
+                }
             }
         }
+        for (int i = 1; i< len; i++){
+            location++;
+            listInsert(&L,location,arr2[i]);
+        }
+        // for (int i = 1; i < len; i++){
+        //     if(arr[i] >= arr[i-1]){
+        //         location++;
+        //         listInsert(&L,location,arr[i]);
+        //     }else{
+        //         listInsert(&L,location,arr[i]);
+        //     }
+        // }
+
     }
 
     return 0;
@@ -266,12 +287,26 @@ int doubleListTraverse(doubleLinkList *L, int location) {
     return 0;
 }
 
+void sort(int *a, int n){
+    int i,j,temp;
+    for (i = 0; i< n-1 ; i++){
+        for (j = i+1; j < n; j++){
+            if (a[j] < a[i]){
+                temp = a[j];
+                a[j] = a[i];
+                a[i] = temp;
+            }
+        }
+    }
+
+}
+
 int main(){
     linkList L1,L2;
     doubleLinkList L3;
 
-    int arr[MAXSIZE] = {9,2,5};
-    int len = 3;
+    int arr[MAXSIZE] = {1,99,2,3,10,8,44};
+    int len = 7;
 
     initList(&L1);
     initList(&L2);

@@ -1,6 +1,6 @@
 #include "stdio.h"    
 #include "stdlib.h"   
-#include "io.h"  
+//#include "io.h"  
 #include "math.h"  
 #include "time.h"
 
@@ -45,15 +45,16 @@ Status CreateBiTree(SqBiTree T)
  	printf("请按层序输入结点的值(整型)，0表示空结点，输999结束。结点数≤%d:\n",MAX_TREE_SIZE);
 	while(i<10)
 	{
-		T[i]=i+1;
+		T[i]=i+2; // value
 		
-		if(i!=0&&T[(i+1)/2-1]==Nil&&T[i]!=Nil) /* 此结点(不空)无双亲且不是根 */
+		if(i!=0 && T[(i+1)/2-1]==Nil&&T[i]!=Nil) /* 此结点(不空)无双亲且不是根 */
 		{
 			printf("出现无双亲的非根结点%d\n",T[i]);
 			exit(ERROR);
 		}
 		i++;
 	}
+	
 	while(i<MAX_TREE_SIZE)
 	{
 		T[i]=Nil; /* 将空赋值给T的后面的结点 */
@@ -83,9 +84,11 @@ int BiTreeDepth(SqBiTree T)
      if(T[i]!=Nil)
        break;
    i++; 
+   
    do
-     j++;
-   while(i>=powl(2,j));/* 计算2的j次幂。 */
+     j++; // 计算深度
+   while(i>=powl(2,j));/* 计算2的j次幂。 */ 
+   
    return j;
 }
 

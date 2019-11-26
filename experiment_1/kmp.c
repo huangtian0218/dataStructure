@@ -83,8 +83,8 @@ int main(){
     String T = "abc";
     int lenT = 3;
 
-    String S = "123abc456abc789abc";
-    int lenS = 18;
+    String S = "123abxabcqqqabc789abc";
+    int lenS = 21;
 
     int nextArr[lenT];
     getNext(T,lenT,nextArr);

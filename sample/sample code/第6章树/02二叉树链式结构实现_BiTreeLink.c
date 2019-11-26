@@ -19,14 +19,14 @@ int indexx=1;
 typedef char String[24]; /*  0号单元存放串的长度 */
 String str;
 
-Status StrAssign(String T,char *chars)
+Status StrAssign(String T, char *chars)
 { 
 	int i;
 	if(strlen(chars)>MAXSIZE)
 		return ERROR;
 	else
 	{
-		T[0]=strlen(chars);
+		T[0]=strlen(chars); // T[0] 存储 长度
 		for(i=1;i<=T[0];i++)
 			T[i]=*(chars+i-1);
 		return OK;
@@ -77,7 +77,6 @@ void CreateBiTree(BiTree *T)
 { 
 	TElemType ch;
 	
-	
 	/* scanf("%c",&ch); */
 	ch=str[indexx++];
 
@@ -86,8 +85,10 @@ void CreateBiTree(BiTree *T)
 	else
 	{
 		*T=(BiTree)malloc(sizeof(BiTNode));
+		
 		if(!*T)
 			exit(OVERFLOW);
+		
 		(*T)->data=ch; /* 生成根结点 */
 		CreateBiTree(&(*T)->lchild); /* 构造左子树 */
 		CreateBiTree(&(*T)->rchild); /* 构造右子树 */
