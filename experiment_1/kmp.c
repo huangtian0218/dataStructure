@@ -5,6 +5,7 @@
 
 typedef char String[MAXSIZE + 1];/*第零位用于存储字符长度*/
 
+// 获取失败函数组
 int getNext(String T, int lenT, int *nextArr){
     int i = 1;
     int j = 0;
@@ -39,9 +40,10 @@ int getNext(String T, int lenT, int *nextArr){
 int kmp(String S,int lenS,String T, int lenT,int *nextArr){
     int s = 0;
     int t = 0;
-    int result[lenS];
+    int result[lenS]; // 记录出现的坐标
     int count = 0;
     int flag = 0;
+
     while (s < lenS){
 
         if(S[s] == T[t]){
@@ -71,9 +73,9 @@ int kmp(String S,int lenS,String T, int lenT,int *nextArr){
     }
 
     printf("---------final:-------------\n");
-    printf("count:%d\n",count);
+    printf("数目:%d\n",count);
     for (int i = 0; i < count; i++) {
-        printf("location:%d\n",result[i]);
+        printf("出现的坐标:%d\n",result[i]);
     }
     return 0;
 }
