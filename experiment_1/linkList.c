@@ -113,7 +113,7 @@ int listInsert(linkList *L,int location ,int input){
 
 // Traverse the whole list
 int listTraverse(linkList L, int mathod){
-	// mathod means the display mode
+    // mathod means the display mode
     linkList p = L->right;
     int result = 0;
     int max = 0;
@@ -145,54 +145,21 @@ int listTraverse(linkList L, int mathod){
     }else if (mathod == 1){
         printf("最大值：%d ; 最小值：%d\n",max,min);
     }else if (mathod == 0){
-    	return 0;
+        return 0;
     }
 
     return 0;
 }
 
 // Build the list
-int listBuild(linkList L ,int *arr,int len,int mathod){
+int listBuild(linkList L ,int *arr,int len){
     int location = 1;
 
     listInsert(&L,1,arr[0]); // insert the first data
 
-    if (mathod == 0){ // mathod == 0 代表无序排列
-        for (int i = 1; i< len; i++){
-            location++;
-            listInsert(&L,location,arr[i]);
-        }
-    }
-
-    if (mathod == 1){ // mathod == 1 代表非降序排列
-        int arr2[len];
-        for (int i = 0; i < len ; i++){
-            arr2[i] = arr[i];
-        }
-
-        int temp;
-        for (int i = 0; i< len-1 ; i++){
-            for (int j = i+1; j < len; j++){
-            if (arr2[j] < arr2[i]){
-                    temp = arr2[j];
-                    arr2[j] = arr2[i];
-                    arr2[i] = temp;
-                }
-            }
-        }
-        for (int i = 1; i< len; i++){
-            location++;
-            listInsert(&L,location,arr2[i]);
-        }
-        // for (int i = 1; i < len; i++){
-        //     if(arr[i] >= arr[i-1]){
-        //         location++;
-        //         listInsert(&L,location,arr[i]);
-        //     }else{
-        //         listInsert(&L,location,arr[i]);
-        //     }
-        // }
-
+    for (int i = 1; i< len; i++){
+        location++;
+        listInsert(&L,location,arr[i]);
     }
 
     return 0;
@@ -256,7 +223,7 @@ int doubleListBuild(doubleLinkList L,int *arr, int len){
 
 // Traverse the double list
 int doubleListTraverse(doubleLinkList *L, int location) {
-	// location means the first node to visit
+    // location means the first node to visit
     int j;
     doubleLinkList p, start;
     p = *L;
@@ -269,12 +236,11 @@ int doubleListTraverse(doubleLinkList *L, int location) {
 
     start = p;
 
-    printf("起始数值：%d\n遍历：", p->data);
+    printf("双链表起始数值：%d\n遍历：", p->data);
     visit(p->data);
     p = p->right;
 
     while (p != start) {
-
         if (p == *L) {
             p = p->right; // skip the head node
         } else {
@@ -287,36 +253,48 @@ int doubleListTraverse(doubleLinkList *L, int location) {
     return 0;
 }
 
-void sort(int *a, int n){
-    int i,j,temp;
-    for (i = 0; i< n-1 ; i++){
-        for (j = i+1; j < n; j++){
-            if (a[j] < a[i]){
-                temp = a[j];
-                a[j] = a[i];
-                a[i] = temp;
+// 链表排序
+int linkListSort(linkList L){
+    // 交换排序法
+    linkList p = L->right;// 第一个排序结点
+    while (p){
+        linkList min = p; // min指向当前结点
+        linkList pointer = p; // pointer用于遍历未排序结点
+        while(pointer){
+            if(pointer->data < min->data){
+                min = pointer;
             }
+            pointer = pointer->right;
         }
+        // 交换
+        int temp = p->data;
+        p->data = min->data;
+        min->data = temp;
+
+        p = p->right; //指向下一个排序结点
     }
 
+    return 0;
 }
+
 
 int main(){
     linkList L1,L2;
     doubleLinkList L3;
 
-    int arr[MAXSIZE] = {1,99,2,3,10,8,44};
-    int len = 7;
+    int arr[MAXSIZE] = {100,2,55,3,56,1,5,6,4};
+    int len = 9;
 
     initList(&L1);
     initList(&L2);
     initDoubleList(&L3);
 
-    listBuild(L1,arr,len,0); // 无序
-    listBuild(L2,arr,len,1); // 非降序排列
-
+    listBuild(L1,arr,len); // 无序
     printf("L1:");
     listTraverse(L1,1);
+
+    listBuild(L2,arr,len); // 无序
+    linkListSort(L2); //排序
     printf("L2:");
     listTraverse(L2,2);
 
@@ -324,3 +302,4 @@ int main(){
     doubleListTraverse(&L3,2);
 
 }
+
