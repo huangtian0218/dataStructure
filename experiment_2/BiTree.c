@@ -15,7 +15,6 @@ String str;
 
 // 🔑添加字符串
 int StrAssign(String T,char *chars){
-    int i;
 
     if (strlen(chars) > MAXSIZE)
         return -1;
@@ -142,6 +141,7 @@ int PreOrder(BiTree T,int location){
         }
 
     }
+	
 
 //    printf("%c ", temp -> data);
 //    Push(temp);
@@ -154,20 +154,25 @@ int PreOrder(BiTree T,int location){
 
 }
 
+int PreOrderVisit(BiTree T,int location){
+    printf("路径: ");
+	PreOrder(T,location);
+    printf(" 长度：%d",location);
+    printf("\n");
+	return 0;
+}
 
 /************************************************/
 int main (){
     BiTree T;
     InitBiTree(&T);
     init();
-    StrAssign(str,"ABDH#K###E##CFI###G#J##"); //先根遍历输入
-    int num = 11;
+    StrAssign(str,"124#67##8###3#5##"); //先根遍历输入
+    int num = 8;
     CreateBiTree(&T);
 
     for (int i = 1; i <=num ; ++i) {
-        PreOrder(T,i);
-        printf(" 长度：%d",i);
-        printf("\n");
+        PreOrderVisit(T,i);
     }
 
 

@@ -1,160 +1,104 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include "stdio.h"
+ #include "stdlib.h"
 
-#define MAXSIZE 50
+  #define MAXSIZE 50
 
-void Swap(int *heap, int len);        /* 交换根节点和数组末尾元素的值 */
-void BuildMaxHeap(int *heap, int len,int num,int count);/* 构建大顶堆 */
-
-/* Function: 构建大顶堆 */
-void BuildMaxHeap(int *heap, int len,int num,int count)
-{
-    int i;
-    int temp;
-    //交换后输出一下：
-    printf("比较次数：%d\n",count);
-    printf("当前堆:");
-    for (int j = 0; j < num ; ++j) {
-        printf("%d ",heap[j]);
-    }
-    printf("\n");
-
-    for (i = len/2-1; i >= 0; i--)
-    {
-        count++;
-        if ((2*i+1) < len && heap[i] < heap[2*i+1])    /* 根节点大于左子树 */
-        {
-            // 交换操作
-
-            temp = heap[i];
-            heap[i] = heap[2*i+1];
-            heap[2*i+1] = temp;
+  typedef struct TreeNode {
+     struct TreeNode *leftPtr;  /* pointer to left subtree */
+     int data;
+     int level;
+     struct TreeNode *rightPtr; /* pointer to right subtree */
+ }TreeNode, *Tree;
 
 
-            /* 检查交换后的左子树是否满足大顶堆性质 如果不满足 则重新调整子树结构 */
-            if ((2*(2*i+1)+1 < len && heap[2*i+1] < heap[2*(2*i+1)+1]) || (2*(2*i+1)+2 < len && heap[2*i+1] < heap[2*(2*i+1)+2]))
-            {
-                BuildMaxHeap(heap, len,num,count);
-            }
-        }
-        count++;
-        if ((2*i+2) < len && heap[i] < heap[2*i+2])    /* 根节点大于右子树 */
-        {
+  int initTree(Tree *T){
+     *T = NULL;
+     return 0;
+ }
 
-            temp = heap[i];
-            heap[i] = heap[2*i+2];
-            heap[2*i+2] = temp;
+  void insertNode(Tree *T,int value,int level){
+     level ++;
 
-            /* 检查交换后的右子树是否满足大顶堆性质 如果不满足 则重新调整子树结构 */
-            if ((2*(2*i+2)+1 < len && heap[2*i+2] < heap[2*(2*i+2)+1]) || (2*(2*i+2)+2 < len && heap[2*i+2] < heap[2*(2*i+2)+2]))
-            {
+      if (*T == NULL){
+         // 树为空时
+         *T = malloc(sizeof(TreeNode));
 
+          if (*T  != NULL){
+             (*T)->data = value;
+             (*T)->leftPtr = NULL;
+             (*T)->rightPtr = NULL;
+             (*T)->level = level;
+             //printf("Insert value: %d success, lelevl:%d\n",value,level-1);
+             //return 0;
+         } else{
+             printf("error occured\n");
 
-                BuildMaxHeap(heap, len,num,count);
-            }
-        }
-    }
-}
+          }
 
-/* Function: 交换交换根节点和数组末尾元素的值*/
-void Swap(int *heap, int len)
-{
-    int temp;
+      }
+     else{
+         // 树不为空
 
-    temp = heap[0];
-    heap[0] = heap[len-1];
-    heap[len-1] = temp;
+          // 插入到左子树
+         if(value < (*T)->data){
+             insertNode(&(*T)->leftPtr,value,level);
+         }
+         else{
+             // 插入右子树
+             if (value > (*T)->data){
+                 insertNode(&(*T)->rightPtr,value,level);
+             }
+             else {
+                 if ((*T)->rightPtr == NULL || (*T)->leftPtr == NULL){
+                     printf("叶子结点");
+                 }
+ //                printf("%d ",((*T)->leftPtr)->data);
+ //                printf("%d ",((*T)->rightPtr)->data);
+                 printf("结点已存在 值域: %d; 层数:%d", (*T)->data,(*T)->level);
+                 // return 1;
+             }
 
-}
+          }
 
+      }
 
-int getran(int *arr,int num){
-    int i = 0;
-    while (i < num){
-        int ran = rand();
-        if (ran >= 10 && ran <= 1000000){
-            arr[i] = ran;
-            i ++;
-        }
+  }
+ int printTree(Tree T){
 
-    }
+      while (T != NULL){
+         printTree(T->leftPtr);
+         printf("[%d] ",T->data);
+         printTree(T->rightPtr);
+         T = NULL;
+     }
+     return 0;
+ }
 
-//    for (int j = 0; j < num; j++) {
-//        printf("%d ",arr[j]);
-//    }
-//    printf("\n");
-    return 0;
-}
+  int getLevel(Tree *T, int value){
+     int level = 0;
 
-int heapRank(int *a,int len,int num){
-    int i;
+      return level;
+ }
 
-    for (i = len; i > 0; i--)
-    {
-        BuildMaxHeap(a, i,num,0);
-        Swap(a, i);
-    }
-//    printf("比较次数：%d\n",count);
+  int main(){
+     TreeNode *T = NULL;
+     int temp = 0;
+     int arr[MAXSIZE] = {8,3,10,1,6,14,4,7,13};
+     int len = 9;
+     for (int i = 0; i < len; i++) {
+         insertNode(&T,arr[i],0);
 
-//    for (i = 0; i < len; i++)
-//    {
-//        printf("%d ", a[i]);
-//    }
-    return 0;
-}
+      }
+     printf("查找二叉树构建完成\n");
 
-int main()
-{
-//    int a[6] = {7, 3, 8, 5, 1, 2};
-//    int len = 6;    /* 数组长度 */
-//    int i;
-    FILE *fp =NULL;
-    fp = fopen("/Users/levypan/geek/dataStructure/experiment_3/heapRank.txt","w+");
-    fprintf(fp, "...运行结果...\n");
-    int len = 0;
+      printf("请输入要插入的数字：\n");
 
-    printf("请输入数组长度（小于 50）:");
-    scanf("%d",&len);
-    for (int i = 0; i < 2; i++) {
-        int arr[MAXSIZE];
-//        int len = 0;
-//
-//        printf("请输入数组长度（小于 50）:");
-//        scanf("%d",&len);
+      scanf("%d",&temp);
 
-        getran(arr,len);
-        printf("****生成的随机数:");
-        for (int j = 0; j < len; j++) {
-            printf("%d ",arr[j]);
-        }
-        printf("\n");
-        fprintf(fp, "排序前:");
-        for (int j = 0; j < len; j++) {
-            fprintf(fp, "%d ",arr[j]);
-        }
+      insertNode(&T,temp,0);
 
-        fprintf(fp, "\n");
+      printf("\n中序遍历：\n");
 
-        heapRank(arr,len,len);
-        fprintf(fp, "排序后:");
-        for (int j = 0; j < len; j++) {
-            fprintf(fp, "%d ",arr[j]);
-        }
-        fprintf(fp, "\n---------------------------------\n");
-    }
-
-//    int len = 0;
-//    getran(arr,7);
-//
-//    printf("After Rank:\n");
-//    heapRank(arr,7);
-//
-//    printf("\n----------------\n");
-//    getran(arr,6);
-//    printf("After Rank:\n");
-//    heapRank(arr,6);
-
-    fclose(fp);
-    return 0;
-}
-
+      printTree(T);
+     return 0;
+ }
