@@ -249,7 +249,6 @@ int doubleListTraverse(doubleLinkList *L, int location) {
         }
     }
 
-
     return 0;
 }
 
@@ -282,8 +281,13 @@ int main(){
     linkList L1,L2;
     doubleLinkList L3;
 
-    int arr[MAXSIZE] = {100,2,55,3,56,1,5,6,4};
-    int len = 9;
+    // test data 1
+    // int arr[MAXSIZE] = {100,2,55,3,56,1,5,6,4};
+    // int len = 9;
+
+    // test datd 2
+    int arr[MAXSIZE] = {1,2,75,4,56,31,25,65,9,4};
+    int len = 10;
 
     initList(&L1);
     initList(&L2);

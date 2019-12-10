@@ -49,9 +49,9 @@
                  insertNode(&(*T)->rightPtr,value,level);
              }
              else {
-                 if ((*T)->rightPtr == NULL || (*T)->leftPtr == NULL){
-                     printf("叶子结点");
-                 }
+                 // if ((*T)->rightPtr == NULL || (*T)->leftPtr == NULL){
+                 //     printf("叶子结点");
+                 // }
  //                printf("%d ",((*T)->leftPtr)->data);
  //                printf("%d ",((*T)->rightPtr)->data);
                  printf("结点已存在 值域: %d; 层数:%d", (*T)->data,(*T)->level);
@@ -64,7 +64,6 @@
 
   }
  int printTree(Tree T){
-
       while (T != NULL){
          printTree(T->leftPtr);
          printf("[%d] ",T->data);
@@ -85,6 +84,7 @@
      int temp = 0;
      int arr[MAXSIZE] = {8,3,10,1,6,14,4,7,13};
      int len = 9;
+
      for (int i = 0; i < len; i++) {
          insertNode(&T,arr[i],0);
 

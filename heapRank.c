@@ -6,7 +6,7 @@
 void Swap(int *heap, int len);        /* 交换根节点和数组末尾元素的值 */
 int BuildMaxHeap(int *heap, int len,int num,int count);/* 构建大顶堆 */
 
-/* Function: 构建大顶堆 */
+/* Function: 构建小顶堆 */
 int BuildMaxHeap(int *heap, int len,int num,int count)
 {
     int i;
@@ -22,7 +22,7 @@ int BuildMaxHeap(int *heap, int len,int num,int count)
     {
         count++;
         //printf("准备和左子树比，当前比较次数：%d\n",count);
-        if ((2*i+1) < len && heap[i] < heap[2*i+1])    /* 根节点大于左子树 */
+        if ((2*i+1) < len && heap[i] < heap[2*i+1])    /* 根节点小于左子树 */
         {
             // 交换操作
 
@@ -41,14 +41,14 @@ int BuildMaxHeap(int *heap, int len,int num,int count)
         count++;
         //printf("准备和右子树比，当前比较次数：%d\n",count);
 
-        if ((2*i+2) < len && heap[i] < heap[2*i+2])    /* 根节点大于右子树 */
+        if ((2*i+2) < len && heap[i] < heap[2*i+2])    /* 根节点小于右子树 */
         {
 
             temp = heap[i];
             heap[i] = heap[2*i+2];
             heap[2*i+2] = temp;
 
-            /* 检查交换后的右子树是否满足大顶堆性质 如果不满足 则重新调整子树结构 */
+            /* 检查交换后的右子树是否满足小顶堆性质 如果不满足 则重新调整子树结构 */
             count++;
             if ((2*(2*i+2)+1 < len && heap[2*i+2] < heap[2*(2*i+2)+1]) || (2*(2*i+2)+2 < len && heap[2*i+2] < heap[2*(2*i+2)+2]))
             {
@@ -110,7 +110,7 @@ int main()
 {
 
     FILE *fp =NULL;
-    fp = fopen("/Users/levypan/geek/dataStructure/experiment_3/heapRank.txt","w+");
+    fp = fopen("./tets.txt","w+"); // 路径
     fprintf(fp, "...运行结果...\n");
     int len = 0;
     int total = 0;

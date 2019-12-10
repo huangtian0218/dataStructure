@@ -28,7 +28,7 @@ int CreateALGraph(GraphAdjList *G){
     int i = 0;
     int j,k;
     EdgeNode *e;
-    printf("请输入顶点数和边数：");
+    printf("请输入顶点数和边数用','分开：");
     scanf("%d,%d",&G->numNodes,&G->numEdges); /* 输入顶点数和边数 */
 
     /*建立顶点表*/
@@ -45,51 +45,116 @@ int CreateALGraph(GraphAdjList *G){
 
         e = (EdgeNode *) malloc(sizeof(EdgeNode)); //生成边表结点
         e->adjvex = j; // 临接序号为j
-       // e->next =NULL;
+        // e->next =NULL;
 
         e->next = G->adjList[i].firstedge; // 将e的指针只想当前顶点上指向的顶点
         G->adjList[i].firstedge = e; // 将当前顶点的指针指向e
 
-//        e = (EdgeNode *) malloc(sizeof(EdgeNode)); //生成边表结点
-//        e->adjvex = i; // 临接序号为i
-//        e->next = G->adjList[j].firstedge; // 将e的指针只想当前顶点上指向的顶点
-//        G->adjList[j].firstedge = e; // 将当前顶点的指针指向e
 
     }
 
-    printf("图创建完成。\n");
-    return 0;
+    printf("图创建完成。节点数：%d\n",G->numNodes);
+    return G->numNodes;
 }
 
-int visited[maxsize];
-
-void DFS(GraphAdjList *G, int i){
+/*
+//递归法BFS
+void DFS(GraphAdjList *G, int i, int *visited){
     // 访问从序号i开始的
-    int j;
-    EdgeNode *p = G->adjList[i].firstedge;
-    visited[i] = 1;
     printf("[%d]",G->adjList[i].data);
-   // printf("%d ",G->adjList[p->adjvex].data);
+    visited[i] = 1;
+    EdgeNode *p = G->adjList[i].firstedge;
+
     while (p != NULL){
         if(visited[p->adjvex] != 1){
-            DFS(G,p->adjvex);
+            DFS(G,p->adjvex,visited);
             p = p->next;
         }
     }
-
 }
+
 
 void DFS_Main(GraphAdjList *G){
     for(int i = 0; i< G->numNodes ;i++){
         visited[i] = 0;
     }
+    int begin = 0;
+    printf("请输入起始结点序号：");
+    scanf("%d",&begin);
 
     for(int i = 0; i<G->numNodes;i++){
         if(visited[i] == 0){
-            DFS(G,i);
+            DFS(G,i,visited);
         }
     }
 
+}
+*/
+int visited[maxsize];
+
+int printGraph(GraphAdjList *G,int num){
+        printf("------------------临接链表-----------------\n");
+    for (int i = 0; i < num ; ++i) {
+        EdgeNode *p = G->adjList[i].firstedge;
+        printf("\n起始结点序号：%d; 数据域：%d\n",i,G->adjList[i].data);
+        printf("【%d】",G->adjList[i].data);
+        while (p != NULL){
+            printf("->[%d]",p->adjvex);
+            p = p->next;
+        }
+    }
+    printf("\n-----------------------------------------\n");
+
+    return 0;
+}
+
+/*********堆栈*********/
+typedef struct{
+    int node[maxsize];
+    int top;
+}Stack;
+
+Stack s;
+
+void initStack(){
+    s.top = -1;
+}
+
+void Push(int element){
+    s.top ++;
+    s.node[s.top] = element;
+}
+
+int Pop(){
+    int elememt = s.node[s.top];
+    s.top--;
+    return elememt;
+}
+/*********************/
+
+int DFS_stack(GraphAdjList *G, int i){
+    initStack();
+    for(int i = 0; i< G->numNodes ;i++){
+        visited[i] = 0;
+    }
+    Push(i);
+
+    while(s.top != -1){
+        int node = Pop();
+        if (visited[node] == 0){
+            printf("[%d]",G->adjList[node].data);
+            visited[node] = 1;
+            EdgeNode *p = G->adjList[node].firstedge;
+            while (p != NULL){
+                if (visited[p->adjvex]==0){
+                    Push(p->adjvex);
+                    p = p->next;
+                }
+            }
+        }
+    }
+    printf("\nDFS finish\n");
+    return 0;
 }
 
 /*队列***/
@@ -159,23 +224,22 @@ void BFS(GraphAdjList *G, int i) {
             }
         }
     }
-}
+    printf("\nBFS finish\n");
 
-void clearVisited(GraphAdjList *G){
-    for (int i = 0; i < G->numNodes; i++) {
-        visited[i] = 0;
-    }
 }
 
 int main(){
+    int num = 0;
+    //int visited[maxsize];
     GraphAdjList G;
-    CreateALGraph(&G);
+    num = CreateALGraph(&G);
+    //initVisited(visited,num);
+    printGraph(&G,num);
+    int begin = 0;
+    printf("请输入起始结点序号：");
+    scanf("%d",&begin);
+    DFS_stack(&G,begin);
+    BFS(&G,begin);
 
-    printf("DFS：");
-    DFS_Main(&G);
-    clearVisited(&G);
-
-    printf("\nBFS：");
-    BFS(&G,0);
     return 0;
 }

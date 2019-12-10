@@ -66,6 +66,7 @@ int kmp(String S,int lenS,String T, int lenT,int *nextArr){
         // 成功匹配串
         if (flag == lenT){
             result[count] = s-lenT;
+            s = s-lenT;
             //printf("success,loc:%d\n",result[count]);
             flag = 0;
             count ++;
@@ -82,11 +83,27 @@ int kmp(String S,int lenS,String T, int lenT,int *nextArr){
 
 
 int main(){
-    String T = "abc";
-    int lenT = 3;
+    //  test data 1
+    // String T = "abc";
+    // int lenT = 3;
 
-    String S = "123abxabcqqqabc789abc";
-    int lenS = 21;
+    // String S = "123abxabcqqqabc789abc";
+    // int lenS = 21;
+
+    // test data 2
+    // String T = "bc";
+    // int lenT = 2;
+
+    // String S = "bc123bc4567bc890bx";
+    // int lenS = 18;
+
+    String T = "abab";
+    int lenT = 4;
+
+    String S = "asdababab";
+    int lenS = 8;
+
+
 
     int nextArr[lenT];
     getNext(T,lenT,nextArr);

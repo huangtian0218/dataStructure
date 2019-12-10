@@ -141,7 +141,7 @@ int PreOrder(BiTree T,int location){
         }
 
     }
-	
+
 
 //    printf("%c ", temp -> data);
 //    Push(temp);
@@ -167,8 +167,17 @@ int main (){
     BiTree T;
     InitBiTree(&T);
     init();
-    StrAssign(str,"124#67##8###3#5##"); //先根遍历输入
-    int num = 8;
+
+    // test data1
+    // StrAssign(str,"1246###5##37###"); //先根遍历输入
+    // int num = 7;
+
+
+    // test data2
+    StrAssign(str,"124##5##3#67###"); //先根遍历输入
+    int num = 7;
+
+
     CreateBiTree(&T);
 
     for (int i = 1; i <=num ; ++i) {
