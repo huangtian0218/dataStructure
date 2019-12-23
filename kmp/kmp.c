@@ -44,7 +44,7 @@ int kmp(String S,int lenS,String T, int lenT,int *nextArr){
     int count = 0;
     int flag = 0;
 
-    while (s < lenS){
+    while (s <= lenS){
 
         if(S[s] == T[t]){
             flag ++;
@@ -66,7 +66,7 @@ int kmp(String S,int lenS,String T, int lenT,int *nextArr){
         // 成功匹配串
         if (flag == lenT){
             result[count] = s-lenT;
-            s = s-lenT;
+            s = s-lenT+1;
             //printf("success,loc:%d\n",result[count]);
             flag = 0;
             count ++;
